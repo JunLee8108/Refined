@@ -1,11 +1,24 @@
 import "./HomeHelper.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
+
+const HomeBackground = styled.div`
+  background-image: url(${(props) => props.bg});
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: all 1s;
+`;
 
 function HomeHelper() {
-  let [selection, setSelection] = useState([]);
-  const [imageHover, setImageHover] = useState(false);
+  const img1 = "./img/bg-1.webp";
+  const img2 = "./img/bg-2.webp";
+  const backgroundArray = [img1, img2];
+  const [selection, setSelection] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [backgroundImg, setBackgroundImg] = useState(backgroundArray[0]);
 
   const serverGet = () => {
     axios
@@ -24,9 +37,26 @@ function HomeHelper() {
     serverGet();
   }, []);
 
+  let count = 0;
+  useEffect(() => {
+    let timer = setInterval(() => {
+      if (count === 0) {
+        setBackgroundImg(backgroundArray[1]);
+        count += 1;
+      } else if (count === 1) {
+        setBackgroundImg(backgroundArray[0]);
+        count -= 1;
+      }
+    }, 7000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <div className="container">
-      <div className="home-top-container"></div>
+      <HomeBackground bg={backgroundImg} />
       <div className="home-mid-container">
         <h2>Selections</h2>
         <div className="selection-container">

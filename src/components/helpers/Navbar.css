@@ -4,6 +4,14 @@ li {
   margin-right: 25px;
   list-style-type: none;
   font-size: 13px;
+  cursor: pointer;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 1px solid transparent;
+}
+
+li:hover {
+    border-bottom: 1px solid black;
 }
 
 .display-flex-start {
@@ -42,12 +50,13 @@ nav {
   align-items: center;
   width: 50%;
   height: 100%;
-  letter-spacing: 3px;
+  letter-spacing: 3px; 
 }
 
 .brand-name-box-1 h1 {
   /* background-color: blue; */
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .brand-name-box-2 {
