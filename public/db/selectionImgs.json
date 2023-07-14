@@ -4,7 +4,7 @@
         "img": "./img/selection-1.webp",
         "hoverImg": "./img/selection-1-hover.webp",
         "name": "SEMI OVERSIZE PLEATS SHIRT",
-        "color": "BLACK",
+        "color": "Black",
         "price": "95"
     },
     {
@@ -20,7 +20,7 @@
         "img": "./img/selection-3.webp",
         "hoverImg": "./img/selection-3-hover.webp",
         "name": "SEERSUCKER CROPPED HALF SHIRT",
-        "color": "DARK NAVY",
+        "color": "Dark Navy",
         "price": "90"
     }
 ]

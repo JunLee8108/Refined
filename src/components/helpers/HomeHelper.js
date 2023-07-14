@@ -7,7 +7,7 @@ const HomeBackground = styled.div`
   background-image: url(${(props) => props.bg});
   height: 100vh;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
   background-size: cover;
   transition: all 1s;
 `;
@@ -75,10 +75,10 @@ function HomeHelper() {
                   ></img>
                   <h4>
                     {selection[index].name}{" "}
-                    <span style={{ fontSize: "12px", color: "grey" }}>
+                  </h4>
+                  <span style={{ fontSize: "12px", color: "grey" }}>
                       ({selection[index].color})
                     </span>
-                  </h4>
                   <h5>${selection[index].price}</h5>
                 </div>
               );
