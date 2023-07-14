@@ -19,9 +19,11 @@ function HomeHelper() {
   const [selection, setSelection] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [backgroundImg, setBackgroundImg] = useState(backgroundArray[0]);
+  const [scrollSelections, setScrollSelections] = useState(false);
 
+  ////////////// Server Request //////////////
   const serverGet = () => {
-    axios
+    axios 
       .get("./db/selectionImgs.json")
       .then((result) => {
         setSelection(result.data);
@@ -37,6 +39,7 @@ function HomeHelper() {
     serverGet();
   }, []);
 
+  ////////////// Menu //////////////
   let count = 0;
   useEffect(() => {
     let timer = setInterval(() => {
@@ -54,16 +57,44 @@ function HomeHelper() {
     };
   }, []);
 
+  ////////////// Scroll Event //////////////
+  const scrollEvent = () => {
+    if (window.scrollY > 580) {
+      setScrollSelections(true);
+    } else {
+      setScrollSelections(false);
+    }
+    // console.log(scrollHeight);
+    // console.log(window.scrollY);
+    // console.log(scrollSelections);
+  };
+  useEffect(() => {
+    let timer = setInterval(() => {
+      window.addEventListener("scroll", scrollEvent);
+    }, 100);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", scrollEvent);
+    };
+  }, []);
+
   return (
     <div className="container">
       <HomeBackground bg={backgroundImg} />
       <div className="home-mid-container">
         <h2>Selections</h2>
         <div className="selection-container">
+          {/* if loading is completed */}
           {isLoading ? (
             selection.map(function (a, index) {
               return (
-                <div className="selection-box" key={index}>
+                <div
+                  // Scroll Event
+                  className={`selection-box ${
+                    scrollSelections && "selection-box-scroll-event"
+                  }`}
+                  key={index}
+                >
                   <img
                     src={selection[index].img}
                     onMouseEnter={(e) => {
@@ -73,12 +104,10 @@ function HomeHelper() {
                       e.target.src = `${selection[index].img}`;
                     }}
                   ></img>
-                  <h4>
-                    {selection[index].name}{" "}
-                  </h4>
+                  <h4>{selection[index].name} </h4>
                   <span style={{ fontSize: "12px", color: "grey" }}>
-                      ({selection[index].color})
-                    </span>
+                    ({selection[index].color})
+                  </span>
                   <h5>${selection[index].price}</h5>
                 </div>
               );

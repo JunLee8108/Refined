@@ -104,7 +104,7 @@ function Navbar() {
             <div className="brand-name-box-1 flex-column">
               <div>
                 {content.map(function (a, index) {
-                  return <li key={index}>{content[index]}</li>;
+                  return <li key={index}>‣ {content[index]}</li>;
                 })}
               </div>
             </div>
