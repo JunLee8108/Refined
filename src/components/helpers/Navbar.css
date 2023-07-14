@@ -64,6 +64,24 @@ nav {
   width: 40%;
 }
 
+/* Navbar Modal */
+.navbar-modal {
+  opacity: 0;
+}
+
+.show-modal {
+  opacity: 1;
+  transition: 1s;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-column li {
+  margin-bottom: 25px;
+}
+
 @media screen and (max-width: 767px) {
   /* Invisible */
   .brand-name-box-2 {

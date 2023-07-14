@@ -9,8 +9,8 @@
 
 /* Mid (selection) */
 .home-mid-container h2 {
-    margin-top: 100px;
-    margin-bottom: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     letter-spacing: 3px;
     text-align: center;
 }
@@ -19,6 +19,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .selection-box {
@@ -32,4 +33,18 @@
     width: 90%;
     height: 100%;
     cursor: pointer;
+}
+
+/* Phone */
+@media screen and (max-width: 767px) {
+    /* Mid (selection) */
+    .selection-box {
+        width: 100%;
+    }
+    .selection-box h4 {
+        font-size: 12px;
+    }
+    .selection-box h5 {
+        font-size: 10px;
+    }
 }
