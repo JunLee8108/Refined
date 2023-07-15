@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [isHover, setHover] = useState(false);
+  const [isMobile, setMobile] = useState(false);
   const [handleHover, setHandleHover] = useState("");
   const [navbarModal, setNavbarModal] = useState("");
+  const [mobileModal, setMobileModal] = useState("");
   const [menu, setMenu] = useState([]);
   const [menuHTML, setMenuHTML] = useState("");
   const [content, setContent] = useState(0);
@@ -15,7 +17,6 @@ function Navbar() {
 
   const handleContent = (e) => {
     setContent(e);
-    console.log();
   };
 
   useEffect(() => {
@@ -52,6 +53,17 @@ function Navbar() {
       });
   }, []);
 
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setMobileModal("brand-name-box-2-mobile-translate");
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      setMobileModal("");
+    };
+  }, [isMobile]);
+
   return (
     <div className="navbar-container">
       <nav>
@@ -61,12 +73,28 @@ function Navbar() {
               onClick={() => {
                 setHover(false);
                 setHandleHover("");
+                setMobile(false);
                 navigate("/");
               }}
             >
               Refined
             </h1>
             <h4>Seoul</h4>
+            {/* Mobile View */}
+            <div className="mobile-btn">
+              <li>
+                <button
+                  onClick={() => {
+                    setMobile((isMobile) => !isMobile);
+                    setHover(false);
+                    setHandleHover("");
+                  }}
+                >
+                  <h4>MENU</h4>
+                </button>
+              </li>
+            </div>
+            {/***************/}
           </div>
           <div className="brand-name-box-2">
             {isLoading ? (
@@ -128,6 +156,40 @@ function Navbar() {
           </ul>
           <ul className="nav-menu display-flex-start"></ul>
         </nav>
+      ) : null}
+
+      {/* Mobile View */}
+      {isMobile ? (
+        <div className="mobile-navbar">
+          <div className={"brand-name-box-2-mobile " + mobileModal}>
+            {isLoading ? (
+              menu.map(function (a, index) {
+                return (
+                  <li
+                    key={index}
+                    onClick={(e) => {
+                      handleContent(menu[index].catagories);
+                      setHandleHover(e.target);
+                      setMenuHTML(e.target.innerHTML);
+                      setHover(true);
+                      setMobile((isMobile) => !isMobile);
+                      if (handleHover == e.target) {
+                        setHover(false);
+                        setHandleHover("");
+                      }
+                    }}
+                  >
+                    {menu[index].name}
+                  </li>
+                );
+              })
+            ) : (
+              <div>
+                <h1>loading..</h1>
+              </div>
+            )}
+          </div>
+        </div>
       ) : null}
     </div>
   );
