@@ -1,14 +1,17 @@
 import "./Navbar.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [isHover, setHover] = useState(false);
   const [handleHover, setHandleHover] = useState("");
   const [navbarModal, setNavbarModal] = useState("");
   const [menu, setMenu] = useState([]);
+  const [menuHTML, setMenuHTML] = useState("");
   const [content, setContent] = useState(0);
   const [isLoading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleContent = (e) => {
     setContent(e);
@@ -39,7 +42,7 @@ function Navbar() {
 
   useEffect(() => {
     axios
-      .get("./db/menu.json")
+      .get(process.env.PUBLIC_URL + "/db/menu.json")
       .then((result) => {
         setMenu(result.data);
         setLoading(true);
@@ -58,6 +61,7 @@ function Navbar() {
               onClick={() => {
                 setHover(false);
                 setHandleHover("");
+                navigate("/");
               }}
             >
               Refined
@@ -73,6 +77,7 @@ function Navbar() {
                     onClick={(e) => {
                       handleContent(menu[index].catagories);
                       setHandleHover(e.target);
+                      setMenuHTML(e.target.innerHTML);
                       setHover(true);
                       if (handleHover == e.target) {
                         setHover(false);
@@ -104,7 +109,18 @@ function Navbar() {
             <div className="brand-name-box-1 flex-column">
               <div>
                 {content.map(function (a, index) {
-                  return <li key={index}>‣ {content[index]}</li>;
+                  return (
+                    <li
+                      key={index}
+                      onClick={(e) => {
+                        navigate(menuHTML + "/" + e.target.innerHTML);
+                        setHover(false);
+                        setHandleHover("");
+                      }}
+                    >
+                      {content[index]}
+                    </li>
+                  );
                 })}
               </div>
             </div>

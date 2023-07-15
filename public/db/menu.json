@@ -2,21 +2,43 @@
     {
         "id": 0,
         "name": "MEN",
-        "catagories": ["New Arrival", "Coats & Jackets", "Shirts", "Kintwear", "Jeans", "Pants"]
+        "catagories": [
+            "New Arrival",
+            "Outerwear",
+            "Shirts",
+            "Kintwear",
+            "Jeans",
+            "Pants"
+        ]
     },
     {
         "id": 1,
         "name": "WOMEN",
-        "catagories": ["New Arrival", "Coats & Jackets", "Shirts", "Kintwear", "Jeans", "Pants", "Skirts"]
+        "catagories": [
+            "New Arrival",
+            "Outerwear",
+            "Shirts",
+            "Kintwear",
+            "Jeans",
+            "Pants",
+            "Skirts"
+        ]
     },
     {
         "id": 2,
         "name": "ACCESSORIES",
-        "catagories": ["Bags", "Shoes", "Accessories"]
+        "catagories": [
+            "Bags",
+            "Shoes",
+            "Accessories"
+        ]
     },
     {
         "id": 3,
         "name": "COLLECTIONS",
-        "catagories": ["2023 S/S Collection", "2023 F/W Collection"]
+        "catagories": [
+            "2023 S/S Collection",
+            "2023 F/W Collection"
+        ]
     }
 ]

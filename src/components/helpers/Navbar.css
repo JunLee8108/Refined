@@ -88,7 +88,7 @@ nav {
 }
 
 .flex-column li {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 @media screen and (max-width: 767px) {

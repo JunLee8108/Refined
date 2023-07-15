@@ -24,7 +24,7 @@ function HomeHelper() {
   ////////////// Server Request //////////////
   const serverGet = () => {
     axios 
-      .get("./db/selectionImgs.json")
+      .get(process.env.PUBLIC_URL + "/db/selectionImgs.json")
       .then((result) => {
         setSelection(result.data);
         // Check if load is completed
