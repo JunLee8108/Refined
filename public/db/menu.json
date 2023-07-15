@@ -7,7 +7,6 @@
             "Outerwear",
             "Shirts",
             "Kintwear",
-            "Jeans",
             "Pants"
         ]
     },
@@ -19,7 +18,6 @@
             "Outerwear",
             "Shirts",
             "Kintwear",
-            "Jeans",
             "Pants",
             "Skirts"
         ]
@@ -37,8 +35,8 @@
         "id": 3,
         "name": "COLLECTIONS",
         "catagories": [
-            "2023 S/S Collection",
-            "2023 F/W Collection"
+            "2023 S/S",
+            "2023 F/W"
         ]
     }
 ]

@@ -90,7 +90,7 @@ function Navbar() {
                     setHandleHover("");
                   }}
                 >
-                  <h4>MENU</h4>
+                  <h4>Menu</h4>
                 </button>
               </li>
             </div>
@@ -136,6 +136,16 @@ function Navbar() {
           <ul className="brand-name display-flex-start">
             <div className="brand-name-box-1 flex-column">
               <div>
+                <li
+                  style={{
+                    cursor: "unset",
+                    border: "none",
+                    fontWeight: "bold",
+                    letterSpacing: "0px",
+                  }}
+                >
+                  {menuHTML}.
+                </li>
                 {content.map(function (a, index) {
                   return (
                     <li
