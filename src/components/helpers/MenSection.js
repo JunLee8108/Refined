@@ -1,15 +1,6 @@
 import { useEffect, useState } from "react";
 import "./MenSection.css";
 import axios from "axios";
-import styled from "styled-components";
-
-const MenBackground = styled.div`
-  background-image: url(${(props) => props.bg});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
-`;
 
 function MenSection(props) {
   const [isLoading, setLoading] = useState(false);

@@ -23,7 +23,7 @@ function HomeHelper() {
 
   ////////////// Server Request //////////////
   const serverGet = () => {
-    axios 
+    axios
       .get(process.env.PUBLIC_URL + "/db/selectionImgs.json")
       .then((result) => {
         setSelection(result.data);

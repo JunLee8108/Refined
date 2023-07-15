@@ -11,7 +11,7 @@ li {
 }
 
 li:hover {
-    border-bottom: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .display-flex-start {
@@ -50,7 +50,7 @@ nav {
   align-items: center;
   width: 50%;
   height: 100%;
-  letter-spacing: 3px; 
+  letter-spacing: 3px;
 }
 
 .brand-name-box-1 h1 {
@@ -93,11 +93,15 @@ nav {
 
 /* Not visible */
 .mobile-btn {
-    display: none;
+  display: none;
 }
 
 .mobile-navbar {
-    display: none;
+  display: none;
+}
+
+.menu-mobile {
+  display: none;
 }
 
 @media screen and (max-width: 767px) {
@@ -110,6 +114,10 @@ nav {
   }
 
   /* Visible on mobile */
+  li {
+    font-size: 12px;
+  }
+
   .brand-name {
     /* background-color: blue; */
     width: 100%;
@@ -117,11 +125,12 @@ nav {
 
   .brand-name-box-1 {
     width: 100%;
-    margin-left: 10px;
+    margin-left: 0px;
   }
 
   .brand-name-box-1 h1 {
     font-size: 20px;
+    margin-left: 10px;
   }
 
   .brand-name-box-1 h4 {
@@ -172,6 +181,10 @@ nav {
   }
 
   .flex-column li {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
+  }
+
+  .menu-mobile {
+    display: block;
   }
 }

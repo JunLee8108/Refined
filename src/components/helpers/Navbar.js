@@ -141,8 +141,9 @@ function Navbar() {
                     cursor: "unset",
                     border: "none",
                     fontWeight: "bold",
-                    letterSpacing: "0px",
+                    letterSpacing: "1px",
                   }}
+                  className="menu-mobile"
                 >
                   {menuHTML}.
                 </li>
