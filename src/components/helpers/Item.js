@@ -1,23 +1,23 @@
 import "./Item.css";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
-function WomenSection(props) {
+function Item(props) {
   const [isLoading, setLoading] = useState(false);
-  const [womenData, setWomenData] = useState([]);
+  const [menData, setMenData] = useState([]);
   const [fade, setFade] = useState("");
-  const bg = "/img/bg/women-bg-0.webp";
+  const bg = "/img/bg/men-bg-0.webp";
 
   // Request the sever
   useEffect(() => {
     axios
-      .get(process.env.PUBLIC_URL + "/db/women.json")
+      .get(process.env.PUBLIC_URL + "/db/men.json")
       .then((result) => {
         setLoading(true);
         const copy = result.data.filter(
-          (data) => data.type == props.id && data.category == "WOMEN"
+          (data) => data.type == props.id && data.category == "MEN"
         );
-        setWomenData(copy);
+        setMenData(copy);
       })
       .catch(() => {
         alert("Failed to load.");
@@ -35,17 +35,17 @@ function WomenSection(props) {
 
   // Sort
   const sort = (e) => {
-    let copy = [...womenData];
+    let copy = [...menData];
     if (e == 0) {
       copy.sort(function (a, b) {
         return a.price - b.price;
       });
-      setWomenData(copy);
+      setMenData(copy);
     } else if (e == 1) {
       copy.sort(function (a, b) {
         return b.price - a.price;
       });
-      setWomenData(copy);
+      setMenData(copy);
     }
   };
 
@@ -53,7 +53,7 @@ function WomenSection(props) {
     <div>
       <div
         className={"item-top-bg " + fade}
-        style={{ backgroundImage: `url(${bg})`, backgroundPosition: "top" }}
+        style={{ backgroundImage: `url(${bg})` }}
       ></div>
       <div className="item-title">
         <h2>{props.id}</h2>
@@ -75,23 +75,23 @@ function WomenSection(props) {
       <div className="item-container">
         {/* if loading is completed */}
         {isLoading ? (
-          womenData.map(function (a, index) {
+          menData.map(function (a, index) {
             return (
               <div className="item-box" key={index}>
                 <img
-                  src={womenData[index].img}
+                  src={menData[index].img}
                   onMouseEnter={(e) => {
-                    e.target.src = `${womenData[index].hoverImg}`;
+                    e.target.src = `${menData[index].hoverImg}`;
                   }}
                   onMouseLeave={(e) => {
-                    e.target.src = `${womenData[index].img}`;
+                    e.target.src = `${menData[index].img}`;
                   }}
                 ></img>
-                <h4>{womenData[index].name} </h4>
+                <h4>{menData[index].name} </h4>
                 <span style={{ fontSize: "12px", color: "grey" }}>
-                  ({womenData[index].color})
+                  ({menData[index].color})
                 </span>
-                <h5>${womenData[index].price}</h5>
+                <h5>${menData[index].price}</h5>
               </div>
             );
           })
@@ -105,4 +105,4 @@ function WomenSection(props) {
   );
 }
 
-export default WomenSection;
+export default Item;

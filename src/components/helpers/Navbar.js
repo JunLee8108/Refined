@@ -19,6 +19,7 @@ function Navbar() {
     setContent(e);
   };
 
+  // Menu opacity effect
   useEffect(() => {
     let timer = setTimeout(() => {
       setNavbarModal("show-modal");
@@ -41,6 +42,7 @@ function Navbar() {
     };
   }, [content]);
 
+  // Sever request
   useEffect(() => {
     axios
       .get(process.env.PUBLIC_URL + "/db/menu.json")
@@ -53,6 +55,7 @@ function Navbar() {
       });
   }, []);
 
+  // Mobile menu transform effect
   useEffect(() => {
     let timer = setTimeout(() => {
       setMobileModal("brand-name-box-2-mobile-translate");
@@ -80,21 +83,13 @@ function Navbar() {
               Refined
             </h1>
             <h4>Seoul</h4>
-            {/* Mobile View */}
-            <div className="mobile-btn">
-              <li>
-                <button
-                  onClick={() => {
-                    setMobile((isMobile) => !isMobile);
-                    setHover(false);
-                    setHandleHover("");
-                  }}
-                >
-                  <h4>Menu</h4>
-                </button>
-              </li>
-            </div>
-            {/***************/}
+            {/* Not visible on laptop (Mobile Menu Button) */}
+            <MobileMenuBtn
+              setMobile={setMobile}
+              setHover={setHover}
+              setHandleHover={setHandleHover}
+            />
+            {/**********************************************/}
           </div>
           <div className="brand-name-box-2">
             {isLoading ? (
@@ -136,17 +131,11 @@ function Navbar() {
           <ul className="brand-name display-flex-start">
             <div className="brand-name-box-1 flex-column">
               <div>
-                <li
-                  style={{
-                    cursor: "unset",
-                    border: "none",
-                    fontWeight: "bold",
-                    letterSpacing: "1px",
-                  }}
-                  className="menu-mobile"
-                >
-                  {menuHTML}.
-                </li>
+                {/* Not visible on laptop */}
+                {/* Let users know which button they click (men, women ...) */}
+                <MobileIndicator menuHTML={menuHTML} />
+                {/***********************************************************/}
+
                 {content.map(function (a, index) {
                   return (
                     <li
@@ -169,39 +158,90 @@ function Navbar() {
         </nav>
       ) : null}
 
-      {/* Mobile View */}
+      {/* Not visible on laptop (Mobile Menu Bar) */}
       {isMobile ? (
-        <div className="mobile-navbar">
-          <div className={"brand-name-box-2-mobile " + mobileModal}>
-            {isLoading ? (
-              menu.map(function (a, index) {
-                return (
-                  <li
-                    key={index}
-                    onClick={(e) => {
-                      handleContent(menu[index].catagories);
-                      setHandleHover(e.target);
-                      setMenuHTML(e.target.innerHTML);
-                      setHover(true);
-                      setMobile((isMobile) => !isMobile);
-                      if (handleHover == e.target) {
-                        setHover(false);
-                        setHandleHover("");
-                      }
-                    }}
-                  >
-                    {menu[index].name}
-                  </li>
-                );
-              })
-            ) : (
-              <div>
-                <h1>loading..</h1>
-              </div>
-            )}
-          </div>
-        </div>
+        <MobileMenu
+          menu={menu}
+          handleContent={handleContent}
+          setHandleHover={setHandleHover}
+          setMenuHTML={setMenuHTML}
+          setHover={setHover}
+          setMobile={setMobile}
+          handleHover={handleHover}
+          isLoading={isLoading}
+          mobileModal={mobileModal}
+        />
       ) : null}
+      {/********************************************/}
+    </div>
+  );
+}
+
+function MobileMenuBtn(props) {
+  return (
+    <div className="mobile-btn">
+      <li>
+        <button
+          onClick={() => {
+            props.setMobile((isMobile) => !isMobile);
+            props.setHover(false);
+            props.setHandleHover("");
+          }}
+        >
+          <h4>Menu</h4>
+        </button>
+      </li>
+    </div>
+  );
+}
+
+function MobileIndicator(props) {
+  return (
+    <li
+      style={{
+        cursor: "unset",
+        border: "none",
+        fontWeight: "bold",
+        letterSpacing: "1px",
+      }}
+      className="menu-mobile"
+    >
+      {props.menuHTML}.
+    </li>
+  );
+}
+
+function MobileMenu(props) {
+  return (
+    <div className="mobile-navbar">
+      <div className={"brand-name-box-2-mobile " + props.mobileModal}>
+        {props.isLoading ? (
+          props.menu.map(function (a, index) {
+            return (
+              <li
+                key={index}
+                onClick={(e) => {
+                  props.handleContent(props.menu[index].catagories);
+                  props.setHandleHover(e.target);
+                  props.setMenuHTML(e.target.innerHTML);
+                  props.setHover(true);
+                  props.setMobile((isMobile) => !isMobile);
+                  if (props.handleHover == e.target) {
+                    props.setHover(false);
+                    props.setHandleHover("");
+                  }
+                }}
+              >
+                {props.menu[index].name}
+              </li>
+            );
+          })
+        ) : (
+          <div>
+            <h1>loading..</h1>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

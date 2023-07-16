@@ -1,0 +1,42 @@
+[
+    {
+        "id": 0,
+        "img": "/img/acc/bag-0.webp",
+        "hoverImg": "/img/acc/bag-0-hover.webp",
+        "name": "PEDROWEB MULTI STRING SLINGBAG",
+        "category": "ACCESSORIES",
+        "color": "Sand Beige",
+        "type": "Bags",
+        "price": 130
+    },
+    {
+        "id": 1,
+        "img": "/img/acc/bag-1.webp",
+        "hoverImg": "/img/acc/bag-1-hover.webp",
+        "name": "PEDROWEB MULTI STRING SLINGBAG",
+        "category": "ACCESSORIES",
+        "color": "Dark Navy",
+        "type": "Bags",
+        "price": 130
+    },
+    {
+        "id": 2,
+        "img": "/img/acc/bag-2.webp",
+        "hoverImg": "/img/acc/bag-2-hover.webp",
+        "name": "VINTAGE LEATHER MESSENGER BAG",
+        "category": "ACCESSORIES",
+        "color": "Black",
+        "type": "Bags",
+        "price": 220
+    },
+    {
+        "id": 3,
+        "img": "/img/acc/shoes-0.webp",
+        "hoverImg": "/img/acc/shoes-0.webp",
+        "name": "RAW CUT PLATFORM FLIP FLAP",
+        "category": "ACCESSORIES",
+        "color": "Black",
+        "type": "Shoes",
+        "price": 150
+    }
+]

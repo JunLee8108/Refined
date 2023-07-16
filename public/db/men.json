@@ -1,47 +1,122 @@
 [
     {
         "id": 0,
-        "img": "/img/selection-1.webp",
-        "hoverImg": "/img/selection-1-hover.webp",
+        "img": "/img/men/selection-2.webp",
+        "hoverImg": "/img/men/selection-2-hover.webp",
         "name": "SEMI OVERSIZE PLEATS SHIRT",
-        "color": "Black",
+        "category": "MEN",
+        "color": "White",
         "type": "New Arrival",
-        "price": "95"
+        "price": 95
     },
     {
         "id": 1,
-        "img": "/img/selection-2.webp",
-        "hoverImg": "/img/selection-2-hover.webp",
+        "img": "/img/men/selection-1.webp",
+        "hoverImg": "/img/men/selection-1-hover.webp",
         "name": "SEMI OVERSIZE PLEATS SHIRT",
-        "color": "White",
+        "category": "MEN",
+        "color": "Black",
         "type": "New Arrival",
-        "price": "95"
+        "price": 95
     },
     {
         "id": 2,
-        "img": "/img/selection-3.webp",
-        "hoverImg": "/img/selection-3-hover.webp",
+        "img": "/img/men/selection-3.webp",
+        "hoverImg": "/img/men/selection-3-hover.webp",
         "name": "SEERSUCKER CROPPED HALF SHIRT",
+        "category": "MEN",
         "color": "Dark Navy",
         "type": "New Arrival",
-        "price": "90"
+        "price": 90
     },
     {
         "id": 3,
-        "img": "/img/men-0.webp",
-        "hoverImg": "/img/men-0-hover.webp",
+        "img": "/img/men/men-0.webp",
+        "hoverImg": "/img/men/men-0-hover.webp",
         "name": "DRAWSTRING JACQUARD ZIP UP",
+        "category": "MEN",
         "color": "Black",
         "type": "Outerwear",
-        "price": "190"
+        "price": 190
     },
     {
         "id": 4,
-        "img": "/img/men-1.webp",
-        "hoverImg": "/img/men-1-hover.webp",
+        "img": "/img/men/men-2.webp",
+        "hoverImg": "/img/men/men-2-hover.webp",
+        "name": "CRINKLE PLEATS SINGLE COAT",
+        "category": "MEN",
+        "color": "Black",
+        "type": "Outerwear",
+        "price": 300
+    },
+    {
+        "id": 5,
+        "img": "/img/men/men-3.webp",
+        "hoverImg": "/img/men/men-3-hover.webp",
+        "name": "TWISTED DENIM TROUGER JACKET",
+        "category": "MEN",
+        "color": "Washed Blue",
+        "type": "Outerwear",
+        "price": 200
+    },
+    {
+        "id": 6,
+        "img": "/img/men/men-4.webp",
+        "hoverImg": "/img/men/men-4-hover.webp",
+        "name": "SUPIMA COTTON SEMI OVERFIT T-SHIRTS",
+        "category": "MEN",
+        "color": "Black",
+        "type": "Shirts",
+        "price": 30
+    },
+    {
+        "id": 7,
+        "img": "/img/men/men-5.webp",
+        "hoverImg": "/img/men/men-5-hover.webp",
+        "name": "SUPIMA COTTON SEMI OVERFIT T-SHIRTS",
+        "category": "MEN",
+        "color": "White",
+        "type": "Shirts",
+        "price": 30
+    },
+    {
+        "id": 8,
+        "img": "/img/men/men-1.webp",
+        "hoverImg": "/img/men/men-1-hover.webp",
         "name": "OPEN COLLAR LIGHT COTTON POLO KNIT",
-        "color": "SAIL CHAMPAGNE",
+        "category": "MEN",
+        "color": "Sail Champagne",
         "type": "Kintwear",
-        "price": "80"
+        "price": 80
+    },
+    {
+        "id": 9,
+        "img": "/img/men/men-6.webp",
+        "hoverImg": "/img/men/men-6-hover.webp",
+        "name": "MULTI COLOR HALF CARDIGAN",
+        "category": "MEN",
+        "color": "Beige",
+        "type": "Kintwear",
+        "price": 130
+    },
+    {
+        "id": 10,
+        "img": "/img/men/men-7.webp",
+        "hoverImg": "/img/men/men-7-hover.webp",
+        "name": "COTTON TWISTED EMBROIDER EASY PANTS",
+        "category": "MEN",
+        "color": "Skyblue",
+        "type": "Pants",
+        "price": 120
+    },
+    {
+        "id": 11,
+        "img": "/img/men/men-8.webp",
+        "hoverImg": "/img/men/men-8-hover.webp",
+        "name": "CRINKLE WIDE DENIM PANTS",
+        "category": "MEN",
+        "color": "Indigo",
+        "type": "Pants",
+        "price": 100
     }
 ]

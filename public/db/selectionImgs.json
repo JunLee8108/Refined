@@ -1,24 +1,24 @@
 [
     {
         "id": 0,
-        "img": "./img/selection-1.webp",
-        "hoverImg": "./img/selection-1-hover.webp",
-        "name": "SEMI OVERSIZE PLEATS SHIRT",
-        "color": "Black",
-        "price": "95"
-    },
-    {
-        "id": 1,
-        "img": "./img/selection-2.webp",
-        "hoverImg": "./img/selection-2-hover.webp",
+        "img": "./img/men/selection-2.webp",
+        "hoverImg": "./img/men/selection-2-hover.webp",
         "name": "SEMI OVERSIZE PLEATS SHIRT",
         "color": "White",
         "price": "95"
     },
     {
+        "id": 1,
+        "img": "./img/men/selection-1.webp",
+        "hoverImg": "./img/men/selection-1-hover.webp",
+        "name": "SEMI OVERSIZE PLEATS SHIRT",
+        "color": "Black",
+        "price": "95"
+    },
+    {
         "id": 2,
-        "img": "./img/selection-3.webp",
-        "hoverImg": "./img/selection-3-hover.webp",
+        "img": "./img/men/selection-3.webp",
+        "hoverImg": "./img/men/selection-3-hover.webp",
         "name": "SEERSUCKER CROPPED HALF SHIRT",
         "color": "Dark Navy",
         "price": "90"

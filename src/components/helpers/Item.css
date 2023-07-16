@@ -1,42 +1,52 @@
-.men-top-bg {
+.item-top-bg {
     height: 80vh;
-    background-image: url(../../../public/img/men-bg-0.webp);
     background-repeat: no-repeat;
     background-position: top;
     background-size: cover;
     opacity: 0;
 }
 
-.men-top-bg-fade {
+.item-top-bg-fade {
     opacity: 1;
     transition: all 0.5s;
 }
 
-.men-title {
+.item-title {
     text-align: center;
     letter-spacing: 3px;
     margin-top: 40px;
     margin-bottom: 40px;
 }
 
-.men-container {
+.item-title button {
+    border: none;
+    height: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: white;
+}
+
+.item-title button:hover {
+    opacity: 0.5;
+}
+
+.item-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.men-box {
+.item-box {
     width: 30%;
     max-width: 800px;
     height: auto;
     text-align: center;
     margin: 10px;
-    opacity: 1;
-    transition: 1s;
 }
 
-.men-box img {
+.item-box img {
     text-align: center;
     width: 90%;
     height: auto;
@@ -44,7 +54,11 @@
 }
 
 @media screen and (max-width:767px) {
-    .men-box {
+    .item-top-bg {
+        height: 60vh;
+    }
+
+    .item-box {
         width: 100%;
     }
 }

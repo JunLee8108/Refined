@@ -13,8 +13,8 @@ const HomeBackground = styled.div`
 `;
 
 function HomeHelper() {
-  const img1 = "./img/bg-1.webp";
-  const img2 = "./img/bg-2.webp";
+  const img1 = "./img/bg/bg-1.webp";
+  const img2 = "./img/bg/bg-2.webp";
   const backgroundArray = [img1, img2];
   const [selection, setSelection] = useState([]);
   const [isLoading, setLoading] = useState(false);
@@ -39,7 +39,7 @@ function HomeHelper() {
     serverGet();
   }, []);
 
-  ////////////// Menu //////////////
+  ////////////// Background Change //////////////
   let count = 0;
   useEffect(() => {
     let timer = setInterval(() => {
