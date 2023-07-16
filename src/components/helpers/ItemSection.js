@@ -1,5 +1,5 @@
 import "./ItemSection.css";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function ItemSection(props) {
@@ -27,34 +27,62 @@ function ItemSection(props) {
     }
   };
 
-  // Server request
-  const serverRequest = useCallback(
-    async (url) => {
+  //   // Server request
+  //   const serverRequest = useCallback(
+  //     async (url) => {
+  //       axios
+  //         .get(process.env.PUBLIC_URL + url)
+  //         .then((result) => {
+  //           const copy = result.data.filter((data) => data.type === props.type);
+  //           setData(copy);
+  //           setLoading(true);
+  //         })
+  //         .catch(() => {
+  //           alert("Failed to load.");
+  //         });
+  //     },
+  //     [props.type]
+  //   );
+
+  useEffect(() => {
+    if (props.category === "MEN") {
       axios
-        .get(process.env.PUBLIC_URL + url)
+        .get(process.env.PUBLIC_URL + "/db/men.json")
         .then((result) => {
-          setLoading(true);
           const copy = result.data.filter((data) => data.type === props.type);
           setData(copy);
+          setLoading(true);
         })
         .catch(() => {
           alert("Failed to load.");
         });
-    },
-    [props.type]
-  );
-
-  useEffect(() => {
-    if (props.category === "MEN") {
-      serverRequest("/db/men.json");
       setBg(bgMen);
     } else if (props.category === "WOMEN") {
-      serverRequest("/db/women.json");
+      axios
+        .get(process.env.PUBLIC_URL + "/db/women.json")
+        .then((result) => {
+          const copy = result.data.filter((data) => data.type === props.type);
+          setData(copy);
+          setLoading(true);
+        })
+        .catch(() => {
+          alert("Failed to load.");
+        });
       setBg(bgWomen);
     } else if (props.category === "ACCESSORIES") {
-      serverRequest("/db/acc.json");
+      axios
+        .get(process.env.PUBLIC_URL + "/db/acc.json")
+        .then((result) => {
+          const copy = result.data.filter((data) => data.type === props.type);
+          setData(copy);
+          setLoading(true);
+        })
+        .catch(() => {
+          alert("Failed to load.");
+        });
       setBg(bgAcc);
     }
+
     let timer = setTimeout(() => {
       setFade("item-top-bg-fade");
     }, 100);
@@ -63,7 +91,7 @@ function ItemSection(props) {
       clearTimeout(timer);
       setFade("");
     };
-  }, [props.category, serverRequest]);
+  }, [props.category, props.type]);
 
   return (
     <div>

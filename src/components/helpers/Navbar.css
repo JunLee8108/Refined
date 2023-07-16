@@ -10,10 +10,6 @@ li {
   border: 1px solid transparent;
 }
 
-li:hover {
-  border-bottom: 1px solid black;
-}
-
 .display-flex-start {
   display: flex;
   justify-content: flex-start;
@@ -102,6 +98,12 @@ nav {
 
 .menu-mobile {
   display: none;
+}
+
+@media (hover: hover) {
+  li:hover {
+    border-bottom: 1px solid black;
+  }
 }
 
 @media screen and (max-width: 767px) {
