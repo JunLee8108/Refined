@@ -96,6 +96,7 @@ function HomeHelper() {
                   key={index}
                 >
                   <img
+                  alt="item"
                     src={selection[index].img}
                     onMouseEnter={(e) => {
                       e.target.src = `${selection[index].hoverImg}`;

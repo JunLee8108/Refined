@@ -102,7 +102,7 @@ function Navbar() {
                       setHandleHover(e.target);
                       setMenuHTML(e.target.innerHTML);
                       setHover(true);
-                      if (handleHover == e.target) {
+                      if (handleHover === e.target) {
                         setHover(false);
                         setHandleHover("");
                       }
@@ -141,7 +141,8 @@ function Navbar() {
                     <li
                       key={index}
                       onClick={(e) => {
-                        navigate(menuHTML + "/" + e.target.innerHTML);
+                        navigate("Item/" + menuHTML + "/" + e.target.innerHTML);
+                        // navigate(menuHTML + "/" + e.target.innerHTML);
                         setHover(false);
                         setHandleHover("");
                       }}
@@ -226,7 +227,7 @@ function MobileMenu(props) {
                   props.setMenuHTML(e.target.innerHTML);
                   props.setHover(true);
                   props.setMobile((isMobile) => !isMobile);
-                  if (props.handleHover == e.target) {
+                  if (props.handleHover === e.target) {
                     props.setHover(false);
                     props.setHandleHover("");
                   }
