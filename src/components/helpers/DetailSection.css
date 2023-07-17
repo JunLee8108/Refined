@@ -1,0 +1,172 @@
+.detail-container {
+    display: flex;
+    justify-content: center; 
+    height: 1080px;  
+    align-items: center;
+    opacity: 0;
+}
+
+.detail-container-effect {
+    opacity: 1;
+    transition: 1s;
+}
+
+.detail-box {
+    display: flex;
+    width: 80%;
+    height: 90%;
+}
+
+.detail-flexbox {
+    width: 50%;
+    margin: 2px;
+}
+
+.detail-flexbox:nth-child(1) {
+    text-align: right;
+    max-height: 1200px;
+}
+
+.detail-flexbox:nth-child(2) {
+    width: 50%;
+}
+
+.detail-flexbox img {
+    width: 75%;
+    height: 80%;
+}
+
+.detail-flexbox-title {
+    width: 80%;
+    /* background-color: red; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.detail-flexbox-sizeBtn {
+    width: 80%;
+    padding-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sizeBtn {
+    width: 10%;
+    height: 40px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.detail-flexbox-sizeBtn button:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.2s;
+}
+
+.border-line {
+    border-bottom: 1px black dashed;
+    width: 100%;
+}
+
+.addMinusBtn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.addMinusBtn:nth-child(1) {
+    margin-right: 15px;
+}
+
+.addMinusBtn:nth-child(2) {
+    margin-left: 15px;
+}
+
+.addToCartBtn {
+    border: none;   
+    width: 100%;
+    height: 30px;
+    margin-top: 20px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.deleteBtn {
+    border: none;
+    background-color: white;
+    font-weight: bolder;
+}
+
+.deleteBtn:hover {
+    transition: all 0.2s;
+    background-color: white;
+}
+
+/* 4K */
+@media (min-width: 2561px) and (max-width: 3840px) {
+    .detail-container {
+        height: 2160px;  
+    }
+    .detail-flexbox img {
+        width: 55%;
+        height: 90%;
+    }
+}
+
+/* QHD */
+@media (min-width: 1921px) and (max-width: 2560px) {
+    .detail-container {
+        height: 1440px;  
+    }
+    .detail-flexbox img {
+        width: 65%;
+        height: 75%;
+    }
+}
+
+/* Mobile (Phone) */
+@media screen and (max-width: 767px) {
+    .detail-container {
+        height: 100%;
+    }
+
+    .detail-box {
+        width: 90%;
+        flex-wrap: wrap;
+    }
+
+    .detail-flexbox img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .detail-flexbox {
+        width: 100%;
+    }
+
+    .detail-flexbox:nth-child(2) {
+        width: 100%;
+    }
+
+    .detail-flexbox-title {
+        text-align: center;
+    }
+
+    .border-line {
+        border-bottom: 1px black dashed;
+        width: 100%;
+    }
+
+    .sizeBtn {
+        width: 20%;
+        color: black;
+    }
+
+    .addToCartBtn {
+        margin-bottom: 20px;
+    }
+
+}

@@ -4,7 +4,9 @@
         "img": "./img/men/selection-2.webp",
         "hoverImg": "./img/men/selection-2-hover.webp",
         "name": "SEMI OVERSIZE PLEATS SHIRT",
+        "category": "MEN",
         "color": "White",
+        "type": "New Arrival",
         "price": "95"
     },
     {
@@ -12,7 +14,9 @@
         "img": "./img/men/selection-1.webp",
         "hoverImg": "./img/men/selection-1-hover.webp",
         "name": "SEMI OVERSIZE PLEATS SHIRT",
+        "category": "MEN",
         "color": "Black",
+        "type": "New Arrival",
         "price": "95"
     },
     {
@@ -20,7 +24,9 @@
         "img": "./img/men/selection-3.webp",
         "hoverImg": "./img/men/selection-3-hover.webp",
         "name": "SEERSUCKER CROPPED HALF SHIRT",
+        "category": "MEN",
         "color": "Dark Navy",
+        "type": "New Arrival",
         "price": "90"
     }
 ]

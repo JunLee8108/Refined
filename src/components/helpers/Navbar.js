@@ -29,18 +29,7 @@ function Navbar() {
       clearTimeout(timer);
       setNavbarModal("");
     };
-  }, [isHover]);
-
-  useEffect(() => {
-    let timer = setTimeout(() => {
-      setNavbarModal("show-modal");
-    }, 100);
-
-    return () => {
-      clearTimeout(timer);
-      setNavbarModal("");
-    };
-  }, [content]);
+  }, [isHover, content]);
 
   // Sever request
   useEffect(() => {
@@ -179,6 +168,7 @@ function Navbar() {
 }
 
 function MobileMenuBtn(props) {
+    // console.log("mobile button 입니다");
   return (
     <div className="mobile-btn">
       <li>
@@ -197,6 +187,7 @@ function MobileMenuBtn(props) {
 }
 
 function MobileIndicator(props) {
+    // console.log("mobile indication 이름 나타내줍니다");
   return (
     <li
       style={{
@@ -213,6 +204,7 @@ function MobileIndicator(props) {
 }
 
 function MobileMenu(props) {
+    // console.log("mobile Menu 입니다");
   return (
     <div className="mobile-navbar">
       <div className={"brand-name-box-2-mobile " + props.mobileModal}>

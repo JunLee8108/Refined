@@ -6,8 +6,28 @@
         "name": "PEDROWEB MULTI STRING SLINGBAG",
         "category": "ACCESSORIES",
         "color": "Sand Beige",
+        "size": [
+            "FREE"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "FREE",
+                "description": "Height: 17.32, Width: 11.81, Strap length: 43.31, Strap width: 1.97"
+            }
+        ],
+        "fabricDC": "NYLON 100%",
         "type": "Bags",
-        "price": 130
+        "price": 130,
+        "info": [
+            "Thin sheer down-proof fabric with body panel transparency",
+            "Unique glove-shaped design with adjustable string detailing",
+            "Front filled with padding material",
+            "Adjustable strap for bag length customization",
+            "Large pocket inside the back for convenient storage",
+            "Hidden zippers and string detailing on both sides of the body panel for versatile styling",
+            "Not washable, do not clean"
+        ]
     },
     {
         "id": 1,
@@ -16,8 +36,28 @@
         "name": "PEDROWEB MULTI STRING SLINGBAG",
         "category": "ACCESSORIES",
         "color": "Dark Navy",
+        "size": [
+            "FREE"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "FREE",
+                "description": "Height: 17.32, Width: 11.81, Strap length: 43.31, Strap width: 1.97"
+            }
+        ],
+        "fabricDC": "NYLON 100%",
         "type": "Bags",
-        "price": 130
+        "price": 130,
+        "info": [
+            "Thin sheer down-proof fabric with body panel transparency",
+            "Unique glove-shaped design with adjustable string detailing",
+            "Front filled with padding material",
+            "Adjustable strap for bag length customization",
+            "Large pocket inside the back for convenient storage",
+            "Hidden zippers and string detailing on both sides of the body panel for versatile styling",
+            "Not washable, do not clean"
+        ]
     },
     {
         "id": 2,
@@ -26,8 +66,27 @@
         "name": "VINTAGE LEATHER MESSENGER BAG",
         "category": "ACCESSORIES",
         "color": "Black",
+        "size": [
+            "FREE"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "FREE",
+                "description": "Width: 14.17, Height: 3.15, Length: 20.47, Strap length: 24.41 - 47.44, Strap width: 0.98"
+            }
+        ],
+        "fabricDC": "LAMBSKIN 100%",
         "type": "Bags",
-        "price": 220
+        "price": 220,
+        "info": [
+            "Made with distressed leather that showcases natural aging and distressing with use",
+            "Small interior pocket for easy organization",
+            "Side zipper allows easy access to the contents even when the top is closed",
+            "Can be styled as a shoulder bag when the buckle is fastened upwards, or as a crossbody bag when fastened downwards",
+            "Bag top features a handle detail for versatile styling options",
+            "YKK zipper used"
+        ]
     },
     {
         "id": 3,
@@ -36,7 +95,43 @@
         "name": "RAW CUT PLATFORM FLIP FLAP",
         "category": "ACCESSORIES",
         "color": "Black",
+        "size": [
+            250,
+            260,
+            270,
+            280
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "250",
+                "description": "Foot length: 10.16, Heel height: 2.09"
+            },
+            {
+                "id": 0,
+                "name": "260",
+                "description": "Foot length: 10.55, Heel height: 2.09"
+            },
+            {
+                "id": 0,
+                "name": "270",
+                "description": "Foot length: 10.94, Heel height: 2.09"
+            },
+            {
+                "id": 0,
+                "name": "280",
+                "description": "Foot length: 11.34, Heel height: 2.09"
+            }
+        ],
+        "fabricDC": "COWHIDE 100%",
         "type": "Shoes",
-        "price": 150
+        "price": 150,
+        "info": [
+            "Flip flops made from cowhide leather",
+            "Rough low-cut contrast detailing",
+            "Sophisticated stitching lines",
+            "Solid and chunky molded sole",
+            "Not washable, do not clean"
+        ]
     }
 ]

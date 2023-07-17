@@ -2,6 +2,7 @@ import "./HomeHelper.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const HomeBackground = styled.div`
   background-image: url(${(props) => props.bg});
@@ -16,6 +17,7 @@ function HomeHelper() {
   const img1 = "./img/bg/bg-1.webp";
   const img2 = "./img/bg/bg-2.webp";
   const backgroundArray = [img1, img2];
+  const navigate = useNavigate();
   const [selection, setSelection] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [backgroundImg, setBackgroundImg] = useState(backgroundArray[0]);
@@ -103,6 +105,9 @@ function HomeHelper() {
                     }}
                     onMouseLeave={(e) => {
                       e.target.src = `${selection[index].img}`;
+                    }}
+                    onClick={() => {
+                        navigate(`/Detail/${selection[index].category}/${selection[index].type}/${selection[index].name}/${selection[index].id}`)
                     }}
                   ></img>
                   <h4>{selection[index].name} </h4>

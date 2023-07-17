@@ -6,8 +6,39 @@
         "name": "SEMI OVERSIZE PLEATS SHIRT",
         "category": "MEN",
         "color": "White",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length: 29, Sholder: 20, Chest: 25, Sleeve Length: 23"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length: 30, Sholder: 21, Chest: 26, Sleeve Length: 24"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length: 31, Sholder: 22, Chest: 27, Sleeve Length: 25"
+            }
+        ],
+        "fabricDC": "COTTON 77% NYLON 23%",
         "type": "New Arrival",
-        "price": 95
+        "price": 95,
+        "info": [
+            "Semi-oversized silhouette",
+            "Pleated processed fabric used",
+            "Front pentagon pocket detail",
+            "Back box pleats detail",
+            "Mother-of-pearl buttons used",
+            "Dry cleaning recommended (low-temperature dry cleaning below 100º C)"
+        ]
     },
     {
         "id": 1,
@@ -16,8 +47,39 @@
         "name": "SEMI OVERSIZE PLEATS SHIRT",
         "category": "MEN",
         "color": "Black",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length: 29, Sholder: 20, Chest: 25, Sleeve Length: 23"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length: 30, Sholder: 21, Chest: 26, Sleeve Length: 24"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length: 31, Sholder: 22, Chest: 27, Sleeve Length: 25"
+            }
+        ],
+        "fabricDC": "COTTON 77% NYLON 23%",
         "type": "New Arrival",
-        "price": 95
+        "price": 95,
+        "info": [
+            "Semi-oversized silhouette",
+            "Pleated processed fabric used",
+            "Front pentagon pocket detail",
+            "Back box pleats detail",
+            "Mother-of-pearl buttons used",
+            "Dry cleaning recommended (low-temperature dry cleaning below 100º C)"
+        ]
     },
     {
         "id": 2,
@@ -26,8 +88,39 @@
         "name": "SEERSUCKER CROPPED HALF SHIRT",
         "category": "MEN",
         "color": "Dark Navy",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length: 29, Sholder: 20, Chest: 25, Sleeve Length: 23"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length: 30, Sholder: 21, Chest: 26, Sleeve Length: 24"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length: 31, Sholder: 22, Chest: 27, Sleeve Length: 25"
+            }
+        ],
+        "fabricDC": "COTTON 77% NYLON 23%",
         "type": "New Arrival",
-        "price": 90
+        "price": 90,
+        "info": [
+            "Oversized silhouette",
+            "Frontal three-dimensional pocket detail",
+            "Back box pleats detail",
+            "Three lines of ST detailing on the sleeve cuffs and back yoke",
+            "Crop half-shirt made with breathable seersucker fabric",
+            "Dry cleaning"
+        ]
     },
     {
         "id": 3,
@@ -36,8 +129,40 @@
         "name": "DRAWSTRING JACQUARD ZIP UP",
         "category": "MEN",
         "color": "Black",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length: 29, Sholder: 20, Chest: 25, Sleeve Length: 23"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length: 30, Sholder: 21, Chest: 26, Sleeve Length: 24"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length: 31, Sholder: 22, Chest: 27, Sleeve Length: 25"
+            }
+        ],
+        "fabricDC": "POLYESTER 65% COTTON 35%",
         "type": "Outerwear",
-        "price": 190
+        "price": 190,
+        "info": [
+            "Collar zip-up jacket with a semi-oversized silhouette",
+            "Features a subtle shimmering jacquard fabric",
+            "Bottom hem with string and stopper detail for adjustable silhouette",
+            "Sleeve cuff button closure detail",
+            "Metal zipper from YKK used",
+            "Can be worn as a set with jacquard wide-leg pants",
+            "Dry cleaning (do not wash with water)"
+        ]
     },
     {
         "id": 4,
@@ -46,8 +171,40 @@
         "name": "CRINKLE PLEATS SINGLE COAT",
         "category": "MEN",
         "color": "Black",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length: 29, Sholder: 20, Chest: 25, Sleeve Length: 23"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length: 30, Sholder: 21, Chest: 26, Sleeve Length: 24"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length: 31, Sholder: 22, Chest: 27, Sleeve Length: 25"
+            }
+        ],
+        "fabricDC": "WOOL 49% POLYESTER 49% POLYURETHANE 2%",
         "type": "Outerwear",
-        "price": 300
+        "price": 300,
+        "info": [
+            "Overall semi-oversized silhouette",
+            "Real buttons used on the sleeves",
+            "Creased fabric with overall pleating",
+            "Back slit for comfortable fit and front and back pleats detail",
+            "3-button fly detail and bottom and sleeve section stitching detail",
+            "Easy maintenance due to superior durability compared to pure wool",
+            "Dry cleaning"
+        ]
     },
     {
         "id": 5,
@@ -56,8 +213,40 @@
         "name": "TWISTED DENIM TROUGER JACKET",
         "category": "MEN",
         "color": "Washed Blue",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length: 29, Sholder: 20, Chest: 25, Sleeve Length: 23"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length: 30, Sholder: 21, Chest: 26, Sleeve Length: 24"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length: 31, Sholder: 22, Chest: 27, Sleeve Length: 25"
+            }
+        ],
+        "fabricDC": "COTTON 100%",
         "type": "Outerwear",
-        "price": 200
+        "price": 200,
+        "info": [
+            "Oversized silhouette with a cropped length and noticeable volume",
+            "Broken twill weave",
+            "Unique curved twisted line detail",
+            "Sturdy and clean stitching detail",
+            "Cotton fabric with a natural and soft touch, treated with washing process",
+            "Adjustable size with bottom pleats and tuck detail",
+            "Hand wash"
+        ]
     },
     {
         "id": 6,
@@ -66,8 +255,37 @@
         "name": "SUPIMA COTTON SEMI OVERFIT T-SHIRTS",
         "category": "MEN",
         "color": "Black",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length: 29, Sholder: 20, Chest: 25, Sleeve Length: 23"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length: 30, Sholder: 21, Chest: 26, Sleeve Length: 24"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length: 31, Sholder: 22, Chest: 27, Sleeve Length: 25"
+            }
+        ],
+        "fabricDC": "COTTON 65% POLYESTER 35%",
         "type": "Shirts",
-        "price": 30
+        "price": 30,
+        "info": [
+            "Naturally flowing semi-oversized silhouette",
+            "Made with Supima fabric, known as the cashmere of cotton",
+            "Delicate stitching finish to prevent ribbed areas from stretching",
+            "Dry cleaning or low-temperature hand wash"
+        ]
     },
     {
         "id": 7,
@@ -76,8 +294,37 @@
         "name": "SUPIMA COTTON SEMI OVERFIT T-SHIRTS",
         "category": "MEN",
         "color": "White",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length: 29, Sholder: 20, Chest: 25, Sleeve Length: 23"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length: 30, Sholder: 21, Chest: 26, Sleeve Length: 24"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length: 31, Sholder: 22, Chest: 27, Sleeve Length: 25"
+            }
+        ],
+        "fabricDC": "COTTON 65% POLYESTER 35%",
         "type": "Shirts",
-        "price": 30
+        "price": 30,
+        "info": [
+            "Naturally flowing semi-oversized silhouette",
+            "Made with Supima fabric, known as the cashmere of cotton",
+            "Delicate stitching finish to prevent ribbed areas from stretching",
+            "Dry cleaning or low-temperature hand wash"
+        ]
     },
     {
         "id": 8,
@@ -86,8 +333,38 @@
         "name": "OPEN COLLAR LIGHT COTTON POLO KNIT",
         "category": "MEN",
         "color": "Sail Champagne",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length: 29, Sholder: 20, Chest: 25, Sleeve Length: 23"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length: 30, Sholder: 21, Chest: 26, Sleeve Length: 24"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length: 31, Sholder: 22, Chest: 27, Sleeve Length: 25"
+            }
+        ],
+        "fabricDC": "COTTON 100%",
         "type": "Kintwear",
-        "price": 80
+        "price": 80,
+        "info": [
+            "Semi-oversized silhouette",
+            "Made with 100% cotton yarn",
+            "Expanded range of colorways",
+            "Released as a carryover item with a newly transformed collar neckline",
+            "Hand wash"
+        ]
     },
     {
         "id": 9,
@@ -96,8 +373,38 @@
         "name": "MULTI COLOR HALF CARDIGAN",
         "category": "MEN",
         "color": "Beige",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length: 29, Sholder: 20, Chest: 25, Sleeve Length: 23"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length: 30, Sholder: 21, Chest: 26, Sleeve Length: 24"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length: 31, Sholder: 22, Chest: 27, Sleeve Length: 25"
+            }
+        ],
+        "fabricDC": "COTTON 45% NYLON 10% ACRYL 45%",
         "type": "Kintwear",
-        "price": 130
+        "price": 130,
+        "info": [
+            "Semi-oversized silhouette",
+            "Material with a mix of various colored yarns",
+            "Natural detailing with subtly frayed bottom hem and sleeves",
+            "Front closure with nut buttons",
+            "Dry cleaning"
+        ]
     },
     {
         "id": 10,
@@ -106,8 +413,40 @@
         "name": "COTTON TWISTED EMBROIDER EASY PANTS",
         "category": "MEN",
         "color": "Skyblue",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length: 29, Sholder: 20, Chest: 25, Sleeve Length: 23"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length: 30, Sholder: 21, Chest: 26, Sleeve Length: 24"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length: 31, Sholder: 22, Chest: 27, Sleeve Length: 25"
+            }
+        ],
+        "fabricDC": "COTTON 100%",
         "type": "Pants",
-        "price": 120
+        "price": 120,
+        "info": [
+            "Easy pants made with lightweight and breathable 100% cotton fabric",
+            "Embroidered stitch point detail",
+            "Front and bottom hem string detail",
+            "Back console zipper pocket detail",
+            "Curved seam lines and facing pleat detail at the knee area",
+            "Natural parka ring detail on the body panel line transitioning from back to front",
+            "Dry cleaning (can be washed with water at 30˚C)"
+        ]
     },
     {
         "id": 11,
@@ -116,7 +455,38 @@
         "name": "CRINKLE WIDE DENIM PANTS",
         "category": "MEN",
         "color": "Indigo",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length: 29, Sholder: 20, Chest: 25, Sleeve Length: 23"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length: 30, Sholder: 21, Chest: 26, Sleeve Length: 24"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length: 31, Sholder: 22, Chest: 27, Sleeve Length: 25"
+            }
+        ],
+        "fabricDC": "COTTON 100%",
         "type": "Pants",
-        "price": 100
+        "price": 100,
+        "info": [
+            "Wide-fit silhouette",
+            "Natural criss-cross washing treatment",
+            "Front right inner coin pocket detail",
+            "Back pentagon pocket detail",
+            "Features YZiP®, a representative item from YKK",
+            "Hand wash separately"
+        ]
     }
 ]

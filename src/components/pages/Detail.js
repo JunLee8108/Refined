@@ -2,10 +2,12 @@ import DetailSection from "../helpers/DetailSection";
 import { useParams } from "react-router-dom";
 
 function Detail() {
-    let {id} = useParams();
+    let {category} = useParams();
+    let {type} = useParams();
     let {name} = useParams();
+    let {id} = useParams();
     return (
-        <DetailSection id={id} name={name} />
+        <DetailSection category={category} type={type} name={name} id={id} />
     );
 }
 
