@@ -43,19 +43,19 @@ function WishlistSection() {
         <div className="wishlist-title">
           <h3>Your Wishlist</h3>
           <table>
-            {isEmpty == true
+            {isEmpty === true
               ? data.map(function (a, index) {
                   return (
                     <tbody key={index}>
                       <tr>
                         <td>
-                          <img src={data[index].img} onClick={() => {navigate(`/Detail/${data[index].category}/${data[index].type}/${data[index].name}/${data[index].id}`);}}></img>
+                          <img src={data[index].img} onClick={() => {navigate(`/Detail/${data[index].category}/${data[index].type}/${data[index].name}/${data[index].id}`);}} alt="clothes"></img>
                         </td>
                         <td>
                           {data[index].name} ({data[index].color})
                         </td>
                         <td>${data[index].price}</td>
-                        <td><button className="cartBtn">ADD TO CART</button></td>
+                        <td><button className="cartBtn">ADD TO BAG</button></td>
                         <td><button className="deleteBtn" onClick={()=>{deleteData(index)}}>DELETE</button></td>
                       </tr>
                     </tbody>

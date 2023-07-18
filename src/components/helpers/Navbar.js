@@ -84,21 +84,23 @@ function Navbar() {
             {isLoading ? (
               menu.map(function (a, index) {
                 return (
-                  <li
-                    key={index}
-                    onClick={(e) => {
-                      handleContent(menu[index].catagories);
-                      setHandleHover(e.target);
-                      setMenuHTML(e.target.innerHTML);
-                      setHover(true);
-                      if (handleHover === e.target) {
-                        setHover(false);
-                        setHandleHover("");
-                      }
-                    }}
-                  >
-                    {menu[index].name}
-                  </li>
+                  <div key={index}>
+                    <li
+                      key={index}
+                      onClick={(e) => {
+                        handleContent(menu[index].catagories);
+                        setHandleHover(e.target);
+                        setMenuHTML(e.target.innerHTML);
+                        setHover(true);
+                        if (handleHover === e.target) {
+                          setHover(false);
+                          setHandleHover("");
+                        }
+                      }}
+                    >
+                      {menu[index].name}
+                    </li>
+                  </div>
                 );
               })
             ) : (
@@ -133,6 +135,13 @@ function Navbar() {
                 {/* Let users know which button they click (men, women ...) */}
                 <MobileIndicator menuHTML={menuHTML} />
                 {/***********************************************************/}
+
+                <center>
+                  <div
+                    className="border-line-navbar"
+                    style={{ width: "78%" }}
+                  ></div>
+                </center>
 
                 {content.map(function (a, index) {
                   return (
@@ -169,6 +178,7 @@ function Navbar() {
           handleHover={handleHover}
           isLoading={isLoading}
           mobileModal={mobileModal}
+          navigate={navigate}
         />
       ) : null}
       {/********************************************/}
@@ -204,6 +214,8 @@ function MobileIndicator(props) {
         border: "none",
         fontWeight: "bold",
         letterSpacing: "1px",
+        marginTop: "-10px",
+        marginRight: "100px",
       }}
       className="menu-mobile"
     >
@@ -243,6 +255,21 @@ function MobileMenu(props) {
             <h1>loading..</h1>
           </div>
         )}
+        <center>
+          <div className="border-line-navbar"></div>
+        </center>
+        <li>ACCOUNT</li>
+        <li
+          onClick={() => {
+            props.navigate("/Wishlist");
+            props.setHover(false);
+            props.setHandleHover("");
+            props.setMobile(false);
+          }}
+        >
+          WISHLIST
+        </li>
+        <li>BAG</li>
       </div>
     </div>
   );

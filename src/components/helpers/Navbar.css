@@ -189,4 +189,11 @@ nav {
   .menu-mobile {
     display: block;
   }
+
+  .border-line-navbar {
+    width: 90%;
+    border-bottom: 0.5px dashed black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }

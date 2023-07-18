@@ -131,7 +131,7 @@ function DetailSection(props) {
       clearTimeout(timer);
       setFade("");
     };
-  }, []);
+  }, [props.category]);
 
   return (
     <>
@@ -252,7 +252,7 @@ function DetailSection(props) {
                           handleCartBtn();
                         }}
                       >
-                        ADD TO CART
+                        ADD TO BAG
                       </button>
                     </>
                   ) : null}
