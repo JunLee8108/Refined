@@ -133,8 +133,6 @@ function DetailSection(props) {
     };
   }, []);
 
-  console.log(isEmpty);
-
   return (
     <>
       {isLoading ? (
@@ -200,12 +198,12 @@ function DetailSection(props) {
                       </button>
                     );
                   })}
-
+                  <div style={{ marginTop: "25px" }}></div>
+                  <div className="border-line"></div>
                   {isEmpty === true ? (
                     <>
                       {/* Item */}
-                      <div style={{ marginTop: "25px" }}></div>
-                      <div className="border-line"></div>
+
                       <h3>Your Choice:</h3>
                       {item.map(function (a, index) {
                         return (
