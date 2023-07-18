@@ -110,7 +110,16 @@ function Navbar() {
         </ul>
         <ul className="nav-menu display-flex-start">
           <li>ACCOUNT</li>
-          <li>WISHLIST</li>
+          <li
+            onClick={() => {
+              navigate("/Wishlist");
+              setHover(false);
+              setHandleHover("");
+              setMobile(false);
+            }}
+          >
+            WISHLIST
+          </li>
           <li>BAG</li>
         </ul>
       </nav>
@@ -168,7 +177,7 @@ function Navbar() {
 }
 
 function MobileMenuBtn(props) {
-    // console.log("mobile button 입니다");
+  // console.log("mobile button 입니다");
   return (
     <div className="mobile-btn">
       <li>
@@ -187,7 +196,7 @@ function MobileMenuBtn(props) {
 }
 
 function MobileIndicator(props) {
-    // console.log("mobile indication 이름 나타내줍니다");
+  // console.log("mobile indication 이름 나타내줍니다");
   return (
     <li
       style={{
@@ -204,7 +213,7 @@ function MobileIndicator(props) {
 }
 
 function MobileMenu(props) {
-    // console.log("mobile Menu 입니다");
+  // console.log("mobile Menu 입니다");
   return (
     <div className="mobile-navbar">
       <div className={"brand-name-box-2-mobile " + props.mobileModal}>

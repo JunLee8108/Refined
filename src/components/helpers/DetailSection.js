@@ -13,7 +13,7 @@ function DetailSection(props) {
       color: "",
       price: 0,
       size: "",
-      count: 0,
+      count: 1,
     },
   ]);
 
@@ -27,7 +27,7 @@ function DetailSection(props) {
       color: color,
       price: price,
       size: size,
-      count: 0,
+      count: 1,
     };
 
     if (item.length === 0) {
@@ -66,7 +66,7 @@ function DetailSection(props) {
 
   const minusCount = (index) => {
     let copy = [...item];
-    if (copy[index].count > 0) {
+    if (copy[index].count > 1) {
       copy[index].count -= 1;
       setItem(copy);
     }

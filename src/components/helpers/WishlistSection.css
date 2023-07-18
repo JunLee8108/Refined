@@ -1,0 +1,86 @@
+.wishlist-container {
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: yellow; */
+    opacity: 0;
+}
+
+.wishlist-container-fade {
+    opacity: 1;
+    transition: all 0.5s;
+}
+
+.wishlist-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+}
+
+table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 950px;
+    
+    height: auto;
+}
+
+th,td {
+    border-bottom: 1px solid #dddddd;
+    border-top: 1px solid #dddddd;
+    padding: 10px;
+}
+
+td:nth-child(1) {
+    width: 10%;
+}
+
+td:nth-child(2) {
+    width: 40%;
+    text-align: center;
+}
+
+td:nth-child(3) {
+    width: 10%;
+    text-align: right;
+}
+
+td:nth-child(4) {
+    width: 20%;
+    text-align: right;
+}
+
+td:nth-child(5) {
+    width: 10%;
+    text-align: right;
+}
+
+td img {
+    width: 100%;
+    cursor: pointer;    
+}
+
+td button {
+    margin-top: 2px;
+    border: none;
+    background-color: white;
+    font-weight: bold;
+    height: 30px;
+    cursor: pointer;
+}
+
+td button:hover {
+    opacity: 0.3;
+    transition: all 0.2s;
+}
+
+.cartBtn {
+    color: black;
+}
+
+.deleteBtn {
+    color: red;
+}

@@ -5,6 +5,7 @@ import axios from "axios";
 
 function ItemSection(props) {
   const [isLoading, setLoading] = useState(false);
+  const [isModal, setModal] = useState(false);
   const [data, setData] = useState([]);
   const [fade, setFade] = useState("");
   const [bg, setBg] = useState("");
@@ -30,6 +31,41 @@ function ItemSection(props) {
     console.log("분류중입니다");
   };
 
+  // Store data to the local storage
+  const addToLocalStorage = (index) => {
+    let wishlist = localStorage.getItem("wishlist");
+    let isRedundnat = true;
+    wishlist = JSON.parse(wishlist);
+    const object = {
+      name: data[index].name,
+      category: data[index].category,
+      type: data[index].type,
+      img: data[index].img,
+      color: data[index].color,
+      price: data[index].price,
+      id: data[index].id,
+    };
+
+    for (let i = 0; i < wishlist.length; i++) {
+      if (
+        object.name === wishlist[i].name &&
+        object.category === wishlist[i].category &&
+        object.color === wishlist[i].color
+      ) {
+        isRedundnat = false;
+        alert("The item is already in your wishlist!");
+        break;
+      }
+    }
+
+    if (isRedundnat) {
+      wishlist.push(object);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      setModal(true);
+      document.body.style.overflow = "hidden";
+    }
+  };
+
   // Server Request
   useEffect(() => {
     if (props.category === "MEN") {
@@ -43,7 +79,7 @@ function ItemSection(props) {
         .catch(() => {
           alert("Failed to load.");
         });
-      console.log("데이터베이스 연결 중 입니다");
+      //   console.log("데이터베이스 연결 중 입니다");
       setBg(bgMen);
     } else if (props.category === "WOMEN") {
       axios
@@ -56,7 +92,7 @@ function ItemSection(props) {
         .catch(() => {
           alert("Failed to load.");
         });
-      console.log("데이터베이스 연결 중 입니다");
+      //   console.log("데이터베이스 연결 중 입니다");
       setBg(bgWomen);
     } else if (props.category === "ACCESSORIES") {
       axios
@@ -69,13 +105,13 @@ function ItemSection(props) {
         .catch(() => {
           alert("Failed to load.");
         });
-      console.log("데이터베이스 연결 중 입니다");
+      //   console.log("데이터베이스 연결 중 입니다");
       setBg(bgAcc);
     }
 
     let timer = setTimeout(() => {
       setFade("item-top-bg-fade");
-      console.log("화면전환 효과");
+      //   console.log("화면전환 효과");
     }, 100);
 
     return () => {
@@ -83,6 +119,13 @@ function ItemSection(props) {
       setFade("");
     };
   }, [props.category, props.type]);
+
+  // Check if wishlist is exist in the local storage
+  useEffect(() => {
+    if (!localStorage.hasOwnProperty("wishlist")) {
+      localStorage.setItem("wishlist", JSON.stringify([]));
+    }
+  }, []);
 
   return (
     <div>
@@ -111,39 +154,88 @@ function ItemSection(props) {
       </div>
       <div className="item-container">
         {/* if loading is completed */}
-        {isLoading ? (
-          data.map(function (a, index) {
-            return (
-              <div className="item-box" key={index}>
-                <img
-                  alt="item"
-                  src={data[index].img}
-                  onMouseEnter={(e) => {
-                    e.target.src = `${data[index].hoverImg}`;
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.src = `${data[index].img}`;
-                  }}
-                  onClick={() => {
-                    navigate(
-                      `/Detail/${props.category}/${props.type}/${data[index].name}/${data[index].id}`
-                    );
-                  }}
-                ></img>
-                <h4>{data[index].name} </h4>
-                <span style={{ fontSize: "12px", color: "grey" }}>
-                  ({data[index].color})
-                </span>
-                <h5>${data[index].price}</h5>
-              </div>
-            );
-          })
-        ) : (
-          <div>
-            <h1>loading..</h1>
-          </div>
-        )}
+        {isLoading
+          ? data.map(function (a, index) {
+              return (
+                <div className="item-box" key={index}>
+                  <img
+                    alt="item"
+                    src={data[index].img}
+                    onMouseEnter={(e) => {
+                      e.target.src = `${data[index].hoverImg}`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.src = `${data[index].img}`;
+                    }}
+                    onClick={() => {
+                      navigate(
+                        `/Detail/${props.category}/${props.type}/${data[index].name}/${data[index].id}`
+                      );
+                    }}
+                  ></img>
+                  <h4>{data[index].name}</h4>
+                  <span style={{ fontSize: "12px", color: "grey" }}>
+                    ({data[index].color})
+                  </span>
+                  <h5>${data[index].price}</h5>
+                  <button
+                    className="wishListBtn"
+                    onClick={() => {
+                      addToLocalStorage(index);
+                    }}
+                  >
+                    Add to Wishlist
+                  </button>
+                </div>
+              );
+            })
+          : null}
       </div>
+      {isModal == true ? (
+        <>
+          <div
+            className="modal-container"
+            onClick={(e) => {
+              const target = document.querySelector(".modal-container");
+              if (target == e.target) {
+                setModal(false);
+                document.body.style.overflow = "unset";
+              }
+            }}
+          >
+            <div className="modal-bg">
+              <div className="modal-title">
+                <h4>Your item was added to wishlist.</h4>
+              </div>
+
+              <div className="modal-button-container">
+                <div className="modal-button-flexbox">
+                  <button
+                    onClick={() => {
+                      navigate("/Wishlist");
+                      setModal(false);
+                      document.body.style.overflow = "unset";
+                    }}
+                  >
+                    VIEW WISHLIST
+                  </button>
+                </div>
+                <div className="modal-button-flexbox">
+                  <button
+                    onClick={() => {
+                      setModal(false);
+                      document.body.style.overflow = "unset";
+                    }}
+                  >
+                    CONTINUE SHOPPING
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>asd</div>
+        </>
+      ) : null}
     </div>
   );
 }

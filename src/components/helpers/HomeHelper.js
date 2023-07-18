@@ -80,11 +80,17 @@ function HomeHelper() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!localStorage.hasOwnProperty("wishlist")) {
+        localStorage.setItem("wishlist", JSON.stringify([]));
+    }
+  }, [])
+
   return (
     <div className="container">
       <HomeBackground bg={backgroundImg} />
       <div className="home-mid-container">
-        <h2>Selections</h2>
+        <h2>New Arrival</h2>
         <div className="selection-container">
           {/* if loading is completed */}
           {isLoading ? (
