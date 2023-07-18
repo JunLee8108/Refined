@@ -74,6 +74,7 @@
     height: 30px;
     border: none;
     cursor: pointer;
+    color: black;
 }
 
 .addMinusBtn:nth-child(1) {
@@ -87,8 +88,9 @@
 .addToCartBtn {
     border: none;   
     width: 100%;
-    height: 30px;
+    height: 50px;
     margin-top: 20px;
+    margin-bottom: 20px;
     color: black;
     font-weight: bold;
     cursor: pointer;
@@ -97,6 +99,7 @@
 .deleteBtn {
     border: none;
     background-color: white;
+    height: 30px;
     font-weight: bolder;
 }
 
