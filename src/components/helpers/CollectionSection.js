@@ -18,7 +18,9 @@ function CollectionSection(props) {
       .catch(() => {
         alert("Failed to load.");
       });
+  }, [props.type]);
 
+  useEffect(() => {
     let timer = setTimeout(() => {
       setFade("collection-fade");
     }, 100);
@@ -27,7 +29,7 @@ function CollectionSection(props) {
       clearTimeout(timer);
       setFade("");
     };
-  }, [props.type]);
+  }, [props.type, props.category]);
 
   return (
     <>
@@ -40,7 +42,7 @@ function CollectionSection(props) {
           <div className="collection-img-container">
             {data.map(function (a, index) {
               return (
-                <div className="collection-img-box" key={index} >
+                <div className="collection-img-box" key={index}>
                   <img src={data[index].img} alt="lookbook"></img>
                 </div>
               );
