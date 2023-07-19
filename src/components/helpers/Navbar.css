@@ -8,6 +8,7 @@ li {
   padding-top: 15px;
   padding-bottom: 15px;
   border: 1px solid transparent;
+  font-weight: bold;
 }
 
 .display-flex-start {
@@ -195,5 +196,9 @@ nav {
     border-bottom: 0.5px dashed black;
     margin-top: 10px;
     margin-bottom: 10px;
+  }
+
+  .mobile-btn li {
+    margin-right: 5px;
   }
 }

@@ -43,6 +43,12 @@
     margin-right: auto;
 }
 
+.detail-flexbox-title button:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.2s;
+}
+
 .detail-flexbox-sizeBtn {
     width: 80%;
     padding-top: 5px;
@@ -56,12 +62,6 @@
     margin-right: 10px;
     border: none;
     cursor: pointer;
-}
-
-.detail-flexbox-sizeBtn button:hover {
-    background-color: black;
-    color: white;
-    transition: all 0.2s;
 }
 
 .border-line {
@@ -90,7 +90,7 @@
     width: 100%;
     height: 50px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     color: black;
     font-weight: bold;
     cursor: pointer;
@@ -154,10 +154,6 @@
         width: 100%;
     }
 
-    .detail-flexbox-title {
-        text-align: center;
-    }
-
     .border-line {
         border-bottom: 1px black dashed;
         width: 100%;
@@ -167,9 +163,4 @@
         width: 20%;
         color: black;
     }
-
-    .addToCartBtn {
-        margin-bottom: 20px;
-    }
-
 }

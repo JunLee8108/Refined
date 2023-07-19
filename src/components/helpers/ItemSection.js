@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 function ItemSection(props) {
   const [isLoading, setLoading] = useState(false);
   const [isModal, setModal] = useState(false);
@@ -62,8 +64,9 @@ function ItemSection(props) {
     if (isRedundnat) {
       wishlist.push(object);
       localStorage.setItem("wishlist", JSON.stringify(wishlist));
-      setModal(true);
       document.body.style.overflow = "hidden";
+      // document.body.style.paddingRight = "15px";
+      setModal(true);
     }
   };
 
@@ -126,6 +129,10 @@ function ItemSection(props) {
     if (!localStorage.hasOwnProperty("wishlist")) {
       localStorage.setItem("wishlist", JSON.stringify([]));
     }
+    if (!localStorage.hasOwnProperty("cart")) {
+      localStorage.setItem("cart", JSON.stringify([]));
+    } 
+    document.body.style.overflow = "unset";
   }, []);
 
   ///////////// Return /////////////
@@ -186,15 +193,17 @@ function ItemSection(props) {
                     <span style={{ fontSize: "12px", color: "grey" }}>
                       ({data[index].color})
                     </span>
-                    <h5>${data[index].price}</h5>
-                    <button
-                      className="wishListBtn"
-                      onClick={() => {
-                        addToLocalStorage(index);
-                      }}
-                    >
-                      Add to Wishlist
-                    </button>
+                    <h5 style={{marginBottom: "10px"}}>${data[index].price}</h5>
+                    <div className="wishlist-btn-container">
+                      <button
+                        className="wishListBtn"
+                        onClick={() => {
+                          addToLocalStorage(index);
+                        }}
+                      >
+                        <FontAwesomeIcon icon="fa-solid fa-heart" size="lg" />
+                      </button>
+                    </div>
                   </div>
                 );
               })

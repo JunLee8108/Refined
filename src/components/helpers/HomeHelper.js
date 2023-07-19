@@ -66,6 +66,7 @@ function HomeHelper() {
     } else {
       setScrollSelections(false);
     }
+    
     // console.log(scrollHeight);
     // console.log(window.scrollY);
     // console.log(scrollSelections);
@@ -74,6 +75,9 @@ function HomeHelper() {
     let timer = setInterval(() => {
       window.addEventListener("scroll", scrollEvent);
     }, 100);
+
+    document.body.style.overflow = "unset";
+    
     return () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", scrollEvent);
@@ -82,9 +86,12 @@ function HomeHelper() {
 
   useEffect(() => {
     if (!localStorage.hasOwnProperty("wishlist")) {
-        localStorage.setItem("wishlist", JSON.stringify([]));
+      localStorage.setItem("wishlist", JSON.stringify([]));
     }
-  }, [])
+    if (!localStorage.hasOwnProperty("cart")) {
+      localStorage.setItem("cart", JSON.stringify([]));
+    } 
+  }, []);
 
   return (
     <div className="container">
@@ -104,7 +111,7 @@ function HomeHelper() {
                   key={index}
                 >
                   <img
-                  alt="item"
+                    alt="item"
                     src={selection[index].img}
                     onMouseEnter={(e) => {
                       e.target.src = `${selection[index].hoverImg}`;
@@ -113,7 +120,9 @@ function HomeHelper() {
                       e.target.src = `${selection[index].img}`;
                     }}
                     onClick={() => {
-                        navigate(`/Detail/${selection[index].category}/${selection[index].type}/${selection[index].name}/${selection[index].id}`)
+                      navigate(
+                        `/Detail/${selection[index].category}/${selection[index].type}/${selection[index].name}/${selection[index].id}`
+                      );
                     }}
                   ></img>
                   <h4>{selection[index].name} </h4>

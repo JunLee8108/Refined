@@ -1,9 +1,16 @@
 import "./DetailSection.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function DetailSection(props) {
+  const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
+  const [isModal, setModal] = useState(false);
+  const [isAddModal, setAddModal] = useState(false);
+  const [isYes, setYes] = useState(false);
+  const [indicateItem, setIndicateItem] = useState("");
+  const [repeatedObject, setRepeatedObject] = useState({});
   const [data, setData] = useState([]);
   const [fade, setFade] = useState("");
   const [isEmpty, setEmpty] = useState(false);
@@ -17,21 +24,82 @@ function DetailSection(props) {
     },
   ]);
 
+  const resetYourChoice = () => {
+    setEmpty(false);
+    setItem([{ name: "", color: "", price: 0, size: "", count: 1 }]);
+  };
+
+  const addToLocalStorage = () => {
+    let cart = localStorage.getItem("cart");
+    let isRedundnat = true;
+    let object = {};
+    cart = JSON.parse(cart);
+
+    object = {
+      name: item[0].name,
+      color: item[0].color,
+      totalPrice: parseInt(item[0].price) * item[0].count,
+      price: parseInt(item[0].price),
+      size: item[0].size,
+      count: item[0].count,
+      id: item[0].id,
+      img: item[0].img,
+      category: item[0].category,
+      type: item[0].type,
+    };
+
+    for (let i = 0; i < cart.length; i++) {
+      if (
+        object.name === cart[i].name &&
+        object.size === cart[i].size &&
+        object.color === cart[i].color &&
+        object.category === cart[i].category
+      ) {
+        isRedundnat = false;
+        setAddModal(true);
+        setRepeatedObject(object);
+        document.body.style.overflow = "hidden";
+        break;
+      } else {
+        isRedundnat = true;
+      }
+    }
+
+    if (isRedundnat) {
+      setIndicateItem(`${object.name} (size ${object.size})`);
+      cart.push(object);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      document.body.style.overflow = "hidden";
+      // document.body.style.paddingRight = "15px";
+      setModal(true);
+    }
+  };
+
   const handleCopyArray = (index) => {
     const name = `${data[props.id].name}`;
     const size = `${data[props.id].size[index]}`;
     const price = `${data[props.id].price}`;
     const color = `${data[props.id].color}`;
+    const id = `${data[props.id].id}`;
+    const img = `${data[props.id].img}`;
+    const category = `${data[props.id].category}`;
+    const type = `${data[props.id].type}`;
+
     const object = {
       name: name,
       color: color,
       price: price,
       size: size,
       count: 1,
+      id: id,
+      img: img,
+      category: category,
+      type: type,
     };
 
     if (item.length === 0) {
       let copy = [...item];
+      copy.length = 0;
       copy.push(object);
       setItem(copy);
       setEmpty(true);
@@ -40,9 +108,7 @@ function DetailSection(props) {
         alert("The Item is alreay in your choice!");
       } else {
         let copy = [...item];
-        if (copy[0].price === 0) {
-          copy.splice(0, 1);
-        }
+        copy.length = 0;
         copy.push(object);
         setItem(copy);
         setEmpty(true);
@@ -78,12 +144,6 @@ function DetailSection(props) {
     setItem(copy);
     if (item.length === 1) {
       setEmpty(false);
-    }
-  };
-
-  const handleCartBtn = () => {
-    if (item.length === 0) {
-      alert("Pleas select the option first!");
     }
   };
 
@@ -133,7 +193,30 @@ function DetailSection(props) {
     };
   }, [props.category]);
 
-  console.log(data);
+  useEffect(() => {
+    if (isYes) {
+      let cart = localStorage.getItem("cart");
+      let rem = 0;
+      cart = JSON.parse(cart);
+
+      for (let i = 0; i < cart.length; i++) {
+        if (
+          repeatedObject.name === cart[i].name &&
+          repeatedObject.size === cart[i].size &&
+          repeatedObject.color === cart[i].color &&
+          repeatedObject.category === cart[i].category
+        ) {
+          cart[i].count += repeatedObject.count;
+          rem = i;
+        }
+      }
+
+      cart[rem].totalPrice = cart[rem].count * cart[rem].price;
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      setYes(false);
+    }
+  }, [isYes]);
 
   return (
     <>
@@ -158,21 +241,6 @@ function DetailSection(props) {
 
                   {/* Price */}
                   <h5>${data[props.id].price}</h5>
-                  <div className="border-line"></div>
-                </div>
-
-                <div className="detail-flexbox-sizeBtn">
-                  {/* Fabric Description */}
-                  <h5>Fabric Description:</h5>
-                  <h5>{data[props.id].fabricDC}</h5>
-                  <div></div>
-                  <div className="border-line"></div>
-
-                  {/* Info */}
-                  <h5>Info:</h5>
-                  {data[props.id].info.map(function (a, index) {
-                    return <h5 key={index}>{data[props.id].info[index]}</h5>;
-                  })}
                   <div className="border-line"></div>
 
                   {/* Size Description */}
@@ -205,7 +273,6 @@ function DetailSection(props) {
                   {isEmpty === true ? (
                     <>
                       {/* Item */}
-
                       <h3>Your Choice:</h3>
                       {item.map(function (a, index) {
                         return (
@@ -243,6 +310,7 @@ function DetailSection(props) {
                             >
                               DELETE
                             </button>
+
                             <div style={{ marginTop: "25px" }}></div>
                             <div className="border-line"></div>
                           </div>
@@ -251,7 +319,7 @@ function DetailSection(props) {
                       <button
                         className="addToCartBtn"
                         onClick={() => {
-                          handleCartBtn();
+                          addToLocalStorage();
                         }}
                       >
                         ADD TO BAG
@@ -259,9 +327,125 @@ function DetailSection(props) {
                     </>
                   ) : null}
                 </div>
+
+                <div className="detail-flexbox-sizeBtn">
+                  {/* Fabric Description */}
+                  <h5>Fabric Description:</h5>
+                  <h5>{data[props.id].fabricDC}</h5>
+                  <div className="border-line"></div>
+
+                  {/* Info */}
+                  <h5>Info:</h5>
+                  {data[props.id].info.map(function (a, index) {
+                    return <h5 key={index}>{data[props.id].info[index]}</h5>;
+                  })}
+                  <div className="border-line"></div>
+                </div>
               </div>
             </div>
           </div>
+        </>
+      ) : null}
+      {isModal === true ? (
+        <>
+          <div
+            className="modal-container"
+            onClick={(e) => {
+              const target = document.querySelector(".modal-container");
+              if (target === e.target) {
+                setModal(false);
+                document.body.style.overflow = "unset";
+              }
+            }}
+          >
+            <div className="modal-bg">
+              <div className="modal-title">
+                <h4>{indicateItem + " was added to your bag."}</h4>
+              </div>
+
+              <div style={{ marginBottom: "30px" }}></div>
+
+              <div className="modal-button-container">
+                <div className="modal-button-flexbox">
+                  <button
+                    onClick={() => {
+                      navigate("/Cart");
+                      setModal(false);
+                      document.body.style.overflow = "unset";
+                    }}
+                  >
+                    VIEW BAG
+                  </button>
+                </div>
+                <div className="modal-button-flexbox">
+                  <button
+                    onClick={() => {
+                      setModal(false);
+                      resetYourChoice();
+                      document.body.style.overflow = "unset";
+                    }}
+                  >
+                    CONTINUE SHOPPING
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>asd</div>
+        </>
+      ) : null}
+      {isAddModal === true ? (
+        <>
+          <div
+            className="modal-container"
+            onClick={(e) => {
+              const target = document.querySelector(".modal-container");
+              if (target === e.target) {
+                setAddModal(false);
+                document.body.style.overflow = "unset";
+              }
+            }}
+          >
+            <div className="modal-bg">
+              <div className="modal-title">
+                <h4>
+                  {repeatedObject.name +
+                    "(size " +
+                    repeatedObject.size +
+                    ") is already in your bag."}
+                </h4>
+                <h4>Would you like to add more?</h4>
+              </div>
+
+              <div className="modal-button-container">
+                <div className="modal-button-flexbox">
+                  <button
+                    className="yesBtn"
+                    onClick={(e) => {
+                      setAddModal(false);
+                      setYes(true);
+                      resetYourChoice();
+                      document.body.style.overflow = "unset";
+                    }}
+                  >
+                    Yes
+                  </button>
+                </div>
+                <div className="modal-button-flexbox">
+                  <button
+                    onClick={() => {
+                      setAddModal(false);
+                      resetYourChoice();
+                      document.body.style.overflow = "unset";
+                    }}
+                  >
+                    No
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>asd</div>
         </>
       ) : null}
     </>

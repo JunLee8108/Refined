@@ -2,6 +2,7 @@ import "./WishlistSection.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function WishlistSection() {
   const [data, setData] = useState([]);
@@ -16,12 +17,18 @@ function WishlistSection() {
       setData(JSON.parse(localStorage.getItem("wishlist")));
     }
 
-    let timer = setTimeout(() => {setFade("wishlist-container-fade")}, 100);
+    if (!localStorage.hasOwnProperty("cart")) {
+      localStorage.setItem("cart", JSON.stringify([]));
+    }
+
+    let timer = setTimeout(() => {
+      setFade("wishlist-container-fade");
+    }, 100);
 
     return () => {
-        clearTimeout(timer);
-        setFade("");
-    }
+      clearTimeout(timer);
+      setFade("");
+    };
   }, []);
 
   useEffect(() => {
@@ -34,8 +41,8 @@ function WishlistSection() {
     let copy = [...data];
     copy.splice(index, 1);
     localStorage.setItem("wishlist", JSON.stringify(copy));
-    setData(copy); 
-  }
+    setData(copy);
+  };
 
   return (
     <>
@@ -49,14 +56,35 @@ function WishlistSection() {
                     <tbody key={index}>
                       <tr>
                         <td>
-                          <img src={data[index].img} onClick={() => {navigate(`/Detail/${data[index].category}/${data[index].type}/${data[index].name}/${data[index].id}`);}} alt="clothes"></img>
+                          <img
+                            src={data[index].img}
+                            onClick={() => {
+                              navigate(
+                                `/Detail/${data[index].category}/${data[index].type}/${data[index].name}/${data[index].id}`
+                              );
+                            }}
+                            alt="clothes"
+                          ></img>
                         </td>
                         <td>
                           {data[index].name} ({data[index].color})
                         </td>
                         <td>${data[index].price}</td>
-                        <td><button className="cartBtn">ADD TO BAG</button></td>
-                        <td><button className="deleteBtn" onClick={()=>{deleteData(index)}}>DELETE</button></td>
+                        <td>
+                          <button className="cartBtn">
+                            <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            className="deleteBtn"
+                            onClick={() => {
+                              deleteData(index);
+                            }}
+                          >
+                            <FontAwesomeIcon icon="fa-solid fa-delete-left" />
+                          </button>
+                        </td>
                       </tr>
                     </tbody>
                   );

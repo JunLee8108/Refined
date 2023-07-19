@@ -21,7 +21,7 @@ function CollectionSection(props) {
   }, [props.type]);
 
   useEffect(() => {
-    if (data.length != 0 && data[0].season == props.type) {
+    if (data.length !== 0 && data[0].season === props.type) {
       let timer = setTimeout(() => {
         setFade("collection-fade");
       }, 100);
@@ -33,6 +33,14 @@ function CollectionSection(props) {
     }
   }, [data]);
 
+  useEffect(() => {
+    if (!localStorage.hasOwnProperty("wishlist")) {
+      localStorage.setItem("wishlist", JSON.stringify([]));
+    }
+    if (!localStorage.hasOwnProperty("cart")) {
+      localStorage.setItem("cart", JSON.stringify([]));
+    }
+  }, []);
 
   return (
     <>

@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 function Navbar() {
   const [isHover, setHover] = useState(false);
   const [isMobile, setMobile] = useState(false);
@@ -111,7 +114,7 @@ function Navbar() {
           </div>
         </ul>
         <ul className="nav-menu display-flex-start">
-          <li>ACCOUNT</li>
+          <li><FontAwesomeIcon icon="fa-solid fa-user-large" /></li>
           <li
             onClick={() => {
               navigate("/Wishlist");
@@ -122,7 +125,16 @@ function Navbar() {
           >
             WISHLIST
           </li>
-          <li>BAG</li>
+          <li
+            onClick={() => {
+              navigate("/Cart");
+              setHover(false);
+              setHandleHover("");
+              setMobile(false);
+            }}
+          >
+            BAG
+          </li>
         </ul>
       </nav>
 
@@ -133,7 +145,12 @@ function Navbar() {
               <div>
                 {/* Not visible on laptop */}
                 {/* Let users know which button they click (men, women ...) */}
-                <MobileIndicator menuHTML={menuHTML} />
+                <MobileIndicator
+                  menuHTML={menuHTML}
+                  setHover={setHover}
+                  setMobile={setMobile}
+                  setHandleHover={setHandleHover}
+                />
                 {/***********************************************************/}
 
                 <center>
@@ -198,7 +215,7 @@ function MobileMenuBtn(props) {
             props.setHandleHover("");
           }}
         >
-          <h4>Menu</h4>
+          <FontAwesomeIcon icon={faBars} />
         </button>
       </li>
     </div>
@@ -218,6 +235,11 @@ function MobileIndicator(props) {
         marginRight: "100px",
       }}
       className="menu-mobile"
+      onClick={() => {
+        props.setMobile((isMobile) => !isMobile);
+        props.setHover(false);
+        props.setHandleHover("");
+      }}
     >
       {props.menuHTML}.
     </li>
@@ -258,7 +280,7 @@ function MobileMenu(props) {
         <center>
           <div className="border-line-navbar"></div>
         </center>
-        <li>ACCOUNT</li>
+        <li><FontAwesomeIcon icon="fa-solid fa-user-large" /></li>
         <li
           onClick={() => {
             props.navigate("/Wishlist");
@@ -269,7 +291,17 @@ function MobileMenu(props) {
         >
           WISHLIST
         </li>
-        <li>BAG</li>
+        <li
+          style={{ marginBottom: "15px" }}
+          onClick={() => {
+            props.navigate("/Cart");
+            props.setHover(false);
+            props.setHandleHover("");
+            props.setMobile(false);
+          }}
+        >
+          BAG
+        </li>
       </div>
     </div>
   );

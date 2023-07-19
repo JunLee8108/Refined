@@ -5,6 +5,15 @@ import Navbar from "./components/helpers/Navbar";
 import Detail from "./components/pages/Detail";
 import Item from "./components/pages/Item";
 import Wishlist from "./components/pages/Wishlist";
+import Cart from "./components/pages/Cart";
+
+// import the library
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+// import your icons
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
 
 function App() {
   return (
@@ -17,6 +26,7 @@ function App() {
           <Route path="/Item/:category/:type" element={<Item />}></Route>
           <Route path="/Detail/:category/:type/:name/:id" element={<Detail />}></Route>
           <Route path="/Wishlist" element={<Wishlist/>}></Route>
+          <Route path="/Cart" element={<Cart/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
@@ -24,3 +34,4 @@ function App() {
 }
 
 export default App;
+library.add(fab, fas, far)
