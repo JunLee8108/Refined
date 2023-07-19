@@ -1,4 +1,5 @@
 import "./ItemSection.css";
+import CollectionSection from "./CollectionSection";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -127,117 +128,128 @@ function ItemSection(props) {
     }
   }, []);
 
-  return (
-    <div>
-      <div
-        className={"item-top-bg " + fade}
-        style={{ backgroundImage: `url(${bg})`, backgroundPosition: "top" }}
-      ></div>
-      <div className="item-title">
-        <h2>{props.type}</h2>
-        <button
-          onClick={() => {
-            sort(0);
-          }}
-          style={{ color: "black" }}
-        >
-          Price: Low to High
-        </button>
-        <button
-          onClick={() => {
-            sort(1);
-          }}
-          style={{ color: "black" }}
-        >
-          Price: High to Low
-        </button>
-      </div>
-      <div className="item-container">
-        {/* if loading is completed */}
-        {isLoading
-          ? data.map(function (a, index) {
-              return (
-                <div className="item-box" key={index}>
-                  <img
-                    alt="item"
-                    src={data[index].img}
-                    onMouseEnter={(e) => {
-                      e.target.src = `${data[index].hoverImg}`;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.src = `${data[index].img}`;
-                    }}
-                    onClick={() => {
-                      navigate(
-                        `/Detail/${props.category}/${props.type}/${data[index].name}/${data[index].id}`
-                      );
-                    }}
-                  ></img>
-                  <h4>{data[index].name}</h4>
-                  <span style={{ fontSize: "12px", color: "grey" }}>
-                    ({data[index].color})
-                  </span>
-                  <h5>${data[index].price}</h5>
-                  <button
-                    className="wishListBtn"
-                    onClick={() => {
-                      addToLocalStorage(index);
-                    }}
-                  >
-                    Add to Wishlist
-                  </button>
-                </div>
-              );
-            })
-          : null}
-      </div>
-      {isModal == true ? (
-        <>
-          <div
-            className="modal-container"
-            onClick={(e) => {
-              const target = document.querySelector(".modal-container");
-              if (target == e.target) {
-                setModal(false);
-                document.body.style.overflow = "unset";
-              }
-            }}
-          >
-            <div className="modal-bg">
-              <div className="modal-title">
-                <h4>Your item was added to wishlist.</h4>
-              </div>
+  console.log(data);
 
-              <div className="modal-button-container">
-                <div className="modal-button-flexbox">
-                  <button
-                    onClick={() => {
-                      navigate("/Wishlist");
-                      setModal(false);
-                      document.body.style.overflow = "unset";
-                    }}
-                  >
-                    VIEW WISHLIST
-                  </button>
+  ///////////// Return /////////////
+  if (props.category === "COLLECTIONS") {
+    return (
+      <div>
+        <CollectionSection type={props.type} />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <div
+          className={"item-top-bg " + fade}
+          style={{ backgroundImage: `url(${bg})`, backgroundPosition: "top" }}
+        ></div>
+        <div className="item-title">
+          <h2>{props.type}</h2>
+          <button
+            onClick={() => {
+              sort(0);
+            }}
+            style={{ color: "black" }}
+          >
+            Price: Low to High
+          </button>
+          <button
+            onClick={() => {
+              sort(1);
+            }}
+            style={{ color: "black" }}
+          >
+            Price: High to Low
+          </button>
+        </div>
+        <div className="item-container">
+          {/* if loading is completed */}
+          {isLoading
+            ? data.map(function (a, index) {
+                return (
+                  <div className="item-box" key={index}>
+                    <img
+                      alt="item"
+                      src={data[index].img}
+                      onMouseEnter={(e) => {
+                        e.target.src = `${data[index].hoverImg}`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.src = `${data[index].img}`;
+                      }}
+                      onClick={() => {
+                        navigate(
+                          `/Detail/${props.category}/${props.type}/${data[index].name}/${data[index].id}`
+                        );
+                      }}
+                    ></img>
+                    <h4>{data[index].name}</h4>
+                    <span style={{ fontSize: "12px", color: "grey" }}>
+                      ({data[index].color})
+                    </span>
+                    <h5>${data[index].price}</h5>
+                    <button
+                      className="wishListBtn"
+                      onClick={() => {
+                        addToLocalStorage(index);
+                      }}
+                    >
+                      Add to Wishlist
+                    </button>
+                  </div>
+                );
+              })
+            : null}
+        </div>
+        {isModal === true ? (
+          <>
+            <div
+              className="modal-container"
+              onClick={(e) => {
+                const target = document.querySelector(".modal-container");
+                if (target === e.target) {
+                  setModal(false);
+                  document.body.style.overflow = "unset";
+                }
+              }}
+            >
+              <div className="modal-bg">
+                <div className="modal-title">
+                  <h4>Your item was added to wishlist.</h4>
                 </div>
-                <div className="modal-button-flexbox">
-                  <button
-                    onClick={() => {
-                      setModal(false);
-                      document.body.style.overflow = "unset";
-                    }}
-                  >
-                    CONTINUE SHOPPING
-                  </button>
+
+                <div className="modal-button-container">
+                  <div className="modal-button-flexbox">
+                    <button
+                      onClick={() => {
+                        navigate("/Wishlist");
+                        setModal(false);
+                        document.body.style.overflow = "unset";
+                      }}
+                    >
+                      VIEW WISHLIST
+                    </button>
+                  </div>
+                  <div className="modal-button-flexbox">
+                    <button
+                      onClick={() => {
+                        setModal(false);
+                        document.body.style.overflow = "unset";
+                      }}
+                    >
+                      CONTINUE SHOPPING
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div>asd</div>
-        </>
-      ) : null}
-    </div>
-  );
+            <div>asd</div>
+          </>
+        ) : null}
+      </div>
+    );
+  }
 }
 
 export default ItemSection;

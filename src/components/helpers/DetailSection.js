@@ -133,6 +133,8 @@ function DetailSection(props) {
     };
   }, [props.category]);
 
+  console.log(data);
+
   return (
     <>
       {isLoading ? (
