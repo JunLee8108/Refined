@@ -8,5 +8,10 @@
         "id": 1,
         "img": "/img/collection/collection-1.webp",
         "season": "2022 FW Collection"
+    },
+    {
+        "id": 2,
+        "img": "/img/collection/collection-2.webp",
+        "season": "2022 FW Collection"
     }
 ]

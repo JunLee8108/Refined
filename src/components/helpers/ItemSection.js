@@ -128,8 +128,6 @@ function ItemSection(props) {
     }
   }, []);
 
-  console.log(data);
-
   ///////////// Return /////////////
   if (props.category === "COLLECTIONS") {
     return (
