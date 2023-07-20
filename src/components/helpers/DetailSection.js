@@ -15,6 +15,8 @@ function DetailSection(props) {
   const [repeatedObject, setRepeatedObject] = useState({});
   const [data, setData] = useState([]);
   const [fade, setFade] = useState("");
+  const [modalFade, setModalFade] = useState("");
+  const [addModalFade, setAddModalFade] = useState("");
   const [isEmpty, setEmpty] = useState(false);
   const [item, setItem] = useState([
     {
@@ -220,6 +222,32 @@ function DetailSection(props) {
     }
   }, [isYes]);
 
+  useEffect(() => {
+    if (isModal) {
+      let timer = setTimeout(() => {
+        setModalFade("modal-fade");
+      }, 100);
+
+      return () => {
+        clearTimeout(timer);
+        setModalFade("");
+      };
+    }
+  }, [isModal]);
+
+  useEffect(() => {
+    if (isAddModal) {
+      let timer = setTimeout(() => {
+        setAddModalFade("modal-fade");
+      }, 100);
+
+      return () => {
+        clearTimeout(timer);
+        setAddModalFade("");
+      };
+    }
+  }, [isAddModal]);
+
   return (
     <>
       {isLoading ? (
@@ -377,7 +405,7 @@ function DetailSection(props) {
               }
             }}
           >
-            <div className="modal-bg">
+            <div className={"detail-modal-bg " + modalFade}>
               <div className="modal-title">
                 <h4>{indicateItem + " was added to your bag."}</h4>
               </div>
@@ -424,7 +452,7 @@ function DetailSection(props) {
               }
             }}
           >
-            <div className="modal-bg">
+            <div className={"detail-modal-bg " + addModalFade}>
               <div className="modal-title">
                 <h4>
                   {repeatedObject.name +
