@@ -95,17 +95,17 @@ function Navbar() {
                         setHandleHover(e.target);
                         setMenuHTML(e.target.innerHTML);
                         setHover(true);
-                        // if (handleHover === e.target) {
-                        //   setHover(false);
-                        //   setHandleHover("");
-                        // }
+                        if (handleHover === e.target) {
+                          setHover(false);
+                          setHandleHover("");
+                        }
                       }}
-                      onMouseEnter={(e) => {
-                        handleContent(menu[index].catagories);
-                        setHandleHover(e.target);
-                        setMenuHTML(e.target.innerHTML);
-                        setHover(true);
-                      }}
+                      // onMouseEnter={(e) => {
+                      //   handleContent(menu[index].catagories);
+                      //   setHandleHover(e.target);
+                      //   setMenuHTML(e.target.innerHTML);
+                      //   setHover(true);
+                      // }}
                     >
                       {menu[index].name}
                     </li>
@@ -147,11 +147,7 @@ function Navbar() {
       </nav>
 
       {isHover ? (
-        <nav className={"navbar-modal " + navbarModal} onMouseLeave={() => {
-            setHover(false);
-            setHandleHover("");
-            setMobile(false);
-        }}>
+        <nav className={"navbar-modal " + navbarModal}>
           <ul className="brand-name display-flex-start">
             <div className="brand-name-box-1 flex-column">
               <div>

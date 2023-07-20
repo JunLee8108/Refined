@@ -64,6 +64,11 @@
   transition: all 0.2s;
 }
 
+.sizeBtn:focus {
+    background-color: black;
+    color: white;
+}
+
 .border-line {
   border-bottom: 1px black dashed;
   width: 100%;

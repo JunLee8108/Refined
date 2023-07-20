@@ -81,10 +81,12 @@ nav {
   left: auto;
   top: auto;
   z-index: 5;
+  transform: translateY(-10%);
 }
 
 .show-modal {
   opacity: 1;
+  transform: translateY(0%);
   transition: all 0.5s;
 }
 
