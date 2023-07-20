@@ -119,7 +119,7 @@ function CartSection() {
                               handleCount(index, 0);
                             }}
                           >
-                            <FontAwesomeIcon icon="fa-solid fa-arrow-down" style={{color: "grey"}} />
+                            <FontAwesomeIcon icon="fa-solid fa-minus" />
                           </button>{" "}
                           {data[index].count}{" "}
                           <button
@@ -128,7 +128,7 @@ function CartSection() {
                               handleCount(index, 1);
                             }}
                           >
-                            <FontAwesomeIcon icon="fa-solid fa-arrow-up" style={{color: "grey"}} />
+                            <FontAwesomeIcon icon="fa-solid fa-plus" />
                           </button>
                         </td>
                         <td>
