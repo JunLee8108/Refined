@@ -114,7 +114,9 @@ function Navbar() {
           </div>
         </ul>
         <ul className="nav-menu display-flex-start">
-          <li><FontAwesomeIcon icon="fa-solid fa-user-large" size="lg"/></li>
+          <li>
+            <FontAwesomeIcon icon="fa-solid fa-user-large" size="lg" />
+          </li>
           <li
             onClick={() => {
               navigate("/Wishlist");
@@ -280,7 +282,9 @@ function MobileMenu(props) {
         <center>
           <div className="border-line-navbar"></div>
         </center>
-        <li><FontAwesomeIcon icon="fa-solid fa-user-large" size="lg" /></li>
+        <li>
+          <FontAwesomeIcon icon="fa-solid fa-user-large" size="lg" />
+        </li>
         <li
           onClick={() => {
             props.navigate("/Wishlist");
