@@ -90,16 +90,17 @@
 
 .cart-minusBtn {
     margin-right: 5px;
-    font-size: 25px;
+    font-size: 14px;
 }
 
 .cart-plusBtn {
     margin-left: 5px;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .cart-deleteBtn {
     color: black;
+    margin-bottom: 2px;
 }
 
 @media screen and (max-width: 767px) {
@@ -128,5 +129,13 @@
 
     .cart-color, .cart-size {
         font-size: 8px;
+    }
+
+    .cart-minusBtn {
+        margin-right: 0px;
+    }
+    
+    .cart-plusBtn {
+        margin-left: 0px;
     }
 }

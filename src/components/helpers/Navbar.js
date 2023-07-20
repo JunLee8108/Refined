@@ -14,7 +14,7 @@ function Navbar() {
   const [mobileModal, setMobileModal] = useState("");
   const [menu, setMenu] = useState([]);
   const [menuHTML, setMenuHTML] = useState("");
-  const [content, setContent] = useState(0);
+  const [content, setContent] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -24,14 +24,16 @@ function Navbar() {
 
   // Menu opacity effect
   useEffect(() => {
-    let timer = setTimeout(() => {
-      setNavbarModal("show-modal");
-    }, 100);
-
-    return () => {
-      clearTimeout(timer);
-      setNavbarModal("");
-    };
+    if (content.length > 0 && isHover === true) {
+      let timer = setTimeout(() => {
+        setNavbarModal("show-modal");
+      }, 100);
+  
+      return () => {
+        clearTimeout(timer);
+        setNavbarModal("");
+      };
+    }
   }, [isHover, content]);
 
   // Sever request
@@ -58,6 +60,8 @@ function Navbar() {
       setMobileModal("");
     };
   }, [isMobile]);
+
+  console.log(content);
 
   return (
     <div className="navbar-container">
