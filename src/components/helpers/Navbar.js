@@ -61,8 +61,6 @@ function Navbar() {
     };
   }, [isMobile]);
 
-  console.log(content);
-
   return (
     <div className="navbar-container">
       <nav>

@@ -31,7 +31,7 @@ function ItemSection(props) {
       });
       setData(copy);
     }
-    console.log("분류중입니다");
+    // console.log("분류중입니다");
   };
 
   // Store data to the local storage
