@@ -3,6 +3,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 function DetailSection(props) {
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
@@ -255,64 +257,80 @@ function DetailSection(props) {
                   })}
 
                   {/* Size Button */}
-                  {data[props.id].size.map(function (a, index) {
-                    return (
-                      <button
-                        className="sizeBtn"
-                        key={index}
-                        onClick={(e) => {
-                          handleSizeBtn(index);
-                        }}
-                      >
-                        {data[props.id].size[index]}
-                      </button>
-                    );
-                  })}
+                  <div className="detail-sizeBtn-container">
+                    {data[props.id].size.map(function (a, index) {
+                      return (
+                        <button
+                          className="sizeBtn"
+                          key={index}
+                          onClick={(e) => {
+                            handleSizeBtn(index);
+                          }}
+                        >
+                          {data[props.id].size[index]}
+                        </button>
+                      );
+                    })}
+                  </div>
+
                   <div style={{ marginTop: "25px" }}></div>
                   <div className="border-line"></div>
+
+                  {/* Item */}
                   {isEmpty === true ? (
                     <>
-                      {/* Item */}
                       <h3>Your Choice:</h3>
                       {item.map(function (a, index) {
                         return (
                           <div key={index}>
                             <h5>
-                              {item[index].name} ({item[index].color}) (Size{" "}
-                              {item[index].size})
-                            </h5>
-                            <h5>
-                              <button
-                                className="addMinusBtn"
-                                onClick={() => {
-                                  minusCount(index);
-                                }}
-                              >
-                                -
-                              </button>
-                              {item[index].count}
-                              <button
-                                className="addMinusBtn"
-                                onClick={() => {
-                                  addCount(index);
-                                }}
-                              >
-                                +
-                              </button>
+                              <div className="detail-product-name-container">
+                                <div className="detail-product-name-flexbox">
+                                  {item[index].name}{" "}
+                                  <span style={{ fontSize: "11px" }}>
+                                    ({item[index].color}){" "}
+                                  </span>{" "}
+                                  <span style={{ fontSize: "11px" }}>
+                                    (Size {item[index].size})
+                                  </span>
+                                </div>
+                                <div className="detail-product-name-flexbox">
+                                  <button
+                                    className="deleteBtn"
+                                    onClick={() => {
+                                      deleteBtn(index);
+                                    }}
+                                  >
+                                    <FontAwesomeIcon
+                                      icon="fa-solid fa-delete-left"
+                                      size="xl"
+                                    />
+                                  </button>
+                                </div>
+                              </div>
                             </h5>
 
-                            <button
-                              className="deleteBtn"
-                              style={{ color: "red", cursor: "pointer" }}
-                              onClick={() => {
-                                deleteBtn(index);
-                              }}
-                            >
-                              DELETE
-                            </button>
-
-                            <div style={{ marginTop: "25px" }}></div>
-                            <div className="border-line"></div>
+                            <div className="detail-quantity-container">
+                              <h5>
+                                <button
+                                  className="addMinusBtn"
+                                  onClick={() => {
+                                    minusCount(index);
+                                  }}
+                                >
+                                  -
+                                </button>
+                                {item[index].count}
+                                <button
+                                  className="addMinusBtn"
+                                  onClick={() => {
+                                    addCount(index);
+                                  }}
+                                >
+                                  +
+                                </button>
+                              </h5>
+                            </div>
                           </div>
                         );
                       })}
@@ -324,6 +342,8 @@ function DetailSection(props) {
                       >
                         ADD TO BAG
                       </button>
+                      <div style={{ marginTop: "25px" }}></div>
+                      <div className="border-line"></div>
                     </>
                   ) : null}
                 </div>
@@ -339,7 +359,6 @@ function DetailSection(props) {
                   {data[props.id].info.map(function (a, index) {
                     return <h5 key={index}>{data[props.id].info[index]}</h5>;
                   })}
-                  <div className="border-line"></div>
                 </div>
               </div>
             </div>
@@ -391,7 +410,6 @@ function DetailSection(props) {
               </div>
             </div>
           </div>
-          <div>asd</div>
         </>
       ) : null}
       {isAddModal === true ? (

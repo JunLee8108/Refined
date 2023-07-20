@@ -80,7 +80,7 @@
     color: black;
 }
 
-.deleteBtn {
+.wishilist-deleteBtn {
     color: black;
 }
 
@@ -96,8 +96,16 @@
     }
 
     .wishlist-title td:nth-child(3) {
-        width: 5%;
+        width: 10%;
         font-size: 9px;
+    }
+
+    .wishlist-title td:nth-child(4) {
+        width: 15%;   
+    }
+
+    .wishlist-title td:nth-child(5) {
+        width: 15%;   
     }
 
     .wishlist-title td button {

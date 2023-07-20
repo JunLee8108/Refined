@@ -72,17 +72,17 @@ function WishlistSection() {
                         <td>${data[index].price}</td>
                         <td>
                           <button className="cartBtn">
-                            <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
+                            <FontAwesomeIcon icon="fa-solid fa-cart-shopping" size="lg" />
                           </button>
                         </td>
                         <td>
                           <button
-                            className="deleteBtn"
+                            className="wishilist-deleteBtn"
                             onClick={() => {
                               deleteData(index);
                             }}
                           >
-                            <FontAwesomeIcon icon="fa-solid fa-delete-left" />
+                            <FontAwesomeIcon icon="fa-solid fa-delete-left" size="lg" />
                           </button>
                         </td>
                       </tr>

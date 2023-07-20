@@ -90,12 +90,12 @@
 
 .cart-minusBtn {
     margin-right: 5px;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .cart-plusBtn {
     margin-left: 5px;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .cart-deleteBtn {
@@ -118,7 +118,7 @@
     }
 
     .cart-title td:nth-child(3) {
-        width: 5%;
+        width: 10%;
         font-size: 9px;
     }
 

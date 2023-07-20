@@ -138,7 +138,10 @@ function CartSection() {
                               deleteData(index);
                             }}
                           >
-                            <FontAwesomeIcon icon="fa-solid fa-delete-left" />
+                            <FontAwesomeIcon
+                              icon="fa-solid fa-delete-left"
+                              size="lg"
+                            />
                           </button>
                         </td>
                       </tr>
@@ -152,12 +155,11 @@ function CartSection() {
                 <td style={{ width: "0%" }}></td>
                 <td style={{ width: "20%" }}>
                   <button
-                    style={{ color: "red" }}
                     onClick={() => {
                       clearBag();
                     }}
                   >
-                    CLEAR
+                    <FontAwesomeIcon icon="fa-solid fa-trash" size="lg" />
                   </button>
                 </td>
               </tr>
