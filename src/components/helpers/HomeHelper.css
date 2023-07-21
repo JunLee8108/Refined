@@ -1,3 +1,19 @@
+.home-top-bg {
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  transition: 1s ease-out;
+}
+
+.home-top-bg-1 {
+  background-image: url(../../../public/img/bg/bg-2.webp);
+}
+
+.home-top-bg-2 {
+  background-image: url(../../../public/img/bg/bg-1.webp);
+}
+
 /* Mid (selection) */
 .home-mid-container h2 {
   margin-top: 50px;

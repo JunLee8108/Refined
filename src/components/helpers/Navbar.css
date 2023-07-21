@@ -81,7 +81,7 @@ nav {
 }
 
 .animated {
-  animation: show-modal 0.2s forwards linear;
+  animation: show-modal 0.3s forwards linear;
 }
 
 .animated-hide {
@@ -91,7 +91,19 @@ nav {
 @keyframes show-modal {
   from {
     opacity: 0;
-    transform: translateY(-10%);
+    transform: translateY(-15%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes show-modal-mobile {
+  from {
+    opacity: 0;
+    transform: translateY(-15%);
   }
 
   to {
@@ -245,5 +257,9 @@ nav {
 
   .mobile-navbar-bag {
     margin-bottom: 15px;
+  }
+
+  .animated {
+    animation: show-modal-mobile 0.3s forwards linear;
   }
 }

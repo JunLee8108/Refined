@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const HomeBackground = styled.div`
-  background-image: url(${(props) => props.bg});
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: cover;
-  transition: all 1s;
-`;
+// const HomeBackground = styled.div`
+//   background-image: url(${(props) => props.bg});
+//   height: 100vh;
+//   background-repeat: no-repeat;
+//   background-position: top;
+//   background-size: cover;
+//   transition: all 1s;
+// `;
 
 function HomeHelper() {
   const img1 = "./img/bg/bg-1.webp";
@@ -20,7 +20,7 @@ function HomeHelper() {
   const navigate = useNavigate();
   const [selection, setSelection] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const [backgroundImg, setBackgroundImg] = useState(backgroundArray[0]);
+  const [backgroundImg, setBackgroundImg] = useState(false);
   const [scrollSelections, setScrollSelections] = useState(false);
 
   ////////////// Server Request //////////////
@@ -38,23 +38,40 @@ function HomeHelper() {
   }, []);
 
   ////////////// Background Change //////////////
-  useEffect(() => {
-    if (backgroundImg !== "") {
-      let count = 0;
-      let timer = setInterval(() => {
-        if (count === 0) {
-          setBackgroundImg(backgroundArray[1]);
-          count += 1;
-        } else if (count === 1) {
-          setBackgroundImg(backgroundArray[0]);
-          count -= 1;
-        }
-      }, 5000);
+  // useEffect(() => {
+  //   if (backgroundImg !== "") {
+  //     let count = 0;
+  //     let timer = setInterval(() => {
+  //       if (count === 0) {
+  //         setBackgroundImg(backgroundArray[1]);
+  //         count += 1;
+  //       } else if (count === 1) {
+  //         setBackgroundImg(backgroundArray[0]);
+  //         count -= 1;
+  //       }
+  //     }, 5000);
 
-      return () => {
-        clearTimeout(timer);
-      };
-    }
+  //     return () => {
+  //       clearTimeout(timer);
+  //     };
+  //   }
+  // }, [backgroundImg]);
+
+  useEffect(() => {
+    let count = 0;
+    let timer = setInterval(() => {
+      if (count === 0) {
+        setBackgroundImg(true);
+        count += 1;
+      } else if (count === 1) {
+        setBackgroundImg(false);
+        count -= 1;
+      }
+    }, 4000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [backgroundImg]);
 
   ////////////// Scroll Event //////////////
@@ -93,7 +110,14 @@ function HomeHelper() {
 
   return (
     <div className="container">
-      <HomeBackground bg={backgroundImg} />
+      {/* <HomeBackground bg={backgroundImg} /> */}
+      <div
+        className={
+          backgroundImg
+            ? "home-top-bg home-top-bg-1"
+            : "home-top-bg home-top-bg-2"
+        }
+      ></div>
       <div className="home-mid-container">
         <h2>New Arrival</h2>
         <div className="selection-container">
