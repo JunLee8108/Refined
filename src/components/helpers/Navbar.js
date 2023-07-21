@@ -7,34 +7,60 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
-  const [isHover, setHover] = useState(false);
+  const navigate = useNavigate();
+
+  const [isModal, setModal] = useState(false);
+  const [navbarModal, setNavbarModal] = useState(false);
   const [isMobile, setMobile] = useState(false);
-  const [handleHover, setHandleHover] = useState("");
-  const [navbarModal, setNavbarModal] = useState("");
+  const [isLoading, setLoading] = useState(false);
+
+  const [contentName, setContentName] = useState("");
   const [mobileModal, setMobileModal] = useState("");
+
   const [menu, setMenu] = useState([]);
   const [menuHTML, setMenuHTML] = useState("");
   const [content, setContent] = useState([]);
-  const [isLoading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleContent = (e) => {
     setContent(e);
   };
 
-  // Menu opacity effect
-  useEffect(() => {
-    if (content.length > 0 && isHover === true) {
-      let timer = setTimeout(() => {
-        setNavbarModal("show-modal");
-      }, 100);
-  
-      return () => {
-        clearTimeout(timer);
-        setNavbarModal("");
-      };
+  const navigateCloseModal = (url) => {
+    navigate(url);
+    setNavbarModal(false);
+    setContentName("");
+    setMobile(false);
+  };
+
+  const mobileCloseModal = () => {
+    setContentName("");
+    setMobileModal((mobileModal) => !mobileModal);
+    setModal(false);
+    setNavbarModal(false);
+  };
+
+  // Navbar modal control
+  const modalControl = (e, category) => {
+    handleContent(category);
+    setContentName(e.target);
+    setMenuHTML(e.target.innerHTML);
+
+    setNavbarModal(true);
+
+    setMobile(false);
+    setMobileModal((mobileModal) => !mobileModal);
+
+    if (contentName === e.target) {
+      setNavbarModal(false);
+      setContentName("");
+    } else if (contentName !== "") {
+      if (contentName !== e.target) {
+        setModal(false);
+        setMobile(false);
+        setNavbarModal(true);
+      }
     }
-  }, [isHover, content]);
+  };
 
   // Sever request
   useEffect(() => {
@@ -49,17 +75,40 @@ function Navbar() {
       });
   }, []);
 
-  // Mobile menu transform effect
+  // Transition effect
   useEffect(() => {
-    let timer = setTimeout(() => {
-      setMobileModal("brand-name-box-2-mobile-translate");
-    }, 100);
+    if (content.length !== 0) {
+      let timer;
+
+      if (navbarModal) {
+        setModal(true);
+      } else if (!navbarModal) {
+        timer = setTimeout(() => {
+          setModal(false);
+        }, 200);
+      }
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [navbarModal, content]);
+
+  useEffect(() => {
+    let timer;
+
+    if (mobileModal) {
+      setMobile(true);
+    } else if (!mobileModal) {
+      timer = setTimeout(() => {
+        setMobile(false);
+      }, 200);
+    }
 
     return () => {
       clearTimeout(timer);
-      setMobileModal("");
     };
-  }, [isMobile]);
+  }, [mobileModal]);
 
   return (
     <div className="navbar-container">
@@ -68,79 +117,51 @@ function Navbar() {
           <div className="brand-name-box-1">
             <h1
               onClick={() => {
-                setHover(false);
-                setHandleHover("");
-                setMobile(false);
-                navigate("/");
+                navigateCloseModal("/");
               }}
             >
               Refined
             </h1>
             <h4>Seoul</h4>
+
             {/* Not visible on laptop (Mobile Menu Button) */}
-            <MobileMenuBtn
-              setMobile={setMobile}
-              setHover={setHover}
-              setHandleHover={setHandleHover}
-            />
+            <MobileMenuBtn mobileCloseModal={mobileCloseModal} />
             {/**********************************************/}
           </div>
+
           <div className="brand-name-box-2">
-            {isLoading ? (
-              menu.map(function (a, index) {
-                return (
-                  <div key={index}>
-                    <li
-                      key={index}
-                      onClick={(e) => {
-                        handleContent(menu[index].catagories);
-                        setHandleHover(e.target);
-                        setMenuHTML(e.target.innerHTML);
-                        setHover(true);
-                        if (handleHover === e.target) {
-                          setHover(false);
-                          setHandleHover("");
-                        }
-                      }}
-                      // onMouseEnter={(e) => {
-                      //   handleContent(menu[index].catagories);
-                      //   setHandleHover(e.target);
-                      //   setMenuHTML(e.target.innerHTML);
-                      //   setHover(true);
-                      // }}
-                    >
-                      {menu[index].name}
-                    </li>
-                  </div>
-                );
-              })
-            ) : (
-              <div>
-                <h1>loading..</h1>
-              </div>
-            )}
+            {isLoading
+              ? menu.map(function (a, index) {
+                  return (
+                    <div key={index}>
+                      <li
+                        onClick={(e) => {
+                          modalControl(e, menu[index].categories);
+                        }}
+                      >
+                        {menu[index].name}
+                      </li>
+                    </div>
+                  );
+                })
+              : null}
           </div>
         </ul>
+
         <ul className="nav-menu display-flex-start">
           <li>
             <FontAwesomeIcon icon="fa-solid fa-user-large" size="lg" />
           </li>
           <li
             onClick={() => {
-              navigate("/Wishlist");
-              setHover(false);
-              setHandleHover("");
-              setMobile(false);
+              navigateCloseModal("/Wishlist");
             }}
           >
             WISHLIST
           </li>
           <li
             onClick={() => {
-              navigate("/Cart");
-              setHover(false);
-              setHandleHover("");
-              setMobile(false);
+              navigateCloseModal("/Cart");
             }}
           >
             BAG
@@ -148,18 +169,19 @@ function Navbar() {
         </ul>
       </nav>
 
-      {isHover ? (
-        <nav className={"navbar-modal " + navbarModal}>
+      {isModal ? (
+        <nav
+          className={
+            navbarModal ? "navbar-modal animated" : "navbar-modal animated-hide"
+          }
+        >
           <ul className="brand-name display-flex-start">
             <div className="brand-name-box-1 flex-column">
               <div>
-                {/* Not visible on laptop */}
-                {/* Let users know which button they click (men, women ...) */}
+                {/* Not visible on laptop. Let users know which button they click (men, women ...) */}
                 <MobileIndicator
                   menuHTML={menuHTML}
-                  setHover={setHover}
-                  setMobile={setMobile}
-                  setHandleHover={setHandleHover}
+                  mobileCloseModal={mobileCloseModal}
                 />
                 {/***********************************************************/}
 
@@ -176,9 +198,8 @@ function Navbar() {
                       key={index}
                       onClick={(e) => {
                         navigate("Item/" + menuHTML + "/" + e.target.innerHTML);
-                        // navigate(menuHTML + "/" + e.target.innerHTML);
-                        setHover(false);
-                        setHandleHover("");
+                        setModal(false);
+                        setContentName("");
                       }}
                     >
                       {content[index]}
@@ -193,38 +214,63 @@ function Navbar() {
         </nav>
       ) : null}
 
-      {/* Not visible on laptop (Mobile Menu Bar) */}
-      {isMobile ? (
-        <MobileMenu
-          menu={menu}
-          handleContent={handleContent}
-          setHandleHover={setHandleHover}
-          setMenuHTML={setMenuHTML}
-          setHover={setHover}
-          setMobile={setMobile}
-          handleHover={handleHover}
-          isLoading={isLoading}
-          mobileModal={mobileModal}
-          navigate={navigate}
-        />
-      ) : null}
-      {/********************************************/}
+      <nav>
+        {isMobile ? (
+          <div
+            className={
+              mobileModal
+                ? "mobile-navbar animated"
+                : "mobile-navbar animated-hide"
+            }
+          >
+            {isLoading
+              ? menu.map(function (a, index) {
+                  return (
+                    <div key={index}>
+                      <li
+                        onClick={(e) => {
+                          modalControl(e, menu[index].categories);
+                        }}
+                      >
+                        {menu[index].name}
+                      </li>
+                    </div>
+                  );
+                })
+              : null}
+            <center>
+              <div className="border-line-navbar"></div>
+            </center>
+            <li>
+              <FontAwesomeIcon icon="fa-solid fa-user-large" size="lg" />
+            </li>
+            <li
+              onClick={() => {
+                navigateCloseModal("/Wishlist");
+              }}
+            >
+              WISHLIST
+            </li>
+            <li
+              className="mobile-navbar-bag"
+              onClick={() => {
+                navigateCloseModal("/Cart");
+              }}
+            >
+              BAG
+            </li>
+          </div>
+        ) : null}
+      </nav>
     </div>
   );
 }
 
 function MobileMenuBtn(props) {
-  // console.log("mobile button 입니다");
   return (
     <div className="mobile-btn">
       <li>
-        <button
-          onClick={() => {
-            props.setMobile((isMobile) => !isMobile);
-            props.setHover(false);
-            props.setHandleHover("");
-          }}
-        >
+        <button onClick={props.mobileCloseModal}>
           <FontAwesomeIcon icon={faBars} size="xl" />
         </button>
       </li>
@@ -233,89 +279,10 @@ function MobileMenuBtn(props) {
 }
 
 function MobileIndicator(props) {
-  // console.log("mobile indication 이름 나타내줍니다");
   return (
-    <li
-      style={{
-        cursor: "unset",
-        border: "none",
-        fontWeight: "bold",
-        letterSpacing: "1px",
-        marginTop: "-10px",
-        marginRight: "100px",
-      }}
-      className="menu-mobile"
-      onClick={() => {
-        props.setMobile((isMobile) => !isMobile);
-        props.setHover(false);
-        props.setHandleHover("");
-      }}
-    >
+    <li className="menu-mobile" onClick={props.mobileCloseModal}>
       {props.menuHTML}.
     </li>
-  );
-}
-
-function MobileMenu(props) {
-  // console.log("mobile Menu 입니다");
-  return (
-    <div className="mobile-navbar">
-      <div className={"brand-name-box-2-mobile " + props.mobileModal}>
-        {props.isLoading ? (
-          props.menu.map(function (a, index) {
-            return (
-              <li
-                key={index}
-                onClick={(e) => {
-                  props.handleContent(props.menu[index].catagories);
-                  props.setHandleHover(e.target);
-                  props.setMenuHTML(e.target.innerHTML);
-                  props.setHover(true);
-                  props.setMobile((isMobile) => !isMobile);
-                  if (props.handleHover === e.target) {
-                    props.setHover(false);
-                    props.setHandleHover("");
-                  }
-                }}
-              >
-                {props.menu[index].name}
-              </li>
-            );
-          })
-        ) : (
-          <div>
-            <h1>loading..</h1>
-          </div>
-        )}
-        <center>
-          <div className="border-line-navbar"></div>
-        </center>
-        <li>
-          <FontAwesomeIcon icon="fa-solid fa-user-large" size="lg" />
-        </li>
-        <li
-          onClick={() => {
-            props.navigate("/Wishlist");
-            props.setHover(false);
-            props.setHandleHover("");
-            props.setMobile(false);
-          }}
-        >
-          WISHLIST
-        </li>
-        <li
-          style={{ marginBottom: "15px" }}
-          onClick={() => {
-            props.navigate("/Cart");
-            props.setHover(false);
-            props.setHandleHover("");
-            props.setMobile(false);
-          }}
-        >
-          BAG
-        </li>
-      </div>
-    </div>
   );
 }
 

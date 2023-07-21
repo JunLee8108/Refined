@@ -72,7 +72,6 @@ nav {
 
 /* Navbar Modal */
 .navbar-modal {
-  opacity: 0;
   position: fixed;
   background-color: white;
   width: 100%;
@@ -81,13 +80,39 @@ nav {
   left: auto;
   top: auto;
   z-index: 5;
-  transform: translateY(-10%);
+  opacity: 0;
 }
 
-.show-modal {
-  opacity: 1;
-  transform: translateY(0%);
-  transition:all 0.5s;
+.animated {
+  animation: show-modal 0.5s forwards ease-in-out;
+}
+
+.animated-hide {
+  animation: hide-modal 0.2s forwards linear;
+}
+
+@keyframes show-modal {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes hide-modal {
+  from {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-5%);
+  }
 }
 
 .flex-column {
@@ -151,16 +176,9 @@ nav {
   }
 
   .brand-name-box-2-mobile {
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     margin-bottom: 10px;
-    transform: translateY(-10%);
     opacity: 0;
-  }
-
-  .brand-name-box-2-mobile-translate {
-    transform: translateY(0%);
-    opacity: 1;
-    transition: all 0.5s;
   }
 
   .brand-name-box-2-mobile li {
@@ -190,11 +208,12 @@ nav {
     width: 100%;
     margin-top: 0px;
     z-index: 5;
-    position: static;
+    position: fixed;
   }
 
   .mobile-navbar {
     display: block;
+    position: fixed;
     width: 100%;
     z-index: 5;
     background-color: white;
@@ -210,6 +229,11 @@ nav {
 
   .menu-mobile {
     display: block;
+    cursor: unset;
+    border: none;
+    letter-spacing: 1px;
+    margin-top: -10;
+    margin-right: 100px;
   }
 
   .border-line-navbar {
@@ -221,5 +245,9 @@ nav {
 
   .mobile-btn li {
     margin-right: 5px;
+  }
+
+  .mobile-navbar-bag {
+    margin-bottom: 15px;
   }
 }

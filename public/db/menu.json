@@ -2,7 +2,7 @@
     {
         "id": 0,
         "name": "MEN",
-        "catagories": [
+        "categories": [
             "New Arrival",
             "Outerwear",
             "Shirts",
@@ -13,7 +13,7 @@
     {
         "id": 1,
         "name": "WOMEN",
-        "catagories": [
+        "categories": [
             "New Arrival",
             "Outerwear",
             "Shirts",
@@ -25,7 +25,7 @@
     {
         "id": 2,
         "name": "ACCESSORIES",
-        "catagories": [
+        "categories": [
             "Bags",
             "Shoes"
         ]
@@ -33,7 +33,7 @@
     {
         "id": 3,
         "name": "COLLECTIONS",
-        "catagories": [
+        "categories": [
             "2023 SS Collection",
             "2022 FW Collection"
         ]
