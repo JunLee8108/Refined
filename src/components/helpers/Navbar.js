@@ -1,8 +1,8 @@
 import "./Navbar.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
@@ -21,6 +21,8 @@ function Navbar() {
   const [menuHTML, setMenuHTML] = useState("");
   const [content, setContent] = useState([]);
 
+  const isMounted = useRef(false);
+
   const handleContent = (e) => {
     setContent(e);
   };
@@ -35,8 +37,8 @@ function Navbar() {
   const mobileCloseModal = () => {
     setContentName("");
     setMobileModal((mobileModal) => !mobileModal);
-    setModal(false);
     setNavbarModal(false);
+    setModal(false);
   };
 
   // Navbar modal control
@@ -95,20 +97,26 @@ function Navbar() {
   }, [navbarModal, content]);
 
   useEffect(() => {
-    let timer;
+    if (isMounted.current) {
+      let timer;
 
-    if (mobileModal) {
-      setMobile(true);
-    } else if (!mobileModal) {
-      timer = setTimeout(() => {
-        setMobile(false);
-      }, 200);
+      if (mobileModal) {
+        setMobile(true);
+      } else if (!mobileModal) {
+        timer = setTimeout(() => {
+          setMobile(false);
+        }, 200);
+      }
+
+      return () => {
+        clearTimeout(timer);
+      };
+    } else {
+      isMounted.current = true;
     }
-
-    return () => {
-      clearTimeout(timer);
-    };
   }, [mobileModal]);
+
+  console.log(1);
 
   return (
     <div className="navbar-container">
@@ -199,7 +207,7 @@ function Navbar() {
                       key={index}
                       onClick={(e) => {
                         navigate("Item/" + menuHTML + "/" + e.target.innerHTML);
-                        setModal(false);
+                        setNavbarModal(false);
                         setContentName("");
                       }}
                     >

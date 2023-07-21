@@ -47,7 +47,7 @@ nav {
   align-items: center;
   width: 50%;
   height: 100%;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
 
 .brand-name-box-1 h1 {
@@ -78,11 +78,10 @@ nav {
   width: 100%;
   height: auto;
   z-index: 5;
-  opacity: 0;
 }
 
 .animated {
-  animation: show-modal 0.5s forwards ease-in-out;
+  animation: show-modal 0.2s forwards linear;
 }
 
 .animated-hide {
