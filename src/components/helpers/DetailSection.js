@@ -113,7 +113,7 @@ function DetailSection(props) {
       setEmpty(true);
     } else {
       if (item.some((x) => x.name === name && x.size === size)) {
-        alert("The Item is alreay in your choice!");
+        alert("The Item is already in your choice!");
       } else {
         let copy = [...item];
         copy.length = 0;
