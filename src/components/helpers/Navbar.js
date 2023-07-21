@@ -118,6 +118,7 @@ function Navbar() {
             <h1
               onClick={() => {
                 navigateCloseModal("/");
+                setMobileModal(false);
               }}
             >
               Refined
