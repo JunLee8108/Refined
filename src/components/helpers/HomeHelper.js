@@ -38,22 +38,24 @@ function HomeHelper() {
   }, []);
 
   ////////////// Background Change //////////////
-  let count = 0;
   useEffect(() => {
-    let timer = setInterval(() => {
-      if (count === 0) {
-        setBackgroundImg(backgroundArray[1]);
-        count += 1;
-      } else if (count === 1) {
-        setBackgroundImg(backgroundArray[0]);
-        count -= 1;
-      }
-    }, 7000);
+    if (backgroundImg !== "") {
+      let count = 0;
+      let timer = setInterval(() => {
+        if (count === 0) {
+          setBackgroundImg(backgroundArray[1]);
+          count += 1;
+        } else if (count === 1) {
+          setBackgroundImg(backgroundArray[0]);
+          count -= 1;
+        }
+      }, 5000);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [backgroundImg]);
 
   ////////////// Scroll Event //////////////
   const scrollEvent = () => {

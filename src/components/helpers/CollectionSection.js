@@ -24,7 +24,7 @@ function CollectionSection(props) {
     if (data.length !== 0 && data[0].season === props.type) {
       let timer = setTimeout(() => {
         setFade("collection-fade");
-      }, 100);
+      }, 200);
 
       return () => {
         clearTimeout(timer);
