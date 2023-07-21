@@ -23,10 +23,6 @@ function Navbar() {
 
   const isMounted = useRef(false);
 
-  const handleContent = (e) => {
-    setContent(e);
-  };
-
   const navigateCloseModal = (url) => {
     navigate(url);
     setNavbarModal(false);
@@ -43,7 +39,7 @@ function Navbar() {
 
   // Navbar modal control
   const modalControl = (e, category) => {
-    handleContent(category);
+    setContent(category);
     setContentName(e.target);
     setMenuHTML(e.target.innerHTML);
 
@@ -77,7 +73,7 @@ function Navbar() {
       });
   }, []);
 
-  // Transition effect
+  // Control transition effects
   useEffect(() => {
     if (content.length !== 0) {
       let timer;
@@ -96,6 +92,7 @@ function Navbar() {
     }
   }, [navbarModal, content]);
 
+  // Control mobile transition effects
   useEffect(() => {
     if (isMounted.current) {
       let timer;
@@ -115,6 +112,14 @@ function Navbar() {
       isMounted.current = true;
     }
   }, [mobileModal]);
+
+  // Page Change Detection
+  useEffect(() => {
+    if (navbarModal === true || mobileModal === true) {
+      setNavbarModal(false);
+      setMobileModal(false);
+    }
+  }, [window.location.pathname]);
 
   return (
     <div className="navbar-container">

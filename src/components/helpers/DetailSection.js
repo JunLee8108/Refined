@@ -184,16 +184,20 @@ function DetailSection(props) {
           alert("Failed to load.");
         });
     }
-
-    let timer = setTimeout(() => {
-      setFade("detail-container-effect");
-    }, 100);
-
-    return () => {
-      clearTimeout(timer);
-      setFade("");
-    };
   }, [props.category]);
+
+  useEffect(() => {
+    if (data.length !== 0) {
+      let timer = setTimeout(() => {
+        setFade("detail-container-effect");
+      }, 200);
+
+      return () => {
+        clearTimeout(timer);
+        setFade("");
+      };
+    }
+  }, [data]);
 
   useEffect(() => {
     if (isYes) {
