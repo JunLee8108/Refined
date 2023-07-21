@@ -7,17 +7,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function DetailSection(props) {
   const navigate = useNavigate();
+
   const [isLoading, setLoading] = useState(false);
   const [isModal, setModal] = useState(false);
   const [isAddModal, setAddModal] = useState(false);
   const [isYes, setYes] = useState(false);
-  const [indicateItem, setIndicateItem] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [repeatedObject, setRepeatedObject] = useState({});
-  const [data, setData] = useState([]);
+
   const [fade, setFade] = useState("");
   const [modalFade, setModalFade] = useState("");
   const [addModalFade, setAddModalFade] = useState("");
+  const [choiceFade, setChoiceFade] = useState("");
+  const [handleChoiceFade, setHandleChoiceFade] = useState(false);
+
   const [isEmpty, setEmpty] = useState(false);
+  const [data, setData] = useState([]);
   const [item, setItem] = useState([
     {
       name: "",
@@ -34,10 +39,9 @@ function DetailSection(props) {
   };
 
   const addToLocalStorage = () => {
-    let cart = localStorage.getItem("cart");
+    let cart = JSON.parse(localStorage.getItem("cart"));
     let isRedundnat = true;
     let object = {};
-    cart = JSON.parse(cart);
 
     object = {
       name: item[0].name,
@@ -52,25 +56,25 @@ function DetailSection(props) {
       type: item[0].type,
     };
 
-    for (let i = 0; i < cart.length; i++) {
-      if (
-        object.name === cart[i].name &&
-        object.size === cart[i].size &&
-        object.color === cart[i].color &&
-        object.category === cart[i].category
-      ) {
-        isRedundnat = false;
-        setAddModal(true);
-        setRepeatedObject(object);
-        document.body.style.overflow = "hidden";
-        break;
-      } else {
-        isRedundnat = true;
-      }
+    if (
+      cart.some(
+        (x) =>
+          x.name === object.name &&
+          x.size === object.size &&
+          x.color === object.color &&
+          x.category === object.category
+      )
+    ) {
+      isRedundnat = false;
+      setAddModal(true);
+      setRepeatedObject(object);
+      document.body.style.overflow = "hidden";
+    } else {
+      isRedundnat = true;
     }
 
     if (isRedundnat) {
-      setIndicateItem(`${object.name} (size ${object.size})`);
+      setDisplayName(`${object.name} (size ${object.size})`);
       cart.push(object);
       localStorage.setItem("cart", JSON.stringify(cart));
       document.body.style.overflow = "hidden";
@@ -79,7 +83,7 @@ function DetailSection(props) {
     }
   };
 
-  const handleCopyArray = (index) => {
+  const handleSizeBtn = (index) => {
     const name = `${data[props.id].name}`;
     const size = `${data[props.id].size[index]}`;
     const price = `${data[props.id].price}`;
@@ -116,12 +120,9 @@ function DetailSection(props) {
         copy.push(object);
         setItem(copy);
         setEmpty(true);
+        setHandleChoiceFade((handleChoiceFade) => !handleChoiceFade);
       }
     }
-  };
-
-  const handleSizeBtn = (index) => {
-    handleCopyArray(index);
   };
 
   const addCount = (index) => {
@@ -162,7 +163,6 @@ function DetailSection(props) {
         .catch(() => {
           alert("Failed to load.");
         });
-      //   console.log("데이터베이스 연결 중 입니다");
     } else if (props.category === "WOMEN") {
       axios
         .get(process.env.PUBLIC_URL + "/db/women.json")
@@ -173,7 +173,6 @@ function DetailSection(props) {
         .catch(() => {
           alert("Failed to load.");
         });
-      //   console.log("데이터베이스 연결 중 입니다");
     } else if (props.category === "ACCESSORIES") {
       axios
         .get(process.env.PUBLIC_URL + "/db/acc.json")
@@ -184,7 +183,6 @@ function DetailSection(props) {
         .catch(() => {
           alert("Failed to load.");
         });
-      //   console.log("데이터베이스 연결 중 입니다");
     }
 
     let timer = setTimeout(() => {
@@ -200,7 +198,7 @@ function DetailSection(props) {
   useEffect(() => {
     if (isYes) {
       let cart = localStorage.getItem("cart");
-      let rem = 0;
+      let index = 0;
       cart = JSON.parse(cart);
 
       for (let i = 0; i < cart.length; i++) {
@@ -211,11 +209,11 @@ function DetailSection(props) {
           repeatedObject.category === cart[i].category
         ) {
           cart[i].count += repeatedObject.count;
-          rem = i;
+          index = i;
         }
       }
 
-      cart[rem].totalPrice = cart[rem].count * cart[rem].price;
+      cart[index].totalPrice = cart[index].count * cart[index].price;
 
       localStorage.setItem("cart", JSON.stringify(cart));
       setYes(false);
@@ -247,6 +245,19 @@ function DetailSection(props) {
       };
     }
   }, [isAddModal]);
+
+  useEffect(() => {
+    if (isEmpty) {
+      let timer = setTimeout(() => {
+        setChoiceFade("detail-your-choice-fade");
+      }, 100);
+
+      return () => {
+        clearTimeout(timer);
+        setChoiceFade("");
+      };
+    }
+  }, [isEmpty, handleChoiceFade]);
 
   return (
     <>
@@ -291,7 +302,7 @@ function DetailSection(props) {
                         <button
                           className="sizeBtn"
                           key={index}
-                          onClick={(e) => {
+                          onClick={() => {
                             handleSizeBtn(index);
                           }}
                         >
@@ -305,81 +316,84 @@ function DetailSection(props) {
                   <div className="border-line"></div>
 
                   {/* Item */}
-                  {isEmpty === true ? (
-                    <>
-                      <h3>Your Choice:</h3>
-                      {item.map(function (a, index) {
-                        return (
-                          <div key={index}>
-                            <h5>
-                              <div className="detail-product-name-container">
-                                <div className="detail-product-name-flexbox">
-                                  {item[index].name}{" "}
-                                  <span style={{ fontSize: "11px" }}>
-                                    ({item[index].color}){" "}
-                                  </span>{" "}
-                                  <span style={{ fontSize: "11px" }}>
-                                    (Size {item[index].size})
-                                  </span>
+                  <div className={"detail-your-choice " + choiceFade}>
+                    {isEmpty === true ? (
+                      <>
+                        <h3>Your Choice:</h3>
+                        {item.map(function (a, index) {
+                          return (
+                            <div key={index}>
+                              <h5>
+                                <div className="detail-product-name-container">
+                                  <div className="detail-product-name-flexbox">
+                                    {item[index].name}{" "}
+                                    <span style={{ fontSize: "11px" }}>
+                                      ({item[index].color}){" "}
+                                    </span>{" "}
+                                    <span style={{ fontSize: "11px" }}>
+                                      (Size {item[index].size})
+                                    </span>
+                                  </div>
+                                  <div className="detail-product-name-flexbox">
+                                    <button
+                                      className="deleteBtn"
+                                      onClick={() => {
+                                        deleteBtn(index);
+                                      }}
+                                    >
+                                      <FontAwesomeIcon
+                                        icon="fa-solid fa-delete-left"
+                                        size="xl"
+                                      />
+                                    </button>
+                                  </div>
                                 </div>
-                                <div className="detail-product-name-flexbox">
+                              </h5>
+
+                              <div className="detail-quantity-container">
+                                <h5>
                                   <button
-                                    className="deleteBtn"
+                                    className="addMinusBtn"
                                     onClick={() => {
-                                      deleteBtn(index);
+                                      minusCount(index);
                                     }}
                                   >
-                                    <FontAwesomeIcon
-                                      icon="fa-solid fa-delete-left"
-                                      size="xl"
-                                    />
+                                    -
                                   </button>
-                                </div>
+                                  {item[index].count}
+                                  <button
+                                    className="addMinusBtn"
+                                    onClick={() => {
+                                      addCount(index);
+                                    }}
+                                  >
+                                    +
+                                  </button>
+                                </h5>
                               </div>
-                            </h5>
-
-                            <div className="detail-quantity-container">
-                              <h5>
-                                <button
-                                  className="addMinusBtn"
-                                  onClick={() => {
-                                    minusCount(index);
-                                  }}
-                                >
-                                  -
-                                </button>
-                                {item[index].count}
-                                <button
-                                  className="addMinusBtn"
-                                  onClick={() => {
-                                    addCount(index);
-                                  }}
-                                >
-                                  +
-                                </button>
-                              </h5>
                             </div>
-                          </div>
-                        );
-                      })}
-                      <button
-                        className="addToCartBtn"
-                        onClick={() => {
-                          addToLocalStorage();
-                        }}
-                      >
-                        ADD TO BAG
-                      </button>
-                      <div style={{ marginTop: "25px" }}></div>
-                      <div className="border-line"></div>
-                    </>
-                  ) : null}
+                          );
+                        })}
+                        <button
+                          className="addToCartBtn"
+                          onClick={() => {
+                            addToLocalStorage();
+                          }}
+                        >
+                          ADD TO BAG
+                        </button>
+                        <div style={{ marginTop: "25px" }}></div>
+                        <div className="border-line"></div>
+                      </>
+                    ) : null}
+                  </div>
                 </div>
 
                 <div className="detail-flexbox-sizeBtn">
                   {/* Fabric Description */}
                   <h5>Fabric Description:</h5>
                   <h5>{data[props.id].fabricDC}</h5>
+
                   <div className="border-line"></div>
 
                   {/* Info */}
@@ -393,6 +407,7 @@ function DetailSection(props) {
           </div>
         </>
       ) : null}
+
       {isModal === true ? (
         <>
           <div
@@ -407,7 +422,7 @@ function DetailSection(props) {
           >
             <div className={"detail-modal-bg " + modalFade}>
               <div className="modal-title">
-                <h4>{indicateItem + " was added to your bag."}</h4>
+                <h4>{displayName + " was added to your bag."}</h4>
               </div>
 
               <div style={{ marginBottom: "30px" }}></div>
@@ -427,8 +442,8 @@ function DetailSection(props) {
                 <div className="modal-button-flexbox">
                   <button
                     onClick={() => {
-                      setModal(false);
                       resetYourChoice();
+                      setModal(false);
                       document.body.style.overflow = "unset";
                     }}
                   >
@@ -467,10 +482,10 @@ function DetailSection(props) {
                 <div className="modal-button-flexbox">
                   <button
                     className="yesBtn"
-                    onClick={(e) => {
+                    onClick={() => {
+                      resetYourChoice();
                       setAddModal(false);
                       setYes(true);
-                      resetYourChoice();
                       document.body.style.overflow = "unset";
                     }}
                   >
@@ -480,8 +495,8 @@ function DetailSection(props) {
                 <div className="modal-button-flexbox">
                   <button
                     onClick={() => {
-                      setAddModal(false);
                       resetYourChoice();
+                      setAddModal(false);
                       document.body.style.overflow = "unset";
                     }}
                   >
@@ -491,7 +506,6 @@ function DetailSection(props) {
               </div>
             </div>
           </div>
-          <div>asd</div>
         </>
       ) : null}
     </>

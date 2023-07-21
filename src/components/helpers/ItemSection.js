@@ -17,7 +17,7 @@ function ItemSection(props) {
   const bgAcc = "/img/bg/acc-bg-0.webp";
   const navigate = useNavigate();
 
-  // Sort
+  // Sort array (price high to low & price low to high)
   const sort = (e) => {
     let copy = [...data];
     if (e === 0) {
@@ -31,14 +31,13 @@ function ItemSection(props) {
       });
       setData(copy);
     }
-    // console.log("분류중입니다");
   };
 
-  // Store data to the local storage
+  // Store wishlist to the local storage
   const addToLocalStorage = (index) => {
-    let wishlist = localStorage.getItem("wishlist");
+    let wishlist = JSON.parse(localStorage.getItem("wishlist"));
     let isRedundnat = true;
-    wishlist = JSON.parse(wishlist);
+
     const object = {
       name: data[index].name,
       category: data[index].category,
@@ -83,7 +82,6 @@ function ItemSection(props) {
         .catch(() => {
           alert("Failed to load.");
         });
-      //   console.log("데이터베이스 연결 중 입니다");
       setBg(bgMen);
     } else if (props.category === "WOMEN") {
       axios
@@ -96,7 +94,6 @@ function ItemSection(props) {
         .catch(() => {
           alert("Failed to load.");
         });
-      //   console.log("데이터베이스 연결 중 입니다");
       setBg(bgWomen);
     } else if (props.category === "ACCESSORIES") {
       axios
@@ -109,13 +106,11 @@ function ItemSection(props) {
         .catch(() => {
           alert("Failed to load.");
         });
-      //   console.log("데이터베이스 연결 중 입니다");
       setBg(bgAcc);
     }
 
     let timer = setTimeout(() => {
       setFade("item-top-bg-fade");
-      //   console.log("화면전환 효과");
     }, 100);
 
     return () => {
@@ -131,7 +126,7 @@ function ItemSection(props) {
     }
     if (!localStorage.hasOwnProperty("cart")) {
       localStorage.setItem("cart", JSON.stringify([]));
-    } 
+    }
     document.body.style.overflow = "unset";
   }, []);
 
@@ -193,7 +188,9 @@ function ItemSection(props) {
                     <span style={{ fontSize: "12px", color: "grey" }}>
                       ({data[index].color})
                     </span>
-                    <h5 style={{marginBottom: "10px"}}>${data[index].price}</h5>
+                    <h5 style={{ marginBottom: "10px" }}>
+                      ${data[index].price}
+                    </h5>
                     <div className="wishlist-btn-container">
                       <button
                         className="wishListBtn"

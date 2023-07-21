@@ -65,8 +65,8 @@
 }
 
 .sizeBtn:focus {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 }
 
 .border-line {
@@ -142,21 +142,32 @@
 }
 
 .detail-modal-bg {
-    position: fixed;
-    width: 95%;
-    max-width: 700px;
-    height: 30%;
-    background-color: white;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-    opacity: 0;
-  }
+  position: fixed;
+  width: 95%;
+  max-width: 700px;
+  height: 30%;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  opacity: 0;
+}
 
 .modal-fade {
-    opacity: 1;
-    transition: all 0.5s;
+  opacity: 1;
+  transition: all 0.5s;
+}
+
+.detail-your-choice {
+  opacity: 0;
+  transform: translateX(10%);
+}
+
+.detail-your-choice-fade {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: 0.5s ease-in-out;
 }
 
 /* 4K */
@@ -236,7 +247,8 @@
     color: black;
   }
 
-  .detail-sizeBtn-container, .detail-quantity-container {
+  .detail-sizeBtn-container,
+  .detail-quantity-container {
     text-align: center;
   }
 
@@ -244,5 +256,4 @@
     height: 300px;
     padding: 50px;
   }
-
 }

@@ -116,8 +116,6 @@ function Navbar() {
     }
   }, [mobileModal]);
 
-  console.log(1);
-
   return (
     <div className="navbar-container">
       <nav>

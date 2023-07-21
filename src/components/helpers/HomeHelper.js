@@ -24,7 +24,7 @@ function HomeHelper() {
   const [scrollSelections, setScrollSelections] = useState(false);
 
   ////////////// Server Request //////////////
-  const serverGet = () => {
+  useEffect(() => {
     axios
       .get(process.env.PUBLIC_URL + "/db/selectionImgs.json")
       .then((result) => {
@@ -35,10 +35,6 @@ function HomeHelper() {
       .catch(() => {
         alert("Failed");
       });
-  };
-
-  useEffect(() => {
-    serverGet();
   }, []);
 
   ////////////// Background Change //////////////
@@ -66,7 +62,7 @@ function HomeHelper() {
     } else {
       setScrollSelections(false);
     }
-    
+
     // console.log(scrollHeight);
     // console.log(window.scrollY);
     // console.log(scrollSelections);
@@ -77,7 +73,7 @@ function HomeHelper() {
     }, 100);
 
     document.body.style.overflow = "unset";
-    
+
     return () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", scrollEvent);
@@ -90,7 +86,7 @@ function HomeHelper() {
     }
     if (!localStorage.hasOwnProperty("cart")) {
       localStorage.setItem("cart", JSON.stringify([]));
-    } 
+    }
   }, []);
 
   return (
