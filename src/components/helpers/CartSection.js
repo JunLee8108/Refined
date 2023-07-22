@@ -111,7 +111,6 @@ function CartSection() {
                             (Size {data[index].size})
                           </div>
                         </td>
-                        <td>${data[index].totalPrice}</td>
                         <td>
                           <button
                             className="cart-minusBtn"
@@ -131,6 +130,8 @@ function CartSection() {
                             <FontAwesomeIcon icon="fa-solid fa-plus" />
                           </button>
                         </td>
+                        <td>${data[index].totalPrice}</td>
+
                         <td>
                           <button
                             className="cart-deleteBtn"
@@ -150,9 +151,9 @@ function CartSection() {
                 : null}
               <tr>
                 <td></td>
+                <td style={{ width: "0%" }}></td>
                 <td>Your Total:</td>
                 <td>${total}</td>
-                <td style={{ width: "0%" }}></td>
                 <td style={{ width: "20%" }}>
                   <button
                     onClick={() => {
@@ -165,6 +166,9 @@ function CartSection() {
               </tr>
             </tbody>
           </table>
+          <div className="cart-checkout-container">
+            <button className="cart-checkout-btn">Proceed to Checkout</button>
+          </div>
         </div>
       </div>
     </>

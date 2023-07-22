@@ -157,6 +157,13 @@ function Navbar() {
                   );
                 })
               : null}
+            <li
+              onClick={() => {
+                navigate("/About");
+              }}
+            >
+              ABOUT US
+            </li>
           </div>
         </ul>
 
@@ -250,6 +257,13 @@ function Navbar() {
                   );
                 })
               : null}
+            <li
+              onClick={() => {
+                navigate("/About");
+              }}
+            >
+              ABOUT US
+            </li>
             <center>
               <div className="border-line-navbar"></div>
             </center>

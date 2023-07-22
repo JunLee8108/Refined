@@ -1,0 +1,34 @@
+[
+    {
+        "id": 0,
+        "img": "/img/about/about-1.webp",
+        "type": "img"
+    },
+    {
+        "id": 1,
+        "img": "/img/about/about-2.webp",
+        "type": "img"
+    },
+    {
+        "id": 2,
+        "img": "/img/about/about-3.webp",
+        "type": "img"
+    },
+    {
+        "id": 3,
+        "img": "/img/about/about-4.webp",
+        "type": "img"
+    },
+    {
+        "id": 4,
+        "title": "OUR IDENTITY",
+        "type": "text",
+        "description": "Refined Seoul is an ode to the captivating allure and refinement of the bustling city that inspired its name. At the core of our brand lies a celebration of the city's artistic heritage anddynamic essence. We draw inspiration from the streets filled with vibrant energy, the captivating history, and the diverse tapestry of modern and traditional influences that shape Seoul's fashion landscape."
+    },
+    {
+        "id": 5,
+        "title": "SUSTAINABLE GALMOUR",
+        "type": "text",
+        "description": "In our pursuit of creating beauty, we are committed to preserving the planet's beauty as well. Refined Seoul is dedicated to sustainable practices, sourcing eco-friendly materials, and employing ethical production processes. Our commitment to sustainability extends beyond fashion; it is a step towards preserving the enchanting allure of Seoul for generations to come."
+    }
+]
