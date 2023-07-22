@@ -40,12 +40,14 @@ function ItemSection(props) {
 
     const object = {
       name: data[index].name,
-      category: data[index].category,
-      type: data[index].type,
-      img: data[index].img,
       color: data[index].color,
       price: data[index].price,
+      count: 1,
       id: data[index].id,
+      img: data[index].img,
+      category: data[index].category,
+      type: data[index].type,
+      size: data[index].size,
     };
 
     for (let i = 0; i < wishlist.length; i++) {

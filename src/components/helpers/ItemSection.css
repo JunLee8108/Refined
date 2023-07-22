@@ -8,7 +8,7 @@
 
 .item-top-bg-fade {
   opacity: 1;
-  transition: all 1.0s;
+  transition: all 1s;
 }
 
 .item-title {
@@ -65,7 +65,6 @@
   color: grey;
   font-weight: bold;
   cursor: pointer;
-  
 }
 
 .wishListBtn:hover {
@@ -75,15 +74,15 @@
 }
 
 .modal-container {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 5;
-  }
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
 
 .modal-bg {
   position: fixed;
@@ -98,41 +97,39 @@
 }
 
 .modal-title {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100% - 5rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100% - 5rem);
 }
 
 .modal-button-container {
-    display: flex;
-    
+  display: flex;
 }
 
 .modal-button-flexbox {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 50%;
 }
 
 .modal-button-flexbox button {
-    width: 80%;
-    height: 50px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 12px;
-    color: black;
+  width: 80%;
+  height: 50px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: black;
 }
 
 .modal-button-flexbox button:hover {
-    opacity: 0.3;
+  opacity: 0.3;
 }
-
 
 @media screen and (max-width: 767px) {
   .item-top-bg {
@@ -156,5 +153,5 @@
   .modal-button-flexbox button {
     width: 100%;
     font-size: 10px;
-}
+  }
 }

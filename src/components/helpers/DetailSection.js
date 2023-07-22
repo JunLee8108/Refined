@@ -50,7 +50,7 @@ function DetailSection(props) {
       price: parseInt(item[0].price),
       size: item[0].size,
       count: item[0].count,
-      id: item[0].id,
+      id: parseInt(item[0].id),
       img: item[0].img,
       category: item[0].category,
       type: item[0].type,
