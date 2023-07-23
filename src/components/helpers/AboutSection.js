@@ -57,14 +57,18 @@ function AboutSection() {
   }, []);
 
   useEffect(() => {
-    if (imgData.length !== 0) {
-      let timer = setTimeout(() => {
-        setTranslate("about-top-img-flexbox-translate");
-      }, 200);
+    if (imgData.length !== 0 && isLoading) {
+      let timer;
+      let timer2 = setTimeout(() => {
+        timer = setTimeout(() => {
+          setTranslate("about-top-img-flexbox-translate");
+        }, 200);
+      }, 100);
 
       return () => {
-        clearTimeout(timer);
         setTranslate("");
+        clearTimeout(timer);
+        clearTimeout(timer2);
       };
     }
   }, [imgData]);

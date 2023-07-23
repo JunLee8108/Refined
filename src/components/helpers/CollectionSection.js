@@ -21,14 +21,18 @@ function CollectionSection(props) {
   }, [props.type]);
 
   useEffect(() => {
-    if (data.length !== 0 && data[0].season === props.type) {
-      let timer = setTimeout(() => {
-        setFade("collection-fade");
-      }, 200);
+    if (data.length !== 0 && data[0].season === props.type && isLoading) {
+      let timer;
+      let timer2 = setTimeout(() => {
+        timer = setTimeout(() => {
+          setFade("collection-fade");
+        }, 200);
+      }, 100);
 
       return () => {
-        clearTimeout(timer);
         setFade("");
+        clearTimeout(timer);
+        clearTimeout(timer2);
       };
     }
   }, [data]);
