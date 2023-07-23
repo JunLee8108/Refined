@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faSquareXmark } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -20,6 +20,7 @@ function Navbar() {
   const [menu, setMenu] = useState([]);
   const [menuHTML, setMenuHTML] = useState("");
   const [content, setContent] = useState([]);
+  const [icons, setIcon] = useState(faBars);
 
   const isMounted = useRef(false);
 
@@ -36,6 +37,16 @@ function Navbar() {
     setNavbarModal(false);
     setModal(false);
   };
+
+  useEffect(() => {
+    if (mobileModal === true) {
+      setIcon("fa-solid fa-square-xmark");
+    } else if (navbarModal === true) {
+      setIcon("fa-solid fa-left-long");
+    } else {
+      setIcon(faBars);
+    }
+  }, [mobileModal, navbarModal]);
 
   // Navbar modal control
   const modalControl = (e, category) => {
@@ -137,7 +148,7 @@ function Navbar() {
             <h4>Seoul</h4>
 
             {/* Not visible on laptop (Mobile Menu Button) */}
-            <MobileMenuBtn mobileCloseModal={mobileCloseModal} />
+            <MobileMenuBtn mobileCloseModal={mobileCloseModal} icons={icons} />
             {/**********************************************/}
           </div>
 
@@ -297,7 +308,7 @@ function MobileMenuBtn(props) {
     <div className="mobile-btn">
       <li>
         <button onClick={props.mobileCloseModal}>
-          <FontAwesomeIcon icon={faBars} size="xl" />
+          <FontAwesomeIcon icon={props.icons} size="xl" />
         </button>
       </li>
     </div>

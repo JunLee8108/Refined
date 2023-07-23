@@ -192,6 +192,7 @@ function WishlistSection() {
                             <FontAwesomeIcon
                               icon="fa-solid fa-delete-left"
                               size="lg"
+                              color="black"
                             />
                           </button>
                         </td>
