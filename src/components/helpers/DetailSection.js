@@ -289,10 +289,10 @@ function DetailSection(props) {
                   <div className="border-line"></div>
 
                   {/* Size Description */}
-                  <h5>Size (inch):</h5>
+                  <h4>Size (inch):</h4>
                   {data[props.id].sizeDC.map(function (a, index) {
                     return (
-                      <h5 key={index}>
+                      <h5 key={index} style={{ fontWeight: "normal" }}>
                         {data[props.id].sizeDC[index].name}:{" "}
                         {data[props.id].sizeDC[index].description}
                       </h5>
@@ -395,15 +395,24 @@ function DetailSection(props) {
 
                 <div className="detail-flexbox-sizeBtn">
                   {/* Fabric Description */}
-                  <h5>Fabric Description:</h5>
-                  <h5>{data[props.id].fabricDC}</h5>
+                  <h4>Fabric Description:</h4>
+                  <h5 style={{ fontWeight: "normal" }}>
+                    {data[props.id].fabricDC}
+                  </h5>
 
                   <div className="border-line"></div>
 
                   {/* Info */}
-                  <h5>Info:</h5>
+                  <h4>Info:</h4>
                   {data[props.id].info.map(function (a, index) {
-                    return <h5 key={index}>{data[props.id].info[index]}</h5>;
+                    return (
+                      <h5
+                        key={index}
+                        style={{ fontWeight: "500", color: "#353535" }}
+                      >
+                        {data[props.id].info[index]}
+                      </h5>
+                    );
                   })}
                 </div>
               </div>
