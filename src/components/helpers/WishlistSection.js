@@ -211,7 +211,11 @@ function WishlistSection() {
                       clearBag();
                     }}
                   >
-                    <FontAwesomeIcon icon="fa-solid fa-trash" size="lg" />
+                    <FontAwesomeIcon
+                      icon="fa-solid fa-trash"
+                      size="lg"
+                      style={{ color: "black" }}
+                    />
                   </button>
                 </td>
               </tr>
