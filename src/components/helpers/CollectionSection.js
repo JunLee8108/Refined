@@ -8,6 +8,7 @@ function CollectionSection(props) {
   const [fade, setFade] = useState(false);
 
   useEffect(() => {
+    setData([]);
     axios
       .get(process.env.PUBLIC_URL + "/db/collection.json")
       .then((result) => {
@@ -22,17 +23,13 @@ function CollectionSection(props) {
 
   useEffect(() => {
     if (data.length !== 0 && data[0].season === props.type && isLoading) {
-      let timer;
-      let timer2 = setTimeout(() => {
-        timer = setTimeout(() => {
-          setFade("collection-fade");
-        }, 200);
-      }, 100);
+      let timer = setTimeout(() => {
+        setFade("collection-fade");
+      }, 200);
 
       return () => {
-        setFade("");
         clearTimeout(timer);
-        clearTimeout(timer2);
+        setFade("");
       };
     }
   }, [data]);
@@ -45,6 +42,8 @@ function CollectionSection(props) {
       localStorage.setItem("cart", JSON.stringify([]));
     }
   }, []);
+
+  console.log(data);
 
   return (
     <>

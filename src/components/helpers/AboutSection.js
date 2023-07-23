@@ -58,17 +58,13 @@ function AboutSection() {
 
   useEffect(() => {
     if (imgData.length !== 0 && isLoading) {
-      let timer;
-      let timer2 = setTimeout(() => {
-        timer = setTimeout(() => {
-          setTranslate("about-top-img-flexbox-translate");
-        }, 200);
-      }, 100);
+      let timer = setTimeout(() => {
+        setTranslate("about-top-img-flexbox-translate");
+      }, 200);
 
       return () => {
-        setTranslate("");
         clearTimeout(timer);
-        clearTimeout(timer2);
+        setTranslate("");
       };
     }
   }, [imgData]);
