@@ -1,61 +1,32 @@
 import "./Navbar.css";
+import MobileMenuBtn from "../js/MobileMenuBtn";
+import MobileIndicator from "../js/MobileIndicator";
 import { useState, useEffect, useRef } from "react";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faSquareXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   const navigate = useNavigate();
-
   const [isModal, setModal] = useState(false);
   const [navbarModal, setNavbarModal] = useState(false);
   const [isMobile, setMobile] = useState(false);
   const [isLoading, setLoading] = useState(false);
-
   const [contentName, setContentName] = useState("");
   const [mobileModal, setMobileModal] = useState("");
-
   const [menu, setMenu] = useState([]);
-  const [menuHTML, setMenuHTML] = useState("");
   const [content, setContent] = useState([]);
   const [icons, setIcon] = useState(faBars);
-
   const isMounted = useRef(false);
 
-  const navigateCloseModal = (url) => {
-    navigate(url);
-    setNavbarModal(false);
-    setContentName("");
-    setMobile(false);
-  };
-
-  const mobileCloseModal = () => {
-    setContentName("");
-    setMobileModal((mobileModal) => !mobileModal);
-    setNavbarModal(false);
-    setModal(false);
-  };
-
-  useEffect(() => {
-    if (mobileModal === true) {
-      setIcon("fa-solid fa-square-xmark");
-    } else if (navbarModal === true) {
-      setIcon("fa-solid fa-left-long");
-    } else {
-      setIcon(faBars);
-    }
-  }, [mobileModal, navbarModal]);
-
-  // Navbar modal control
-  const modalControl = (e, category) => {
+  // Control contents modal
+  const controlContentsModal = (e, category) => {
     setContent(category);
     setContentName(e.target);
-    setMenuHTML(e.target.innerHTML);
 
     setNavbarModal(true);
-
     setMobile(false);
     setMobileModal((mobileModal) => !mobileModal);
 
@@ -69,7 +40,61 @@ function Navbar() {
         setNavbarModal(true);
       }
     }
+
+    activeNavbar(e);
   };
+
+  // Navigate contents modal
+  const navigateContents = (e) => {
+    navigate("Item/" + contentName.innerHTML + "/" + e.target.innerHTML);
+    setNavbarModal(false);
+    setContentName("");
+    inactiveNavbar();
+  };
+
+  // Close contents modal
+  const closeContentsModal = (url) => {
+    navigate(url);
+    setNavbarModal(false);
+    setContentName("");
+    setMobile(false);
+    inactiveNavbar();
+  };
+
+  // Close mobile modal
+  const closeMobileModal = () => {
+    setContentName("");
+    setMobileModal((mobileModal) => !mobileModal);
+    setNavbarModal(false);
+    setModal(false);
+  };
+
+  // Active navbar
+  const activeNavbar = (e) => {
+    e.target.style.borderBottom = "1px solid black";
+    if (contentName.length !== 0) {
+      contentName.style.borderBottom = "1px solid transparent";
+    }
+  };
+
+  // Inactive navbar
+  const inactiveNavbar = () => {
+    let navbar = document.querySelectorAll("#navbarMenu");
+    for (let i = 0; i < navbar.length; i++) {
+      navbar[i].style.borderBottom = "1px solid transparent";
+    }
+  };
+
+  // Icon change depending on the menu
+  useEffect(() => {
+    if (mobileModal === true) {
+      setIcon("fa-solid fa-square-xmark");
+    } else if (navbarModal === true) {
+      setIcon("fa-solid fa-left-long");
+    } else {
+      setIcon(faBars);
+    }
+  }, [mobileModal, navbarModal]);
 
   // Sever request
   useEffect(() => {
@@ -139,7 +164,7 @@ function Navbar() {
           <div className="brand-name-box-1">
             <h1
               onClick={() => {
-                navigateCloseModal("/");
+                closeContentsModal("/");
                 setMobileModal(false);
               }}
             >
@@ -148,7 +173,7 @@ function Navbar() {
             <h4>Seoul</h4>
 
             {/* Not visible on laptop (Mobile Menu Button) */}
-            <MobileMenuBtn mobileCloseModal={mobileCloseModal} icons={icons} />
+            <MobileMenuBtn closeMobileModal={closeMobileModal} icons={icons} />
             {/**********************************************/}
           </div>
 
@@ -158,8 +183,9 @@ function Navbar() {
                   return (
                     <div key={index}>
                       <li
+                        id="navbarMenu"
                         onClick={(e) => {
-                          modalControl(e, menu[index].categories);
+                          controlContentsModal(e, menu[index].categories);
                         }}
                       >
                         {menu[index].name}
@@ -169,8 +195,8 @@ function Navbar() {
                 })
               : null}
             <li
-              onClick={() => {
-                navigate("/About");
+              onClick={(e) => {
+                closeContentsModal("/About");
               }}
             >
               ABOUT US
@@ -184,14 +210,14 @@ function Navbar() {
           </li>
           <li
             onClick={() => {
-              navigateCloseModal("/Wishlist");
+              closeContentsModal("/Wishlist");
             }}
           >
             WISHLIST
           </li>
           <li
             onClick={() => {
-              navigateCloseModal("/Cart");
+              closeContentsModal("/Cart");
             }}
           >
             BAG
@@ -210,8 +236,8 @@ function Navbar() {
               <div>
                 {/* Not visible on laptop. Let users know which button they click (men, women ...) */}
                 <MobileIndicator
-                  menuHTML={menuHTML}
-                  mobileCloseModal={mobileCloseModal}
+                  contentName={contentName}
+                  closeMobileModal={closeMobileModal}
                 />
                 {/***********************************************************/}
 
@@ -227,9 +253,7 @@ function Navbar() {
                     <li
                       key={index}
                       onClick={(e) => {
-                        navigate("Item/" + menuHTML + "/" + e.target.innerHTML);
-                        setNavbarModal(false);
-                        setContentName("");
+                        navigateContents(e);
                       }}
                     >
                       {content[index]}
@@ -238,12 +262,12 @@ function Navbar() {
                 })}
               </div>
             </div>
-            {/* <div className="brand-name-box-2"></div> */}
           </ul>
           <ul className="nav-menu display-flex-start"></ul>
         </nav>
       ) : null}
 
+      {/* Mobile navbar */}
       <nav>
         {isMobile ? (
           <div
@@ -259,7 +283,7 @@ function Navbar() {
                     <div key={index}>
                       <li
                         onClick={(e) => {
-                          modalControl(e, menu[index].categories);
+                          controlContentsModal(e, menu[index].categories);
                         }}
                       >
                         {menu[index].name}
@@ -270,7 +294,7 @@ function Navbar() {
               : null}
             <li
               onClick={() => {
-                navigate("/About");
+                closeContentsModal("/About");
               }}
             >
               ABOUT US
@@ -283,7 +307,7 @@ function Navbar() {
             </li>
             <li
               onClick={() => {
-                navigateCloseModal("/Wishlist");
+                closeContentsModal("/Wishlist");
               }}
             >
               WISHLIST
@@ -291,7 +315,7 @@ function Navbar() {
             <li
               className="mobile-navbar-bag"
               onClick={() => {
-                navigateCloseModal("/Cart");
+                closeContentsModal("/Cart");
               }}
             >
               BAG
@@ -300,26 +324,6 @@ function Navbar() {
         ) : null}
       </nav>
     </div>
-  );
-}
-
-function MobileMenuBtn(props) {
-  return (
-    <div className="mobile-btn">
-      <li>
-        <button onClick={props.mobileCloseModal}>
-          <FontAwesomeIcon icon={props.icons} size="xl" />
-        </button>
-      </li>
-    </div>
-  );
-}
-
-function MobileIndicator(props) {
-  return (
-    <li className="menu-mobile" onClick={props.mobileCloseModal}>
-      {props.menuHTML}.
-    </li>
   );
 }
 

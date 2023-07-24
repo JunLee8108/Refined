@@ -1,5 +1,173 @@
 [
     {
-
+        "id": 0,
+        "img": "/img/women/women-0.webp",
+        "hoverImg": "/img/women/women-0-hover.webp",
+        "name": "RAW CUT PATCHWORK DENIM SHIRT",
+        "category": "WOMEN",
+        "color": "BLUE",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length: 26.38, Shoulder: 21.46, Chest: 22.83, Sleeve length: 23.58"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length: 26.97, Shoulder: 22.05, Chest: 23.82, Sleeve length: 24.09"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length: 27.56, Shoulder: 22.64, Chest: 24.80, Sleeve length: 24.61"
+            }
+        ],
+        "fabricDC": "COTTON 100%",
+        "type": "Shirts",
+        "price": 150,
+        "info": [
+            "Cropped length",
+            "Different colors and fabric patchwork",
+            "Asymmetric patchwork detail",
+            "Additional layer detail on one side of the back of the sleeves",
+            "Partially raw hem detail on the front and back bottom",
+            "Can be styled in various ways as a shirt-style jacket",
+            "Dry cleaning recommended"
+        ]
+    },
+    {
+        "id": 1,
+        "img": "/img/women/women-1.webp",
+        "hoverImg": "/img/women/women-1-hover.webp",
+        "name": "OVERSIZE PLENTIFUL SHIRT",
+        "category": "WOMEN",
+        "color": "DUSTY GREEN",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length: 29.13, Shoulder: 21.65, Chest: 22.24, Sleeve length: 23.19"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length: 29.72, Shoulder: 22.24, Chest: 23.23, Sleeve length: 23.70"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length: 30.31, Shoulder: 22.83, Chest: 24.21, Sleeve length: 24.21"
+            }
+        ],
+        "fabricDC": "COTTON 100%",
+        "type": "Shirts",
+        "price": 110,
+        "info": [
+            "Oversized fit silhouette shirt",
+            "Front and back asymmetric shoulder line detail",
+            "Side slit detail",
+            "Back pleat detail",
+            "2 button closures on each sleeve",
+            "1 pleat detail on the sleeve",
+            "Mother-of-pearl button used",
+            "Dry cleaning recommended"
+        ]
+    },
+    {
+        "id": 2,
+        "img": "/img/women/women-2.webp",
+        "hoverImg": "/img/women/women-2-hover.webp",
+        "name": "UTILITY SOFTSHELL HOODED PARKA",
+        "category": "WOMEN",
+        "color": "PURPLE ASH",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length 29.53, Sleeve 34.45, Chest 25.98"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length 30.12, Sleeve 35.24, Chest 26.97"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length 30.71, Sleeve 36.02, Chest 27.95"
+            }
+        ],
+        "fabricDC": "POLYESTER 100%",
+        "type": "Outerwear",
+        "price": 230,
+        "info": [
+            "Oversized fit with raglan sleeves for better mobility",
+            "Uses moisture-wicking and waterproof functional fabric",
+            "Dart detail at the front neck and shoulder area",
+            "Curved additional fabric detail on the shoulders",
+            "Adjustable bottom pocket with drawstring",
+            "Adjustable sleeve cuff with snaps",
+            "Waist and bottom hem adjustable with drawstrings",
+            "Hood size adjustable with drawstrings on the front and back",
+            "Uses YKK 2WAY zipper on the front and YKK 1WAY zipper on the chest pocket",
+            "Dry cleaning recommended."
+        ]
+    },
+    {
+        "id": 3,
+        "img": "/img/women/women-3.webp",
+        "hoverImg": "/img/women/women-3-hover.webp",
+        "name": "DOUBLE NETTED HOOD ZIP-UP",
+        "category": "WOMEN",
+        "color": "IVORY",
+        "size": [
+            "S",
+            "M",
+            "L"
+        ],
+        "sizeDC": [
+            {
+                "id": 0,
+                "name": "S",
+                "description": "length 29.53, Sleeve 34.45, Chest 25.98"
+            },
+            {
+                "id": 1,
+                "name": "M",
+                "description": "length 30.12, Sleeve 35.24, Chest 26.97"
+            },
+            {
+                "id": 2,
+                "name": "L",
+                "description": "length 30.71, Sleeve 36.02, Chest 27.95"
+            }
+        ],
+        "fabricDC": "Outer fabric: POLYESTER 65% COTTON 35% / Contrast fabric: RAYON 35% COTTON 32% NYLON 19% LINEN 14%",
+        "type": "New Arrival",
+        "price": 170,
+        "info": [
+            "Double mesh fabric with a cotton blend used",
+            "Cotton blend lining on the inside",
+            "Various styling options with E-STRING details on the sleeves and hem",
+            "Adjustable hood silhouette with hood string and stopper details",
+            "YKK 2WAY zipper used on the front",
+            "Dry cleaning recommended"
+        ]
     }
 ]

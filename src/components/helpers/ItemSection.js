@@ -250,7 +250,6 @@ function ItemSection(props) {
                 </div>
               </div>
             </div>
-            <div>asd</div>
           </>
         ) : null}
       </div>

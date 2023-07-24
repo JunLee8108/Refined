@@ -80,7 +80,16 @@ function AboutSection() {
       clearTimeout(timer);
       window.removeEventListener("scroll", scrollEvent);
     };
-  });
+  }, []);
+
+  useEffect(() => {
+    if (!localStorage.hasOwnProperty("wishlist")) {
+      localStorage.setItem("wishlist", JSON.stringify([]));
+    }
+    if (!localStorage.hasOwnProperty("cart")) {
+      localStorage.setItem("cart", JSON.stringify([]));
+    }
+  }, []);
 
   return (
     <>

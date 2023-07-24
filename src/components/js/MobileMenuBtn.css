@@ -1,0 +1,43 @@
+/* Not visible */
+.mobile-btn {
+  display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .mobile-btn {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .mobile-btn button {
+    border: none;
+    background-color: white;
+    color: grey;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .mobile-btn {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .mobile-btn button {
+    border: none;
+    background-color: white;
+    color: grey;
+  }
+
+  .mobile-btn li {
+    margin-right: 5px;
+  }
+
+  .mobile-btn h4 {
+    font-size: 12px;
+    margin: 0;
+  }
+}

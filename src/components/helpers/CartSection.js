@@ -1,4 +1,5 @@
 import "./CartSection.css";
+import CartModal from "../js/CartModal";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -7,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function CartSection() {
   const [data, setData] = useState([]);
   const [isEmpty, setEmpty] = useState(false);
+  const [isModal, setModal] = useState(false);
   const [fade, setFade] = useState("");
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
@@ -78,6 +80,13 @@ function CartSection() {
       setData(copy);
     }
     localStorage.setItem("cart", JSON.stringify(copy));
+  };
+
+  const controlModal = () => {
+    if (data.length === 0) {
+      setModal(true);
+      document.body.style.overflow = "hidden";
+    }
   };
 
   return (
@@ -167,10 +176,22 @@ function CartSection() {
             </tbody>
           </table>
           <div className="cart-checkout-container">
-            <button className="cart-checkout-btn">Proceed to Checkout</button>
+            <button
+              className="cart-checkout-btn"
+              onClick={() => {
+                controlModal();
+              }}
+            >
+              Proceed to Checkout
+            </button>
           </div>
         </div>
       </div>
+      {isModal === true ? (
+        <>
+          <CartModal btn1="CLOSE" setModal={setModal} />
+        </>
+      ) : null}
     </>
   );
 }

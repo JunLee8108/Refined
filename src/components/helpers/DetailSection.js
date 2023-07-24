@@ -1,4 +1,5 @@
 import "./DetailSection.css";
+import DetailModal from "../js/DetailModal";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -84,25 +85,19 @@ function DetailSection(props) {
   };
 
   const handleSizeBtn = (index) => {
-    const name = `${data[props.id].name}`;
-    const size = `${data[props.id].size[index]}`;
-    const price = `${data[props.id].price}`;
-    const color = `${data[props.id].color}`;
-    const id = `${data[props.id].id}`;
-    const img = `${data[props.id].img}`;
-    const category = `${data[props.id].category}`;
-    const type = `${data[props.id].type}`;
+    const name = data[props.id].name;
+    const size = data[props.id].size[index];
 
     const object = {
-      name: name,
-      color: color,
-      price: price,
-      size: size,
+      name: data[props.id].name,
+      color: data[props.id].color,
+      price: data[props.id].price,
+      size: data[props.id].size[index],
       count: 1,
-      id: id,
-      img: img,
-      category: category,
-      type: type,
+      id: data[props.id].id,
+      img: data[props.id].img,
+      category: data[props.id].category,
+      type: data[props.id].type,
     };
 
     if (item.length === 0) {
@@ -414,6 +409,7 @@ function DetailSection(props) {
                       </h5>
                     );
                   })}
+                  <div className="border-line"></div>
                 </div>
               </div>
             </div>
@@ -422,51 +418,13 @@ function DetailSection(props) {
       ) : null}
 
       {isModal === true ? (
-        <>
-          <div
-            className="modal-container"
-            onClick={(e) => {
-              const target = document.querySelector(".modal-container");
-              if (target === e.target) {
-                setModal(false);
-                document.body.style.overflow = "unset";
-              }
-            }}
-          >
-            <div className={"detail-modal-bg " + modalFade}>
-              <div className="modal-title">
-                <h4>{displayName + " was added to your bag."}</h4>
-              </div>
-
-              <div style={{ marginBottom: "30px" }}></div>
-
-              <div className="modal-button-container">
-                <div className="modal-button-flexbox">
-                  <button
-                    onClick={() => {
-                      navigate("/Cart");
-                      setModal(false);
-                      document.body.style.overflow = "unset";
-                    }}
-                  >
-                    VIEW BAG
-                  </button>
-                </div>
-                <div className="modal-button-flexbox">
-                  <button
-                    onClick={() => {
-                      resetYourChoice();
-                      setModal(false);
-                      document.body.style.overflow = "unset";
-                    }}
-                  >
-                    CONTINUE SHOPPING
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </>
+        <DetailModal
+          setModal={setModal}
+          modalFade={modalFade}
+          displayName={displayName}
+          resetYourChoice={resetYourChoice}
+          navigate={navigate}
+        />
       ) : null}
       {isAddModal === true ? (
         <>

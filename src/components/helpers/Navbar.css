@@ -133,22 +133,13 @@ nav {
   margin-bottom: 15px;
 }
 
-/* Not visible */
-.mobile-btn {
-  display: none;
-}
-
 .mobile-navbar {
-  display: none;
-}
-
-.menu-mobile {
   display: none;
 }
 
 @media (hover: hover) {
   li:hover {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid black !important;
   }
 }
 
@@ -162,19 +153,6 @@ nav {
 
   li {
     font-size: 12px;
-  }
-
-  .mobile-btn {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  .mobile-btn button {
-    border: none;
-    background-color: white;
-    color: grey;
   }
 }
 
@@ -221,24 +199,6 @@ nav {
     font-size: 11px;
   }
 
-  .mobile-btn {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  .mobile-btn button {
-    border: none;
-    background-color: white;
-    color: grey;
-  }
-
-  .mobile-btn h4 {
-    font-size: 12px;
-    margin: 0;
-  }
-
   .navbar-modal {
     z-index: 5;
     position: fixed;
@@ -262,24 +222,11 @@ nav {
     margin-bottom: 0px;
   }
 
-  .menu-mobile {
-    display: block;
-    cursor: unset;
-    border: none;
-    letter-spacing: 1px;
-    margin-top: -10;
-    margin-right: 100px;
-  }
-
   .border-line-navbar {
     width: 90%;
     border-bottom: 0.5px dashed black;
     margin-top: 10px;
     margin-bottom: 10px;
-  }
-
-  .mobile-btn li {
-    margin-right: 5px;
   }
 
   .mobile-navbar-bag {

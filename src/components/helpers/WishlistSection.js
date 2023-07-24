@@ -1,4 +1,7 @@
 import "./WishlistSection.css";
+import WishlistSizeModal from "../js/WishlistSizeModal";
+import WishlistCompleteModal from "../js/WishlistCompleteModal";
+import WishilistAddModal from "../js/WishlistAddModal";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -69,7 +72,7 @@ function WishlistSection() {
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
   };
 
-  const addToLocalStorage = (index) => {
+  const handleCartBtn = (index) => {
     setSizeModal(true);
     document.body.style.overflow = "hidden";
     setDataIndex(index);
@@ -173,7 +176,7 @@ function WishlistSection() {
                           <button
                             className="cartBtn"
                             onClick={() => {
-                              addToLocalStorage(index);
+                              handleCartBtn(index);
                             }}
                           >
                             <FontAwesomeIcon
@@ -224,143 +227,32 @@ function WishlistSection() {
         </div>
       </div>
       {isSizeModal ? (
-        <>
-          <div
-            className="wishlist-modal-container"
-            onClick={(e) => {
-              const target = document.querySelector(
-                ".wishlist-modal-container"
-              );
-              if (target === e.target) {
-                setSizeModal(false);
-                document.body.style.overflow = "unset";
-              }
-            }}
-          >
-            <div className={"wishlist-modal-bg " + modalFade}>
-              <div className="wishlist-modal-title">
-                <h4>{data[dataIndex].name}</h4>
-                <h4>Choose your size.</h4>
-              </div>
-
-              <div className="wishlist-modal-button-container">
-                <div className="wishlist-modal-button-flexbox flexbox-center">
-                  {data[dataIndex].size.map(function (a, index) {
-                    return (
-                      <button
-                        key={index}
-                        onClick={() => {
-                          handleSizeBtn(data[dataIndex].size[index]);
-                        }}
-                      >
-                        {data[dataIndex].size[index]}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        </>
+        <WishlistSizeModal
+          setSizeModal={setSizeModal}
+          handleSizeBtn={handleSizeBtn}
+          modalFade={modalFade}
+          data={data}
+          dataIndex={dataIndex}
+        />
       ) : null}
       {isCompleteModal ? (
-        <>
-          <div
-            className="wishlist-modal-container"
-            onClick={(e) => {
-              const target = document.querySelector(
-                ".wishlist-modal-container"
-              );
-              if (target === e.target) {
-                setCompleteModal(false);
-                document.body.style.overflow = "unset";
-              }
-            }}
-          >
-            <div className={"wishlist-modal-bg " + modalFade}>
-              <div className="wishlist-modal-title">
-                <h4>{dataName} was added to your cart.</h4>
-              </div>
-
-              <div className="wishlist-modal-button-container">
-                <div className="wishlist-modal-button-flexbox">
-                  <button
-                    onClick={() => {
-                      navigate("/Cart");
-                      setCompleteModal(false);
-                      document.body.style.overflow = "unset";
-                    }}
-                  >
-                    VIEW CART
-                  </button>
-                </div>
-                <div className="wishlist-modal-button-flexbox">
-                  <button
-                    onClick={() => {
-                      setCompleteModal(false);
-                      document.body.style.overflow = "unset";
-                    }}
-                  >
-                    CONTINUE SHOPPING
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </>
+        <WishlistCompleteModal
+          setCompleteModal={setCompleteModal}
+          modalFade={modalFade}
+          dataName={dataName}
+          navigate={navigate}
+        />
       ) : null}
       {isAddModal ? (
-        <>
-          <div
-            className="wishlist-modal-container"
-            onClick={(e) => {
-              const target = document.querySelector(
-                ".wishlist-modal-container"
-              );
-              if (target === e.target) {
-                setAddModal(false);
-                document.body.style.overflow = "unset";
-              }
-            }}
-          >
-            <div className={"wishlist-modal-bg " + modalFade}>
-              <div className="wishlist-modal-title">
-                <h4>
-                  {data[dataIndex].name}{" "}
-                  <span style={{ fontSize: "12px" }}>
-                    ({data[dataIndex].color}) ({size})
-                  </span>{" "}
-                  is already in your cart.
-                </h4>
-                <h4>Would you like to add more?</h4>
-              </div>
-
-              <div className="wishlist-modal-button-container">
-                <div className="wishlist-modal-button-flexbox">
-                  <button
-                    onClick={() => {
-                      setYes(true);
-                      setAddModal(false);
-                      setCompleteModal(true);
-                    }}
-                  >
-                    Yes
-                  </button>
-                </div>
-                <div className="wishlist-modal-button-flexbox">
-                  <button
-                    onClick={() => {
-                      setAddModal(false);
-                      document.body.style.overflow = "unset";
-                    }}
-                  >
-                    No
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </>
+        <WishilistAddModal
+          setAddModal={setAddModal}
+          modalFade={modalFade}
+          data={data}
+          dataIndex={dataIndex}
+          size={size}
+          setYes={setYes}
+          setCompleteModal={setCompleteModal}
+        />
       ) : null}
     </>
   );

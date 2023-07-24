@@ -22,7 +22,7 @@ function CollectionSection(props) {
   }, [props.type]);
 
   useEffect(() => {
-    if (data.length !== 0 && data[0].season === props.type && isLoading) {
+    if (data.length !== 0 && data[0].season === props.type) {
       let timer = setTimeout(() => {
         setFade("collection-fade");
       }, 200);
@@ -42,8 +42,6 @@ function CollectionSection(props) {
       localStorage.setItem("cart", JSON.stringify([]));
     }
   }, []);
-
-  console.log(data);
 
   return (
     <>

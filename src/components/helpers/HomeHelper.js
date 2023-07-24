@@ -122,44 +122,40 @@ function HomeHelper() {
         <h2>New Arrival</h2>
         <div className="selection-container">
           {/* if loading is completed */}
-          {isLoading ? (
-            selection.map(function (a, index) {
-              return (
-                <div
-                  // Scroll Event
-                  className={`selection-box ${
-                    scrollSelections && "selection-box-scroll-event"
-                  }`}
-                  key={index}
-                >
-                  <img
-                    alt="item"
-                    src={selection[index].img}
-                    onMouseEnter={(e) => {
-                      e.target.src = `${selection[index].hoverImg}`;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.src = `${selection[index].img}`;
-                    }}
-                    onClick={() => {
-                      navigate(
-                        `/Detail/${selection[index].category}/${selection[index].type}/${selection[index].name}/${selection[index].id}`
-                      );
-                    }}
-                  ></img>
-                  <h4>{selection[index].name} </h4>
-                  <span style={{ fontSize: "12px", color: "grey" }}>
-                    ({selection[index].color})
-                  </span>
-                  <h5>${selection[index].price}</h5>
-                </div>
-              );
-            })
-          ) : (
-            <div>
-              <h1>loading..</h1>
-            </div>
-          )}
+          {isLoading
+            ? selection.map(function (a, index) {
+                return (
+                  <div
+                    // Scroll Event
+                    className={`selection-box ${
+                      scrollSelections && "selection-box-scroll-event"
+                    }`}
+                    key={index}
+                  >
+                    <img
+                      alt="item"
+                      src={selection[index].img}
+                      onMouseEnter={(e) => {
+                        e.target.src = selection[index].hoverImg;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.src = selection[index].img;
+                      }}
+                      onClick={() => {
+                        navigate(
+                          `/Detail/${selection[index].category}/${selection[index].type}/${selection[index].name}/${selection[index].id}`
+                        );
+                      }}
+                    ></img>
+                    <h4>{selection[index].name} </h4>
+                    <span style={{ fontSize: "12px", color: "grey" }}>
+                      ({selection[index].color})
+                    </span>
+                    <h5>${selection[index].price}</h5>
+                  </div>
+                );
+              })
+            : null}
         </div>
       </div>
     </div>
