@@ -21,6 +21,10 @@ div {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 p,
 h5,
 h4,

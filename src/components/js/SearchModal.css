@@ -1,0 +1,43 @@
+.search-bg {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.search-flex-container {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-flexbox {
+  width: 30%;
+  text-align: center;
+}
+
+.search-flexbox img {
+  width: 30%;
+  cursor: pointer;
+}
+
+.search-more-result {
+  border: none;
+  border-bottom: 1px solid black;
+  background-color: white;
+  cursor: pointer;
+  height: 40px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.search-more-result:hover {
+  transform: scale(1.1);
+  opacity: 0.5;
+  transition: 0.2s linear;
+}

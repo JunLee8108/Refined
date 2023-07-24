@@ -7,6 +7,7 @@ import Item from "./components/pages/Item";
 import Wishlist from "./components/pages/Wishlist";
 import Cart from "./components/pages/Cart";
 import About from "./components/pages/About";
+import Search from "./components/pages/Search";
 
 // import the library
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -32,6 +33,7 @@ function App() {
           <Route path="/Wishlist" element={<Wishlist />}></Route>
           <Route path="/Cart" element={<Cart />}></Route>
           <Route path="/About" element={<About />}></Route>
+          <Route path="/Search" element={<Search />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

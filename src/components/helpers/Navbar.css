@@ -37,15 +37,15 @@ nav {
 
 .brand-name {
   /* background-color: blue; */
-  width: 70%;
+  width: 80%;
 }
 
 .brand-name-box-1 {
   /* background-color: blue; */
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  width: 40%;
+  width: 25%;
   height: 100%;
   letter-spacing: 2px;
 }
@@ -61,14 +61,22 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60%;
+  width: 75%;
   height: 100%;
 }
 
 .nav-menu {
-  /* background-color: yellow; */
+  /* background-color: red; */
   justify-content: flex-end;
-  width: 30%;
+  width: 20%;
+}
+
+.nav-search {
+  margin-left: 20px;
+}
+
+.nav-search input {
+  height: 30px;
 }
 
 /* Navbar Modal */

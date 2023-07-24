@@ -1,6 +1,7 @@
 import "./Navbar.css";
 import MobileMenuBtn from "../js/MobileMenuBtn";
 import MobileIndicator from "../js/MobileIndicator";
+import SearchModal from "../js/SearchModal";
 import { useState, useEffect, useRef } from "react";
 
 import axios from "axios";
@@ -13,12 +14,16 @@ function Navbar() {
   const [isModal, setModal] = useState(false);
   const [navbarModal, setNavbarModal] = useState(false);
   const [isMobile, setMobile] = useState(false);
+  const [isSearchModal, setSearchModal] = useState(false);
+  const [searchResult, setSearchResult] = useState(true);
+  const [inputTarget, setInputTarget] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [contentName, setContentName] = useState("");
   const [mobileModal, setMobileModal] = useState("");
   const [menu, setMenu] = useState([]);
   const [content, setContent] = useState([]);
   const [icons, setIcon] = useState(faBars);
+  const [data, setData] = useState([]);
   const isMounted = useRef(false);
 
   // Control contents modal
@@ -29,6 +34,8 @@ function Navbar() {
     setNavbarModal(true);
     setMobile(false);
     setMobileModal((mobileModal) => !mobileModal);
+
+    cleanInput();
 
     if (contentName === e.target) {
       setNavbarModal(false);
@@ -50,6 +57,7 @@ function Navbar() {
     setNavbarModal(false);
     setContentName("");
     inactiveNavbar();
+    cleanInput();
   };
 
   // Close contents modal
@@ -59,6 +67,7 @@ function Navbar() {
     setContentName("");
     setMobile(false);
     inactiveNavbar();
+    cleanInput();
   };
 
   // Close mobile modal
@@ -85,6 +94,22 @@ function Navbar() {
     }
   };
 
+  const controlSearchModal = (e) => {
+    setNavbarModal(false);
+    setSearchModal(true);
+    setSearchResult(e.target.value.replace(" ", "").toLowerCase());
+    if (e.target.value.length === 0) {
+      setSearchModal(false);
+    }
+  };
+
+  const cleanInput = () => {
+    if (inputTarget !== "") {
+      setSearchModal(false);
+      inputTarget.value = "";
+    }
+  };
+
   // Icon change depending on the menu
   useEffect(() => {
     if (mobileModal === true) {
@@ -106,6 +131,15 @@ function Navbar() {
       })
       .catch(() => {
         alert("Falied to load.");
+      });
+
+    axios
+      .get(process.env.PUBLIC_URL + "/db/all.json")
+      .then((result) => {
+        setData(result.data);
+      })
+      .catch(() => {
+        alert("Failed to load.");
       });
   }, []);
 
@@ -201,6 +235,20 @@ function Navbar() {
             >
               ABOUT US
             </li>
+            <div className="nav-search">
+              <FontAwesomeIcon
+                icon="fa-solid fa-magnifying-glass"
+                style={{ marginRight: "10px" }}
+              />
+              <input
+                onChange={(e) => {
+                  controlSearchModal(e);
+                  setInputTarget(e.target);
+                }}
+                type="text"
+                placeholder="Search.."
+              />
+            </div>
           </div>
         </ul>
 
@@ -323,6 +371,14 @@ function Navbar() {
           </div>
         ) : null}
       </nav>
+
+      {isSearchModal === true ? (
+        <SearchModal
+          searchResult={searchResult}
+          setSearchModal={setSearchModal}
+          data={data}
+        />
+      ) : null}
     </div>
   );
 }
