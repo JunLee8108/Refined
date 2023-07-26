@@ -43,9 +43,9 @@ nav {
 .brand-name-box-1 {
   /* background-color: blue; */
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  width: 15%;
+  width: 30%;
   height: 100%;
   letter-spacing: 2px;
 }
@@ -53,9 +53,9 @@ nav {
 .navbar-content-box {
   /* background-color: blue; */
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  width: 15%;
+  width: 30%;
   height: 100%;
   letter-spacing: 2px;
 }
@@ -84,12 +84,16 @@ nav {
   cursor: pointer;
 }
 
+.brand-name-box-1 h4 {
+  /* margin-right: px; */
+}
+
 .brand-name-box-2 {
   /* background-color: yellow; */
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 85%;
+  justify-content: flex-start;
+  width: 70%;
   height: 100%;
 }
 
