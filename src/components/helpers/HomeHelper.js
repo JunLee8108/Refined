@@ -3,6 +3,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getMenStatus,
+  fetchMen,
+  selectMen,
+  getMenError,
+} from "../../slices/menSlice";
 
 // const HomeBackground = styled.div`
 //   background-image: url(${(props) => props.bg});
@@ -23,19 +30,42 @@ function HomeHelper() {
   const [backgroundImg, setBackgroundImg] = useState(false);
   const [scrollSelections, setScrollSelections] = useState(false);
 
-  ////////////// Server Request //////////////
+  const dispatch = useDispatch();
+  const menStatus = useSelector(getMenStatus);
+  const men = useSelector(selectMen);
+  const error = useSelector(getMenError);
+
   useEffect(() => {
-    axios
-      .get(process.env.PUBLIC_URL + "/db/selectionImgs.json")
-      .then((result) => {
-        setSelection(result.data);
-        // Check if load is completed
-        setLoading(true);
-      })
-      .catch(() => {
-        alert("Failed");
-      });
-  }, []);
+    if (menStatus === "idle") {
+      dispatch(fetchMen());
+    }
+
+    if (menStatus === "loading") {
+      setSelection("h2>Loading...</h2>");
+    } else if (menStatus === "succeeded") {
+      setLoading(true);
+      const copy = men.filter((data) => data.type === "New Arrival");
+      setSelection(copy);
+    } else if (menStatus === "failed") {
+      setLoading(false);
+    }
+  }, [menStatus, dispatch]);
+
+  // let contentToDisplay = "";
+
+  // ////////////// Server Request //////////////
+  // useEffect(() => {
+  //   axios
+  //     .get(process.env.PUBLIC_URL + "/db/selectionImgs.json")
+  //     .then((result) => {
+  //       setSelection(result.data);
+  //       // Check if load is completed
+  //       setLoading(true);
+  //     })
+  //     .catch(() => {
+  //       alert("Failed");
+  //     });
+  // }, []);
 
   ////////////// Background Change //////////////
   // useEffect(() => {
@@ -107,6 +137,9 @@ function HomeHelper() {
       localStorage.setItem("cart", JSON.stringify([]));
     }
   }, []);
+
+  // console.log(contentToDisplay.men);
+  console.log(men);
 
   return (
     <div className="container">

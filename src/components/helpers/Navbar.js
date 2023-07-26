@@ -24,12 +24,14 @@ function Navbar() {
   const [content, setContent] = useState([]);
   const [icons, setIcon] = useState(faBars);
   const [data, setData] = useState([]);
+  const [copyName, setCopyName] = useState("");
   const isMounted = useRef(false);
 
   // Control contents modal
   const controlContentsModal = (e, category) => {
     setContent(category);
     setContentName(e.target);
+    setCopyName(e.target.innerHTML);
 
     setNavbarModal(true);
     setMobile(false);
@@ -191,6 +193,8 @@ function Navbar() {
     }
   }, [window.location.pathname]);
 
+  console.log(copyName);
+
   return (
     <div className="navbar-container">
       <nav>
@@ -239,6 +243,7 @@ function Navbar() {
               <FontAwesomeIcon
                 icon="fa-solid fa-magnifying-glass"
                 style={{ marginRight: "10px" }}
+                size="sm"
               />
               <input
                 onChange={(e) => {
@@ -280,7 +285,7 @@ function Navbar() {
           }
         >
           <ul className="brand-name display-flex-start">
-            <div className="brand-name-box-1 flex-column">
+            <div className="navbar-content-box">
               <div>
                 {/* Not visible on laptop. Let users know which button they click (men, women ...) */}
                 <MobileIndicator
@@ -296,6 +301,14 @@ function Navbar() {
                   ></div>
                 </center>
 
+                {/* <div className="navbar-indicator">
+                  <li className="navbar-content-list-name">
+                    {contentName.innerHTML}
+                  </li>
+                </div> */}
+
+                <li className="navbar-content-list-name">{copyName}</li>
+
                 {content.map(function (a, index) {
                   return (
                     <li
@@ -303,6 +316,7 @@ function Navbar() {
                       onClick={(e) => {
                         navigateContents(e);
                       }}
+                      className="navbar-content-list"
                     >
                       {content[index]}
                     </li>
@@ -368,6 +382,20 @@ function Navbar() {
             >
               BAG
             </li>
+            {/* <div className="nav-search">
+              <FontAwesomeIcon
+                icon="fa-solid fa-magnifying-glass"
+                style={{ marginRight: "10px" }}
+              />
+              <input
+                onChange={(e) => {
+                  controlSearchModal(e);
+                  setInputTarget(e.target);
+                }}
+                type="text"
+                placeholder="Search.."
+              />
+            </div> */}
           </div>
         ) : null}
       </nav>

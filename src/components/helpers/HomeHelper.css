@@ -36,7 +36,7 @@
   text-align: center;
   margin: 10px;
   opacity: 0;
-  transition: all linear 1s;
+  transition: ease-out 0.8s;
 }
 
 .selection-box-scroll-event {

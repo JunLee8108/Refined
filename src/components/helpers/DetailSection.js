@@ -1,9 +1,15 @@
 import "./DetailSection.css";
 import DetailModal from "../js/DetailModal";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useSelector, useDispatch } from "react-redux";
+import { getMenStatus, fetchMen, selectMen } from "../../slices/menSlice";
+import {
+  getWomenStatus,
+  fetchWomen,
+  selectWomen,
+} from "../../slices/womenSlice";
+import { getAccStatus, fetchAcc, selectAcc } from "../../slices/accSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function DetailSection(props) {
@@ -33,6 +39,61 @@ function DetailSection(props) {
       count: 1,
     },
   ]);
+
+  const dispatch = useDispatch();
+  const menStatus = useSelector(getMenStatus);
+  const men = useSelector(selectMen);
+  const women = useSelector(selectWomen);
+  const womenStatus = useSelector(getWomenStatus);
+  const acc = useSelector(selectAcc);
+  const accStatus = useSelector(getAccStatus);
+
+  // Data request
+  useEffect(() => {
+    switch (props.category) {
+      case "MEN":
+        if (menStatus === "idle") {
+          dispatch(fetchMen());
+        }
+        if (menStatus === "loading") {
+          console.log("loading..");
+        } else if (menStatus === "succeeded") {
+          setData(men);
+          setLoading(true);
+        } else if (menStatus === "failed") {
+          setLoading(false);
+        }
+        break;
+
+      case "WOMEN":
+        if (womenStatus === "idle") {
+          dispatch(fetchWomen());
+        }
+        if (womenStatus === "loading") {
+          console.log("loading..");
+        } else if (womenStatus === "succeeded") {
+          setData(women);
+          setLoading(true);
+        } else if (womenStatus === "failed") {
+          setLoading(false);
+        }
+        break;
+
+      case "ACCESSORIES":
+        if (accStatus === "idle") {
+          dispatch(fetchAcc());
+        }
+        if (accStatus === "loading") {
+          console.log("loading..");
+        } else if (accStatus === "succeeded") {
+          setData(acc);
+          setLoading(true);
+        } else if (accStatus === "failed") {
+          setLoading(false);
+        }
+        break;
+    }
+  }, [menStatus, womenStatus, accStatus, dispatch]);
 
   const resetYourChoice = () => {
     setEmpty(false);
@@ -147,53 +208,7 @@ function DetailSection(props) {
     }
   };
 
-  useEffect(() => {
-    if (props.category === "MEN") {
-      axios
-        .get(process.env.PUBLIC_URL + "/db/men.json")
-        .then((result) => {
-          setData(result.data);
-          setLoading(true);
-        })
-        .catch(() => {
-          alert("Failed to load.");
-        });
-    } else if (props.category === "WOMEN") {
-      axios
-        .get(process.env.PUBLIC_URL + "/db/women.json")
-        .then((result) => {
-          setData(result.data);
-          setLoading(true);
-        })
-        .catch(() => {
-          alert("Failed to load.");
-        });
-    } else if (props.category === "ACCESSORIES") {
-      axios
-        .get(process.env.PUBLIC_URL + "/db/acc.json")
-        .then((result) => {
-          setData(result.data);
-          setLoading(true);
-        })
-        .catch(() => {
-          alert("Failed to load.");
-        });
-    }
-  }, [props.category]);
-
-  useEffect(() => {
-    if (data.length !== 0) {
-      let timer = setTimeout(() => {
-        setFade("detail-container-effect");
-      }, 200);
-
-      return () => {
-        clearTimeout(timer);
-        setFade("");
-      };
-    }
-  }, [data]);
-
+  // If a customer wants to add an item that is already in the shopping cart
   useEffect(() => {
     if (isYes) {
       let cart = localStorage.getItem("cart");
@@ -219,32 +234,7 @@ function DetailSection(props) {
     }
   }, [isYes]);
 
-  useEffect(() => {
-    if (isModal) {
-      let timer = setTimeout(() => {
-        setModalFade("modal-fade");
-      }, 100);
-
-      return () => {
-        clearTimeout(timer);
-        setModalFade("");
-      };
-    }
-  }, [isModal]);
-
-  useEffect(() => {
-    if (isAddModal) {
-      let timer = setTimeout(() => {
-        setAddModalFade("modal-fade");
-      }, 100);
-
-      return () => {
-        clearTimeout(timer);
-        setAddModalFade("");
-      };
-    }
-  }, [isAddModal]);
-
+  // Your Choice transition effect
   useEffect(() => {
     if (isEmpty) {
       let timer = setTimeout(() => {
@@ -257,6 +247,47 @@ function DetailSection(props) {
       };
     }
   }, [isEmpty, handleChoiceFade]);
+
+  // Detail Section transition effect
+  useEffect(() => {
+    if (data.length !== 0) {
+      let timer = setTimeout(() => {
+        setFade("detail-container-effect");
+      }, 200);
+
+      return () => {
+        clearTimeout(timer);
+        setFade("");
+      };
+    }
+  }, [data]);
+
+  // Modal transition Effect
+  useEffect(() => {
+    if (isModal) {
+      let timer = setTimeout(() => {
+        setModalFade("modal-fade");
+      }, 100);
+
+      return () => {
+        clearTimeout(timer);
+        setModalFade("");
+      };
+    } else if (isAddModal) {
+      let timer = setTimeout(() => {
+        setAddModalFade("modal-fade");
+      }, 100);
+
+      return () => {
+        clearTimeout(timer);
+        setAddModalFade("");
+      };
+    }
+  }, [isModal, isAddModal]);
+
+  console.log(accStatus);
+  // console.log(props.category);
+  console.log(data);
 
   return (
     <>
