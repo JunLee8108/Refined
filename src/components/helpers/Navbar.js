@@ -98,6 +98,7 @@ function Navbar() {
 
   const controlSearchModal = (e) => {
     setNavbarModal(false);
+    inactiveNavbar();
     setSearchModal(true);
     setSearchResult(e.target.value.replace(" ", "").toLowerCase());
     if (e.target.value.length === 0) {
@@ -193,7 +194,7 @@ function Navbar() {
     }
   }, [window.location.pathname]);
 
-  console.log(copyName);
+  // console.log(copyName);
 
   return (
     <div className="navbar-container">
@@ -404,7 +405,9 @@ function Navbar() {
         <SearchModal
           searchResult={searchResult}
           setSearchModal={setSearchModal}
+          cleanInput={cleanInput}
           data={data}
+          inputTarget={inputTarget}
         />
       ) : null}
     </div>

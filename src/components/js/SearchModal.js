@@ -1,14 +1,29 @@
 import "./SearchModal.css";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { changeSearchData } from "../../store";
 
 function SearchModal(props) {
   const navigate = useNavigate();
+  const state = useSelector((state) => state.searchData);
+  const dispatch = useDispatch();
 
-  const copy = props.data.filter((p) =>
+  let copy = props.data.filter((p) =>
     p.name.replace(" ", "").toLocaleLowerCase().includes(props.searchResult)
   );
 
-  console.log(copy);
+  if (props.inputTarget.value === "") {
+    let copy = "";
+  }
+
+  const viewAllProducts = () => {
+    props.cleanInput();
+    dispatch(changeSearchData(copy));
+    setTimeout(() => {
+      navigate("/Search");
+    }, 100);
+  };
 
   return (
     <>
@@ -35,7 +50,14 @@ function SearchModal(props) {
             );
           })}
         </div>
-        <button className="search-more-result">VIEW ALL PRODUCTS</button>
+        <button
+          className="search-more-result"
+          onClick={() => {
+            viewAllProducts();
+          }}
+        >
+          VIEW ALL PRODUCTS
+        </button>
       </div>
     </>
   );

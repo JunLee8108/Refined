@@ -139,7 +139,7 @@ function HomeHelper() {
   }, []);
 
   // console.log(contentToDisplay.men);
-  console.log(men);
+  // console.log(men);
 
   return (
     <div className="container">

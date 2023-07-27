@@ -1,13 +1,33 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 import menSlice from "./slices/menSlice";
 import womenSlice from "./slices/womenSlice";
 import accSlice from "./slices/accSlice";
+import allSlice from "./slices/allSlice";
+// import searchSlice from "./slices/searchSlice";
+
+const initialState = {
+  data: [],
+};
+
+const searchData = createSlice({
+  name: "searchData",
+  initialState,
+  reducers: {
+    changeSearchData(state, a) {
+      state.data = [...a.payload];
+    },
+  },
+});
+
+export let { changeSearchData } = searchData.actions;
 
 const store = configureStore({
   reducer: {
     men: menSlice,
     women: womenSlice,
     acc: accSlice,
+    all: allSlice,
+    searchData: searchData.reducer,
   },
 });
 
