@@ -31,7 +31,9 @@
 }
 
 .search-price-button {
-  border: none;
+  border: 1px solid transparent;
+  border-bottom: 1px dotted black;
+  padding-bottom: 25px;
   height: 20px;
   cursor: pointer;
   margin-right: 10px;
@@ -44,9 +46,14 @@
   opacity: 0.3;
 }
 
+.search-notice {
+  text-align: center;
+  margin-top: 100px;
+}
+
 .search-fade {
   opacity: 1;
-  transition: 0.5s linear;
+  transition: 0.7s ease-out;
 }
 
 @media screen and (max-width: 767px) {

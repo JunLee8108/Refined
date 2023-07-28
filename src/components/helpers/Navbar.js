@@ -2,12 +2,16 @@ import "./Navbar.css";
 import MobileMenuBtn from "../js/MobileMenuBtn";
 import MobileIndicator from "../js/MobileIndicator";
 import SearchModal from "../js/SearchModal";
+import MobileSearchModal from "../js/MobileSearchModal";
 import { useState, useEffect, useRef } from "react";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+
+import { useDispatch } from "react-redux";
+import { changeSearchData } from "../../store";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -25,7 +29,10 @@ function Navbar() {
   const [icons, setIcon] = useState(faBars);
   const [data, setData] = useState([]);
   const [copyName, setCopyName] = useState("");
+  const [isMobileSearchModal, setMobileSearchModal] = useState(false);
   const isMounted = useRef(false);
+
+  const dispatch = useDispatch();
 
   // Control contents modal
   const controlContentsModal = (e, category) => {
@@ -78,6 +85,7 @@ function Navbar() {
     setMobileModal((mobileModal) => !mobileModal);
     setNavbarModal(false);
     setModal(false);
+    setMobileSearchModal(false);
   };
 
   // Active navbar
@@ -98,12 +106,18 @@ function Navbar() {
 
   const controlSearchModal = (e) => {
     setNavbarModal(false);
+    setContentName("");
     inactiveNavbar();
     setSearchModal(true);
     setSearchResult(e.target.value.replace(" ", "").toLowerCase());
     if (e.target.value.length === 0) {
       setSearchModal(false);
     }
+  };
+
+  const controlMobileSearchModal = (e) => {
+    setSearchModal(true);
+    setSearchResult(e.target.value.replace(" ", "").toLowerCase());
   };
 
   const cleanInput = () => {
@@ -194,7 +208,9 @@ function Navbar() {
     }
   }, [window.location.pathname]);
 
-  // console.log(copyName);
+  let copy = data.filter((p) =>
+    p.name.replace(" ", "").toLocaleLowerCase().includes(searchResult)
+  );
 
   return (
     <div className="navbar-container">
@@ -253,6 +269,21 @@ function Navbar() {
                 }}
                 type="text"
                 placeholder="Search.."
+                onBlur={(e) => {
+                  e.target.value = "";
+                  setTimeout(() => {
+                    setSearchModal(false);
+                  }, 150);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    cleanInput();
+                    dispatch(changeSearchData(copy));
+                    setTimeout(() => {
+                      navigate("/Search");
+                    }, 100);
+                  }
+                }}
               />
             </div>
           </div>
@@ -370,6 +401,14 @@ function Navbar() {
             </li>
             <li
               onClick={() => {
+                setMobileSearchModal(true);
+                setMobileModal(false);
+              }}
+            >
+              <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" size="lg" />
+            </li>
+            <li
+              onClick={() => {
                 closeContentsModal("/Wishlist");
               }}
             >
@@ -383,20 +422,6 @@ function Navbar() {
             >
               BAG
             </li>
-            {/* <div className="nav-search">
-              <FontAwesomeIcon
-                icon="fa-solid fa-magnifying-glass"
-                style={{ marginRight: "10px" }}
-              />
-              <input
-                onChange={(e) => {
-                  controlSearchModal(e);
-                  setInputTarget(e.target);
-                }}
-                type="text"
-                placeholder="Search.."
-              />
-            </div> */}
           </div>
         ) : null}
       </nav>
@@ -408,6 +433,13 @@ function Navbar() {
           cleanInput={cleanInput}
           data={data}
           inputTarget={inputTarget}
+        />
+      ) : null}
+
+      {isMobileSearchModal ? (
+        <MobileSearchModal
+          controlMobileSearchModal={controlMobileSearchModal}
+          searchResult={searchResult}
         />
       ) : null}
     </div>

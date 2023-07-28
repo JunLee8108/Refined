@@ -19,9 +19,12 @@
 }
 
 .item-title button {
-  border: none;
+  border: 1px solid transparent;
+  border-bottom: 1px dotted grey;
+  padding-bottom: 25px;
   height: 20px;
   cursor: pointer;
+  margin-top: 10px;
   margin-right: 10px;
   margin-left: 10px;
   color: black;

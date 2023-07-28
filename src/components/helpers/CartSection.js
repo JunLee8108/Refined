@@ -2,6 +2,8 @@ import "./CartSection.css";
 import CartModal from "../js/CartModal";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setTotalCount } from "../../store";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -11,6 +13,7 @@ function CartSection() {
   const [isModal, setModal] = useState(false);
   const [fade, setFade] = useState("");
   const [total, setTotal] = useState(0);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,8 +41,10 @@ function CartSection() {
     if (data.length !== 0) {
       setEmpty(true);
       let totalPrice = 0;
+      let totalCount = 0;
       for (let i = 0; i < data.length; i++) {
         totalPrice += parseInt(data[i].totalPrice);
+        totalCount += 1;
       }
       setTotal(totalPrice);
     } else {

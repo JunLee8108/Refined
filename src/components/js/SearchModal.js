@@ -29,8 +29,8 @@ function SearchModal(props) {
                 {index < 3 ? (
                   <>
                     <img
+                      alt=""
                       src={copy[index].img}
-                      alt="product"
                       onClick={() => {
                         navigate(
                           `/Detail/${copy[index].category}/${copy[index].type}/${copy[index].name}/${copy[index].id}`

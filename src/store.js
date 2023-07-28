@@ -21,6 +21,20 @@ const searchData = createSlice({
 
 export let { changeSearchData } = searchData.actions;
 
+const totalCount = createSlice({
+  name: "totalCount",
+  initialState: {
+    totalCount: 0,
+  },
+  reducers: {
+    setTotalCount(state, action) {
+      state.totalCount = action.payload;
+    },
+  },
+});
+
+export let { setTotalCount } = totalCount.actions;
+
 const store = configureStore({
   reducer: {
     men: menSlice,
@@ -28,6 +42,7 @@ const store = configureStore({
     acc: accSlice,
     all: allSlice,
     searchData: searchData.reducer,
+    totalCount: totalCount.reducer,
   },
 });
 

@@ -212,11 +212,18 @@ function DetailSection(props) {
       setFade("detail-container-effect");
     }, 200);
 
+    if (!localStorage.hasOwnProperty("wishlist")) {
+      localStorage.setItem("wishlist", JSON.stringify([]));
+    }
+    if (!localStorage.hasOwnProperty("cart")) {
+      localStorage.setItem("cart", JSON.stringify([]));
+    }
+
     return () => {
       clearTimeout(timer);
       setFade("");
     };
-  }, []);
+  }, [props.id]);
 
   // Modal transition Effect
   useEffect(() => {
