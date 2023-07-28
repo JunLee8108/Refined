@@ -197,7 +197,8 @@ input[type="text"]:focus {
 }
 
 @media (hover: hover) {
-  .brand-name-box-2 li:hover {
+  .brand-name-box-2 li:hover,
+  .nav-menu li:hover {
     border-bottom: 1px solid black !important;
   }
 

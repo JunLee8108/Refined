@@ -3,13 +3,7 @@ import DetailModal from "../js/DetailModal";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getMenStatus, fetchMen, selectMen } from "../../slices/menSlice";
-import {
-  getWomenStatus,
-  fetchWomen,
-  selectWomen,
-} from "../../slices/womenSlice";
-import { getAccStatus, fetchAcc, selectAcc } from "../../slices/accSlice";
+import { getAllStatus, fetchAll, selectAll } from "../../slices/allSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function DetailSection(props) {
@@ -29,7 +23,6 @@ function DetailSection(props) {
   const [handleChoiceFade, setHandleChoiceFade] = useState(false);
 
   const [isEmpty, setEmpty] = useState(false);
-  const [data, setData] = useState([]);
   const [item, setItem] = useState([
     {
       name: "",
@@ -41,59 +34,24 @@ function DetailSection(props) {
   ]);
 
   const dispatch = useDispatch();
-  const menStatus = useSelector(getMenStatus);
-  const men = useSelector(selectMen);
-  const women = useSelector(selectWomen);
-  const womenStatus = useSelector(getWomenStatus);
-  const acc = useSelector(selectAcc);
-  const accStatus = useSelector(getAccStatus);
+  const allStatus = useSelector(getAllStatus);
+  const all = useSelector(selectAll);
 
-  // Data request
   useEffect(() => {
-    switch (props.category) {
-      case "MEN":
-        if (menStatus === "idle") {
-          dispatch(fetchMen());
-        }
-        if (menStatus === "loading") {
-          console.log("loading..");
-        } else if (menStatus === "succeeded") {
-          setData(men);
-          setLoading(true);
-        } else if (menStatus === "failed") {
-          setLoading(false);
-        }
-        break;
-
-      case "WOMEN":
-        if (womenStatus === "idle") {
-          dispatch(fetchWomen());
-        }
-        if (womenStatus === "loading") {
-          console.log("loading..");
-        } else if (womenStatus === "succeeded") {
-          setData(women);
-          setLoading(true);
-        } else if (womenStatus === "failed") {
-          setLoading(false);
-        }
-        break;
-
-      case "ACCESSORIES":
-        if (accStatus === "idle") {
-          dispatch(fetchAcc());
-        }
-        if (accStatus === "loading") {
-          console.log("loading..");
-        } else if (accStatus === "succeeded") {
-          setData(acc);
-          setLoading(true);
-        } else if (accStatus === "failed") {
-          setLoading(false);
-        }
-        break;
+    if (allStatus === "idle") {
+      dispatch(fetchAll());
     }
-  }, [menStatus, womenStatus, accStatus, dispatch]);
+
+    if (allStatus === "loading") {
+      console.log("Loading...");
+    } else if (allStatus === "succeeded") {
+      setLoading(true);
+    } else if (allStatus === "failed") {
+      setLoading(false);
+    }
+  }, [allStatus, dispatch]);
+
+  const data = all.filter((x) => x.category === props.category);
 
   const resetYourChoice = () => {
     setEmpty(false);
@@ -103,9 +61,7 @@ function DetailSection(props) {
   const addToLocalStorage = () => {
     let cart = JSON.parse(localStorage.getItem("cart"));
     let isRedundnat = true;
-    let object = {};
-
-    object = {
+    const object = {
       name: item[0].name,
       color: item[0].color,
       totalPrice: parseInt(item[0].price) * item[0].count,
@@ -231,6 +187,8 @@ function DetailSection(props) {
 
       localStorage.setItem("cart", JSON.stringify(cart));
       setYes(false);
+      setDisplayName(`${repeatedObject.name} (size ${repeatedObject.size})`);
+      setModal(true);
     }
   }, [isYes]);
 
@@ -250,17 +208,15 @@ function DetailSection(props) {
 
   // Detail Section transition effect
   useEffect(() => {
-    if (data.length !== 0) {
-      let timer = setTimeout(() => {
-        setFade("detail-container-effect");
-      }, 200);
+    let timer = setTimeout(() => {
+      setFade("detail-container-effect");
+    }, 200);
 
-      return () => {
-        clearTimeout(timer);
-        setFade("");
-      };
-    }
-  }, [data]);
+    return () => {
+      clearTimeout(timer);
+      setFade("");
+    };
+  }, []);
 
   // Modal transition Effect
   useEffect(() => {
@@ -284,10 +240,6 @@ function DetailSection(props) {
       };
     }
   }, [isModal, isAddModal]);
-
-  console.log(accStatus);
-  // console.log(props.category);
-  console.log(data);
 
   return (
     <>

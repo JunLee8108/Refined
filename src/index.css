@@ -1,7 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap");
-:root {
-  scroll-behavior: auto;
-}
 
 body {
   margin: 0;
@@ -22,10 +19,6 @@ code {
 
 div {
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 p,
