@@ -93,9 +93,6 @@ function HomeHelper() {
     if (!localStorage.hasOwnProperty("cart")) {
       localStorage.setItem("cart", JSON.stringify([]));
     }
-    if (!localStorage.hasOwnProperty("totalCount")) {
-      localStorage.setItem("totalCount", JSON.stringify(0));
-    }
   }, []);
 
   return (

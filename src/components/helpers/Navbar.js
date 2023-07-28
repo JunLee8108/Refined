@@ -311,54 +311,72 @@ function Navbar() {
       </nav>
 
       {isModal ? (
-        <nav
+        <div
           className={
-            navbarModal ? "navbar-modal animated" : "navbar-modal animated-hide"
+            navbarModal
+              ? "navbar-modal-bg animated-bg"
+              : "navbar-modal-bg animated-bg-hide"
           }
+          onClick={(e) => {
+            const target = document.querySelector(".navbar-modal-bg");
+            if (target === e.target) {
+              setNavbarModal(false);
+              setContentName("");
+              inactiveNavbar();
+            }
+          }}
         >
-          <ul className="brand-name display-flex-start">
-            <div className="navbar-content-box">
-              <div>
-                {/* Not visible on laptop. Let users know which button they click (men, women ...) */}
-                <MobileIndicator
-                  contentName={contentName}
-                  closeMobileModal={closeMobileModal}
-                />
-                {/***********************************************************/}
+          <nav
+            className={
+              navbarModal
+                ? "navbar-modal animated"
+                : "navbar-modal animated-hide"
+            }
+          >
+            <ul className="brand-name display-flex-start">
+              <div className="navbar-content-box">
+                <div>
+                  {/* Not visible on laptop. Let users know which button they click (men, women ...) */}
+                  <MobileIndicator
+                    contentName={contentName}
+                    closeMobileModal={closeMobileModal}
+                  />
+                  {/***********************************************************/}
 
-                <center>
-                  <div
-                    className="border-line-navbar"
-                    style={{ width: "78%" }}
-                  ></div>
-                </center>
+                  <center>
+                    <div
+                      className="border-line-navbar"
+                      style={{ width: "78%" }}
+                    ></div>
+                  </center>
 
-                {/* <div className="navbar-indicator">
+                  {/* <div className="navbar-indicator">
                   <li className="navbar-content-list-name">
                     {contentName.innerHTML}
                   </li>
                 </div> */}
 
-                <li className="navbar-content-list-name">{copyName}</li>
+                  <li className="navbar-content-list-name">{copyName}</li>
 
-                {content.map(function (a, index) {
-                  return (
-                    <li
-                      key={index}
-                      onClick={(e) => {
-                        navigateContents(e);
-                      }}
-                      className="navbar-content-list"
-                    >
-                      {content[index]}
-                    </li>
-                  );
-                })}
+                  {content.map(function (a, index) {
+                    return (
+                      <li
+                        key={index}
+                        onClick={(e) => {
+                          navigateContents(e);
+                        }}
+                        className="navbar-content-list"
+                      >
+                        {content[index]}
+                      </li>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          </ul>
-          <ul className="nav-menu display-flex-start"></ul>
-        </nav>
+            </ul>
+            <ul className="nav-menu display-flex-start"></ul>
+          </nav>
+        </div>
       ) : null}
 
       {/* Mobile navbar */}
