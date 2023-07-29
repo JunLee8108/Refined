@@ -262,6 +262,7 @@ function DetailSection(props) {
               <div className="detail-flexbox">
                 <div className="detail-flexbox-title">
                   {/* Name, Price and Color */}
+                  <h5 style={{ color: "grey" }}>{data[props.id].category}</h5>
                   <h4>
                     {props.name}{" "}
                     <span style={{ fontSize: "12px", fontWeight: "normal" }}>
