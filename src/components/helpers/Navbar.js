@@ -254,7 +254,7 @@ function Navbar() {
                 closeContentsModal("/About");
               }}
             >
-              ABOUT US
+              ABOUT
             </li>
             <div className="nav-search">
               <FontAwesomeIcon
@@ -403,7 +403,7 @@ function Navbar() {
                 closeContentsModal("/About");
               }}
             >
-              ABOUT US
+              ABOUT
             </li>
             <center>
               <div className="border-line-navbar"></div>

@@ -2,14 +2,12 @@ import "./CartSection.css";
 import CartModal from "../js/CartModal";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { setTotalCount } from "../../store";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function CartSection() {
   const [data, setData] = useState([]);
-  const [isEmpty, setEmpty] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [isModal, setModal] = useState(false);
   const [fade, setFade] = useState("");
   const [total, setTotal] = useState(0);
@@ -17,16 +15,17 @@ function CartSection() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Check if localstorage is empty
     if (!localStorage.hasOwnProperty("wishlist")) {
       localStorage.setItem("wishlist", JSON.stringify([]));
     }
-
     if (!localStorage.hasOwnProperty("cart")) {
       localStorage.setItem("cart", JSON.stringify([]));
     } else {
       setData(JSON.parse(localStorage.getItem("cart")));
     }
 
+    // Transition Effect
     let timer = setTimeout(() => {
       setFade("cart-container-fade");
     }, 100);
@@ -39,12 +38,10 @@ function CartSection() {
 
   useEffect(() => {
     if (data.length !== 0) {
-      setEmpty(true);
+      setLoading(true);
       let totalPrice = 0;
-      let totalCount = 0;
       for (let i = 0; i < data.length; i++) {
         totalPrice += parseInt(data[i].totalPrice);
-        totalCount += 1;
       }
       setTotal(totalPrice);
     } else {
@@ -52,20 +49,18 @@ function CartSection() {
     }
   }, [data]);
 
-  const deleteData = (index) => {
+  const deleteItem = (index) => {
     let copy = [...data];
     copy.splice(index, 1);
-    localStorage.setItem("cart", JSON.stringify(copy));
     setData(copy);
+    localStorage.setItem("cart", JSON.stringify(copy));
   };
 
   const clearBag = () => {
-    let cart = JSON.parse(localStorage.getItem("cart"));
     let copy = [...data];
     copy.length = 0;
-    cart.length = 0;
     setData(copy);
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(copy));
   };
 
   const handleCount = (index, e) => {
@@ -87,7 +82,7 @@ function CartSection() {
     localStorage.setItem("cart", JSON.stringify(copy));
   };
 
-  const controlModal = () => {
+  const controlCartModal = () => {
     if (data.length === 0) {
       setModal(true);
       document.body.style.overflow = "hidden";
@@ -101,7 +96,7 @@ function CartSection() {
           <h3>Your bag</h3>
           <table>
             <tbody>
-              {isEmpty === true
+              {isLoading
                 ? data.map(function (a, index) {
                     return (
                       <tr key={index}>
@@ -150,7 +145,7 @@ function CartSection() {
                           <button
                             className="cart-deleteBtn"
                             onClick={() => {
-                              deleteData(index);
+                              deleteItem(index);
                             }}
                           >
                             <FontAwesomeIcon
@@ -184,7 +179,7 @@ function CartSection() {
             <button
               className="cart-checkout-btn"
               onClick={() => {
-                controlModal();
+                controlCartModal();
               }}
             >
               Proceed to Checkout
@@ -192,6 +187,7 @@ function CartSection() {
           </div>
         </div>
       </div>
+
       {isModal === true ? (
         <>
           <CartModal btn1="CLOSE" setModal={setModal} />
