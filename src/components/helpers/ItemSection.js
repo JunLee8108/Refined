@@ -2,7 +2,8 @@ import "./ItemSection.css";
 import CollectionSection from "./CollectionSection";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllStatus, fetchAll, selectAll } from "../../slices/allSlice";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -12,10 +13,12 @@ function ItemSection(props) {
   const [data, setData] = useState([]);
   const [fade, setFade] = useState("");
   const [bg, setBg] = useState("");
-  const bgMen = "/img/bg/men-bg-0.webp";
-  const bgWomen = "/img/bg/women-bg-2.webp";
-  const bgAcc = "/img/bg/acc-bg-0.webp";
+
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const allStatus = useSelector(getAllStatus);
+  const all = useSelector(selectAll);
 
   // Sort array (price high to low & price low to high)
   const sort = (e) => {
@@ -38,7 +41,7 @@ function ItemSection(props) {
     let wishlist = JSON.parse(localStorage.getItem("wishlist"));
     let isRedundnat = true;
 
-    const object = {
+    const DATA_OBJECT = {
       name: data[index].name,
       color: data[index].color,
       price: data[index].price,
@@ -52,9 +55,9 @@ function ItemSection(props) {
 
     for (let i = 0; i < wishlist.length; i++) {
       if (
-        object.name === wishlist[i].name &&
-        object.category === wishlist[i].category &&
-        object.color === wishlist[i].color
+        DATA_OBJECT.name === wishlist[i].name &&
+        DATA_OBJECT.category === wishlist[i].category &&
+        DATA_OBJECT.color === wishlist[i].color
       ) {
         isRedundnat = false;
         alert("The item is already in your wishlist!");
@@ -63,7 +66,7 @@ function ItemSection(props) {
     }
 
     if (isRedundnat) {
-      wishlist.push(object);
+      wishlist.push(DATA_OBJECT);
       localStorage.setItem("wishlist", JSON.stringify(wishlist));
       document.body.style.overflow = "hidden";
       // document.body.style.paddingRight = "15px";
@@ -71,46 +74,55 @@ function ItemSection(props) {
     }
   };
 
-  // Server Request
   useEffect(() => {
-    if (props.category === "MEN") {
-      axios
-        .get(process.env.PUBLIC_URL + "/db/men.json")
-        .then((result) => {
-          const copy = result.data.filter((data) => data.type === props.type);
-          setData(copy);
-          setLoading(true);
-        })
-        .catch(() => {
-          alert("Failed to load.");
-        });
-      setBg(bgMen);
-    } else if (props.category === "WOMEN") {
-      axios
-        .get(process.env.PUBLIC_URL + "/db/women.json")
-        .then((result) => {
-          const copy = result.data.filter((data) => data.type === props.type);
-          setData(copy);
-          setLoading(true);
-        })
-        .catch(() => {
-          alert("Failed to load.");
-        });
-      setBg(bgWomen);
-    } else if (props.category === "ACCESSORIES") {
-      axios
-        .get(process.env.PUBLIC_URL + "/db/acc.json")
-        .then((result) => {
-          const copy = result.data.filter((data) => data.type === props.type);
-          setData(copy);
-          setLoading(true);
-        })
-        .catch(() => {
-          alert("Failed to load.");
-        });
-      setBg(bgAcc);
+    if (allStatus === "idle") {
+      dispatch(fetchAll());
     }
 
+    if (allStatus === "succeeded") {
+      setLoading(true);
+    } else if (allStatus === "failed") {
+      setLoading(false);
+    }
+  }, [allStatus, dispatch]);
+
+  // Server Request
+  useEffect(() => {
+    switch (props.category) {
+      case "MEN":
+        const bgMen = "/img/bg/men-bg-0.webp";
+        setBg(bgMen);
+        break;
+
+      case "WOMEN":
+        const bgWomen = "/img/bg/women-bg-2.webp";
+        setBg(bgWomen);
+        break;
+
+      case "ACCESSORIES":
+        const bgAcc = "/img/bg/acc-bg-0.webp";
+        setBg(bgAcc);
+        break;
+
+      default:
+        break;
+    }
+
+    switch (props.type) {
+      case "All":
+        const copyAll = all.filter((x) => x.category === props.category);
+        setData(copyAll);
+        break;
+
+      default:
+        const copyElse = all.filter(
+          (x) => x.category === props.category && x.type === props.type
+        );
+        setData(copyElse);
+    }
+  }, [props.category, props.type, all]);
+
+  useEffect(() => {
     let timer = setTimeout(() => {
       setFade("item-top-bg-fade");
     }, 100);
@@ -119,7 +131,7 @@ function ItemSection(props) {
       clearTimeout(timer);
       setFade("");
     };
-  }, [props.category, props.type]);
+  }, [props.type]);
 
   // Check if wishlist is exist in the local storage
   useEffect(() => {
@@ -147,7 +159,8 @@ function ItemSection(props) {
           style={{ backgroundImage: `url(${bg})`, backgroundPosition: "top" }}
         ></div>
         <div className="item-title">
-          <h2>{props.type}</h2>
+          <h2>{`${props.category} - ${props.type}`}</h2>
+
           <button
             onClick={() => {
               sort(0);
@@ -182,7 +195,7 @@ function ItemSection(props) {
                       }}
                       onClick={() => {
                         navigate(
-                          `/Detail/${props.category}/${props.type}/${data[index].name}/${data[index].id}`
+                          `/Detail/${data[index].category}/${data[index].type}/${data[index].name}/${data[index].id}`
                         );
                       }}
                     ></img>

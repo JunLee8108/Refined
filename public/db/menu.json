@@ -3,6 +3,7 @@
         "id": 0,
         "name": "MEN",
         "categories": [
+            "All",
             "New Arrival",
             "Outerwear",
             "Shirts",
@@ -14,6 +15,7 @@
         "id": 1,
         "name": "WOMEN",
         "categories": [
+            "All",
             "New Arrival",
             "Outerwear",
             "Shirts",
@@ -26,6 +28,7 @@
         "id": 2,
         "name": "ACCESSORIES",
         "categories": [
+            "All",
             "Bags",
             "Shoes"
         ]
