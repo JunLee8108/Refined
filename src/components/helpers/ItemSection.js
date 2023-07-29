@@ -105,7 +105,6 @@ function ItemSection(props) {
         break;
 
       default:
-        break;
     }
 
     switch (props.type) {
@@ -131,7 +130,7 @@ function ItemSection(props) {
       clearTimeout(timer);
       setFade("");
     };
-  }, [props.type]);
+  }, [props.type, props.category]);
 
   // Check if wishlist is exist in the local storage
   useEffect(() => {
