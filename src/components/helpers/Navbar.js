@@ -269,12 +269,6 @@ function Navbar() {
                 }}
                 type="text"
                 placeholder="Search.."
-                onBlur={(e) => {
-                  e.target.value = "";
-                  setTimeout(() => {
-                    setSearchModal(false);
-                  }, 150);
-                }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     cleanInput();
