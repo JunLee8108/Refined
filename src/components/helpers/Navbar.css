@@ -244,6 +244,11 @@ input[type="text"]:focus {
     opacity: 0.5;
     color: red;
   }
+
+  .navbar-content-list:not(:hover) {
+    transform: scale(1);
+    transition: 0.3s ease-out;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {

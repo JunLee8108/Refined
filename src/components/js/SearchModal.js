@@ -19,6 +19,8 @@ function SearchModal(props) {
     }, 100);
   };
 
+  console.log(copy);
+
   return (
     <>
       <div

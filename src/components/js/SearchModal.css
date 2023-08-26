@@ -46,10 +46,25 @@
   margin-bottom: 20px;
 }
 
-.search-more-result:hover {
-  transform: scale(1.1);
-  opacity: 0.5;
-  transition: 0.2s linear;
+@media (hover: hover) {
+  .search-flexbox img:hover {
+    transform: scale(1.1);
+    transition: 0.2s linear;
+  }
+
+  .search-flexbox img:not(:hover) {
+    transform: scale(1);
+    transition: 0.2s linear;
+  }
+
+  .search-more-result:hover {
+    opacity: 0.2;
+    transition: 0.2s linear;
+  }
+
+  .search-more-result:not(:hover) {
+    transition: 0.2s linear;
+  }
 }
 
 @media screen and (max-width: 767px) {

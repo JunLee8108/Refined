@@ -113,6 +113,10 @@
   transition: all 0.2s;
 }
 
+.addToCartBtn:not(:hover) {
+  transition: all 0.2s;
+}
+
 .deleteBtn {
   border: none;
   background-color: white;
@@ -123,8 +127,13 @@
 }
 
 .deleteBtn:hover {
-  opacity: 0.5;
-  transform: scale(1.2);
+  color: red;
+  transform: scale(1.1);
+  transition: all 0.2s;
+}
+
+.deleteBtn:not(:hover) {
+  transform: scale(1);
   transition: all 0.2s;
 }
 

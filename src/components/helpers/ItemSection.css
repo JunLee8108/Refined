@@ -73,8 +73,13 @@
 
 .wishListBtn:hover {
   color: red;
-  transform: scale(1.2);
-  transition: 0.3s;
+  transform: scale(1.3);
+  transition: all 0.2s linear;
+}
+
+.wishListBtn:not(:hover) {
+  transform: scale(1);
+  transition: all 0.2s linear;
 }
 
 .modal-container {
