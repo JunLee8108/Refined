@@ -12,18 +12,33 @@
 }
 
 .home-top-bg {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.home-top-bg-1 {
+  width: 100%;
   height: 100vh;
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;
   transition: 1s ease-out;
-}
-
-.home-top-bg-1 {
+  opacity: 0;
   background-image: url(../../../public/img/bg/bg-2.webp);
 }
 
 .home-top-bg-2 {
+  position: absolute;
+  opacity: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  transition: 1s ease-out;
   background-image: url(../../../public/img/bg/bg-1.webp);
 }
 

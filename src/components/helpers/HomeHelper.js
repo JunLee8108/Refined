@@ -46,20 +46,24 @@ function HomeHelper() {
 
   useEffect(() => {
     let count = 0;
+    const bg1 = document.querySelector(".home-top-bg-1");
+    const bg2 = document.querySelector(".home-top-bg-2");
     let timer = setInterval(() => {
       if (count === 0) {
-        setBackgroundImg(true);
+        bg1.style.opacity = 1;
+        bg2.style.opacity = 0;
         count += 1;
       } else if (count === 1) {
-        setBackgroundImg(false);
+        bg1.style.opacity = 0;
+        bg2.style.opacity = 1;
         count -= 1;
       }
-    }, 4000);
+    }, 6000);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [backgroundImg]);
+  }, []);
 
   ////////////// Scroll Event //////////////
   const scrollEvent = () => {
@@ -97,13 +101,18 @@ function HomeHelper() {
 
   return (
     <div className="container">
-      <div
+      <div className="home-top-bg">
+        <div className="home-top-bg-1"></div>
+        <div className="home-top-bg-2"></div>
+      </div>
+      {/* <div
         className={
           backgroundImg
             ? "home-top-bg home-top-bg-1"
             : "home-top-bg home-top-bg-2"
         }
-      ></div>
+      ></div> */}
+
       <div className="home-mid-container">
         <h2>New Arrival</h2>
         <div className="selection-container">
