@@ -82,7 +82,30 @@ function SearchSection(props) {
             {state.data.map(function (a, index) {
               return (
                 <div className="search-box" key={index}>
-                  <img
+                  <div className="image-wrapper">
+                    <img
+                      src={state.data[index].img}
+                      className="image"
+                      alt="normal"
+                      onClick={() => {
+                        navigate(
+                          `/Detail/${state.data[index].category}/${state.data[index].type}/${state.data[index].name}/${state.data[index].id}`
+                        );
+                      }}
+                    />
+                    <img
+                      src={state.data[index].hoverImg}
+                      className="image-hover"
+                      alt="hover"
+                      onClick={() => {
+                        navigate(
+                          `/Detail/${state.data[index].category}/${state.data[index].type}/${state.data[index].name}/${state.data[index].id}`
+                        );
+                      }}
+                    />
+                  </div>
+
+                  {/* <img
                     alt="item"
                     src={state.data[index].img}
                     onMouseEnter={(e) => {
@@ -96,7 +119,8 @@ function SearchSection(props) {
                         `/Detail/${state.data[index].category}/${state.data[index].type}/${state.data[index].name}/${state.data[index].id}`
                       );
                     }}
-                  ></img>
+                  ></img> */}
+
                   <h4>{state.data[index].name}</h4>
                   <h6>{state.data[index].category}</h6>
                   <span style={{ fontSize: "12px", color: "grey" }}>

@@ -118,7 +118,29 @@ function HomeHelper() {
                     }`}
                     key={index}
                   >
-                    <img
+                    <div className="image-wrapper">
+                      <img
+                        src={data[index].img}
+                        className="image"
+                        alt="normal"
+                        onClick={() => {
+                          navigate(
+                            `/Detail/${data[index].category}/${data[index].type}/${data[index].name}/${data[index].id}`
+                          );
+                        }}
+                      />
+                      <img
+                        src={data[index].hoverImg}
+                        className="image-hover"
+                        alt="hover"
+                        onClick={() => {
+                          navigate(
+                            `/Detail/${data[index].category}/${data[index].type}/${data[index].name}/${data[index].id}`
+                          );
+                        }}
+                      />
+                    </div>
+                    {/* <img
                       alt="item"
                       src={data[index].img}
                       onMouseEnter={(e) => {
@@ -132,7 +154,7 @@ function HomeHelper() {
                           `/Detail/${data[index].category}/${data[index].type}/${data[index].name}/${data[index].id}`
                         );
                       }}
-                    ></img>
+                    ></img> */}
                     <h4>{data[index].name} </h4>
                     <h6>{data[index].category}</h6>
                     <span style={{ fontSize: "12px", color: "grey" }}>
