@@ -19,7 +19,7 @@ function SearchModal(props) {
     }, 100);
   };
 
-  console.log(copy);
+  // console.log(copy);
 
   return (
     <>
