@@ -143,7 +143,7 @@ input[type="text"]:focus {
 .navbar-modal {
   position: fixed;
   background-color: white;
-  top: 83px;
+  top: 75px;
   width: 100%;
   height: auto;
   z-index: 10;
@@ -188,7 +188,7 @@ input[type="text"]:focus {
 @keyframes show-modal {
   from {
     opacity: 0;
-    transform: translateY(-15%);
+    transform: translateY(-5%);
   }
 
   to {
@@ -200,7 +200,7 @@ input[type="text"]:focus {
 @keyframes show-modal-mobile {
   from {
     opacity: 0;
-    transform: translateY(-15%);
+    transform: translateY(-5%);
   }
 
   to {
