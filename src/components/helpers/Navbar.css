@@ -188,7 +188,7 @@ input[type="text"]:focus {
 @keyframes show-modal {
   from {
     opacity: 0;
-    transform: translateY(-5%);
+    transform: translateY(-10%);
   }
 
   to {
