@@ -15,7 +15,7 @@ li {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
   margin: 0;
 }
 
@@ -31,7 +31,8 @@ li {
 nav {
   /* background-color: red; */
   display: flex;
-  height: 100%;
+  height: 10%;
+  /* background-color: red; */
   margin: 0;
 }
 
@@ -280,6 +281,7 @@ input[type="text"]:focus {
 
   .brand-name {
     /* background-color: blue; */
+    padding: 3px;
     width: 100%;
   }
 
@@ -310,14 +312,14 @@ input[type="text"]:focus {
   .navbar-modal {
     z-index: 5;
     position: fixed;
-    top: 65px;
+    top: 60px;
   }
 
   .mobile-navbar {
     display: block;
     position: fixed;
     width: 100%;
-    top: 75px;
+    top: 60px;
     z-index: 5;
     background-color: white;
   }
