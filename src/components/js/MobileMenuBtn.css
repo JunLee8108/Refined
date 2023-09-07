@@ -3,7 +3,7 @@
   display: none;
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1280px) {
   .mobile-btn {
     display: flex;
     width: 100%;
@@ -14,6 +14,7 @@
   .mobile-btn button {
     border: none;
     background-color: white;
+    margin-right: -15px;
     color: grey;
   }
 }

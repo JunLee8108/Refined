@@ -79,6 +79,20 @@
   cursor: pointer;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .selection-box h4 {
+    font-size: 12px;
+  }
+
+  .selection-box h5 {
+    font-size: 10px;
+  }
+
+  .selection-box h6 {
+    font-size: 9px;
+  }
+}
+
 /* Phone */
 @media screen and (max-width: 767px) {
   /* Mid (selection) */
