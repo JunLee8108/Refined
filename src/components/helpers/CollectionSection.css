@@ -4,10 +4,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  opacity: 0;
   transform: translateY(-25%);
 }
 
 .collection-fade {
+  opacity: 1;
   transform: translateY(0%);
   transition: all 1.5s;
 }
