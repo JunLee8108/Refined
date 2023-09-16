@@ -285,7 +285,13 @@ function Navbar() {
 
         <ul className="nav-menu display-flex-start">
           <li>
-            <FontAwesomeIcon icon="fa-solid fa-user-large" size="lg" />
+            <FontAwesomeIcon
+              icon="fa-solid fa-user-large"
+              size="lg"
+              onClick={() => {
+                closeContentsModal("/Account");
+              }}
+            />
           </li>
           <li
             onClick={() => {

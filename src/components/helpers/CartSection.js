@@ -86,6 +86,8 @@ function CartSection() {
     if (data.length === 0) {
       setModal(true);
       document.body.style.overflow = "hidden";
+    } else {
+      navigate("/Payment");
     }
   };
 
