@@ -108,6 +108,12 @@
 .account-login-flexbox p {
   text-decoration: underline;
   color: #654121;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.account-login-flexbox p:hover {
+  color: red;
 }
 
 .account-signup-flexbox {
@@ -144,6 +150,14 @@
 
   .account-login-signup-container form {
     width: 100%;
+  }
+
+  .account-login-signup-container form h2 {
+    font-size: 19px;
+  }
+
+  .account-login-flexbox p {
+    font-size: 13px;
   }
 
   .account-login-flexbox {
