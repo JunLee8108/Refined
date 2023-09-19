@@ -22,28 +22,29 @@ function CollectionSection(props) {
   }, [props.type]);
 
   useEffect(() => {
-    if (data.length !== 0 && data[0].season === props.type) {
-      let timer;
-      const onPageLoad = () => {
-        timer = setTimeout(() => {
-          setFade("collection-fade");
-        }, 200);
-      };
+    let timer;
+    const onPageLoad = () => {
+      timer = setTimeout(() => {
+        setFade("collection-fade");
+      }, 200);
+    };
 
-      // Check if the page has already loaded
-      if (document.readyState === "complete") {
-        onPageLoad();
-      } else {
-        window.addEventListener("load", onPageLoad);
-        // Remove the event listener when component unmounts
-      }
+    // let timer2;
+    // let timer3;
+    // Check if the page has already loaded
+    if (document.readyState === "complete") {
+      onPageLoad();
+    } else {
+      window.addEventListener("load", onPageLoad);
 
-      return () => {
-        clearTimeout(timer);
-        setFade("");
-        window.removeEventListener("load", onPageLoad);
-      };
+      // Remove the event listener when component unmounts
     }
+
+    return () => {
+      clearTimeout(timer);
+      setFade("");
+      window.removeEventListener("load", onPageLoad);
+    };
   }, [data]);
 
   useEffect(() => {
