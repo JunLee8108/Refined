@@ -284,14 +284,12 @@ function Navbar() {
         </ul>
 
         <ul className="nav-menu display-flex-start">
-          <li>
-            <FontAwesomeIcon
-              icon="fa-solid fa-user-large"
-              size="lg"
-              onClick={() => {
-                closeContentsModal("/Account");
-              }}
-            />
+          <li
+            onClick={() => {
+              closeContentsModal("/Account");
+            }}
+          >
+            ACCOUNT
           </li>
           <li
             onClick={() => {
@@ -414,7 +412,11 @@ function Navbar() {
             <center>
               <div className="border-line-navbar"></div>
             </center>
-            <li>
+            <li
+              onClick={() => {
+                closeContentsModal("/Account");
+              }}
+            >
               <FontAwesomeIcon icon="fa-solid fa-user-large" size="lg" />
             </li>
             <li
