@@ -208,22 +208,13 @@ function DetailSection(props) {
 
   // Detail Section transition effect
   useEffect(() => {
-    let timer = setTimeout(() => {
-      setFade("detail-container-effect");
-    }, 200);
-
     if (!localStorage.hasOwnProperty("wishlist")) {
       localStorage.setItem("wishlist", JSON.stringify([]));
     }
     if (!localStorage.hasOwnProperty("cart")) {
       localStorage.setItem("cart", JSON.stringify([]));
     }
-
-    return () => {
-      clearTimeout(timer);
-      setFade("");
-    };
-  }, [props.id]);
+  }, []);
 
   // Modal transition Effect
   useEffect(() => {
@@ -252,7 +243,7 @@ function DetailSection(props) {
     <>
       {isLoading ? (
         <>
-          <div className={"detail-container " + fade}>
+          <div className="detail-container">
             <div className="detail-box">
               <div className="detail-flexbox">
                 {/* Image */}

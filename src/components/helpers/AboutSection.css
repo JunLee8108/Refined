@@ -63,11 +63,12 @@
 
 .about-mid-introduction h3 {
   font-family: Verdana, Dotum, AppleGothic, sans-serif;
+  letter-spacing: 1px;
 }
 
 .about-mid-introduction p {
   font-family: Verdana, Dotum, AppleGothic, sans-serif;
-  line-height: 30px;
+  line-height: 40px;
 }
 
 /* 4K */

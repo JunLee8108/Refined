@@ -1,6 +1,7 @@
 import "./AboutSection.css";
 import { useEffect, useState } from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 
 function AboutSection() {
@@ -119,7 +120,7 @@ function AboutSection() {
                 isScrollIntro1 && "about-mid-introduction-scroll"
               }`}
             >
-              <h3>{textData[0].title}</h3>
+              <h3>{textData[0].title} </h3>
               <p>{textData[0].description}</p>
             </div>
           </div>
