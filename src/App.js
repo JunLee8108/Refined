@@ -28,24 +28,20 @@ function App() {
     <div className="App">
       <ScrollToTop />
       <Navbar />
-      <TransitionGroup>
-        <Fade key={location.key}>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/Item/:category/:type" element={<Item />}></Route>
-            <Route
-              path="/Detail/:category/:type/:name/:id"
-              element={<Detail />}
-            ></Route>
-            <Route path="/Wishlist" element={<Wishlist />}></Route>
-            <Route path="/Cart" element={<Cart />}></Route>
-            <Route path="/About" element={<About />}></Route>
-            <Route path="/Search" element={<Search />}></Route>
-            <Route path="/Payment" element={<Payment />}></Route>
-            <Route path="/Account" element={<Account />}></Route>
-          </Routes>
-        </Fade>
-      </TransitionGroup>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/Item/:category/:type" element={<Item />}></Route>
+        <Route
+          path="/Detail/:category/:type/:name/:id"
+          element={<Detail />}
+        ></Route>
+        <Route path="/Wishlist" element={<Wishlist />}></Route>
+        <Route path="/Cart" element={<Cart />}></Route>
+        <Route path="/About" element={<About />}></Route>
+        <Route path="/Search" element={<Search />}></Route>
+        <Route path="/Payment" element={<Payment />}></Route>
+        <Route path="/Account" element={<Account />}></Route>
+      </Routes>
     </div>
   );
 }

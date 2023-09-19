@@ -4,5 +4,5 @@
 
 .fade-enter-active {
   opacity: 1;
-  transition: opacity 1500ms;
+  transition: opacity 1000ms linear;
 }
