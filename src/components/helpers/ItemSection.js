@@ -155,7 +155,7 @@ function ItemSection(props) {
       setFade("");
       window.removeEventListener("load", onPageLoad);
     };
-  }, [props.type]);
+  }, [props.type, props.category]);
 
   // Check if wishlist is exist in the local storage
   useEffect(() => {
