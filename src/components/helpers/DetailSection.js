@@ -206,24 +206,48 @@ function DetailSection(props) {
     }
   }, [isEmpty, handleChoiceFade]);
 
-  // Detail Section transition effect
+  // // Detail Section transition effect
+  // useEffect(() => {
+  //   let timer = setTimeout(() => {
+  //     setFade("detail-container-effect");
+  //   }, 200);
+
+  //   if (!localStorage.hasOwnProperty("wishlist")) {
+  //     localStorage.setItem("wishlist", JSON.stringify([]));
+  //   }
+  //   if (!localStorage.hasOwnProperty("cart")) {
+  //     localStorage.setItem("cart", JSON.stringify([]));
+  //   }
+
+  //   return () => {
+  //     clearTimeout(timer);
+  //     setFade("");
+  //   };
+  // }, [props.id]);
+
   useEffect(() => {
-    let timer = setTimeout(() => {
-      setFade("detail-container-effect");
-    }, 200);
-
-    if (!localStorage.hasOwnProperty("wishlist")) {
-      localStorage.setItem("wishlist", JSON.stringify([]));
-    }
-    if (!localStorage.hasOwnProperty("cart")) {
-      localStorage.setItem("cart", JSON.stringify([]));
-    }
-
-    return () => {
-      clearTimeout(timer);
-      setFade("");
+    let timer;
+    const onPageLoad = () => {
+      timer = setTimeout(() => {
+        setFade("detail-container-effect");
+      }, 200);
     };
-  }, [props.id]);
+
+    console.log(document.readyState);
+
+    // Check if the page has already loaded
+    if (document.readyState === "complete") {
+      onPageLoad();
+    } else {
+      window.addEventListener("load", onPageLoad);
+      // Remove the event listener when component unmounts
+      return () => {
+        clearTimeout(timer);
+        setFade("");
+        window.removeEventListener("load", onPageLoad);
+      };
+    }
+  }, []);
 
   // Modal transition Effect
   useEffect(() => {
@@ -247,6 +271,8 @@ function DetailSection(props) {
       };
     }
   }, [isModal, isAddModal]);
+
+  console.log(document.readyState);
 
   return (
     <>

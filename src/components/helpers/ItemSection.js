@@ -121,16 +121,41 @@ function ItemSection(props) {
     }
   }, [props.category, props.type, all]);
 
+  // useEffect(() => {
+  //   let timer = setTimeout(() => {
+  //     setFade("item-top-bg-fade");
+  //   }, 100);
+
+  //   return () => {
+  //     clearTimeout(timer);
+  //     setFade("");
+  //   };
+  // }, [props.type, props.category]);
+
   useEffect(() => {
-    let timer = setTimeout(() => {
-      setFade("item-top-bg-fade");
-    }, 100);
+    let timer;
+    const onPageLoad = () => {
+      timer = setTimeout(() => {
+        setFade("item-top-bg-fade");
+      }, 200);
+    };
+
+    console.log(props.type);
+
+    // Check if the page has already loaded
+    if (document.readyState === "complete") {
+      onPageLoad();
+    } else {
+      window.addEventListener("load", onPageLoad);
+      // Remove the event listener when component unmounts
+    }
 
     return () => {
       clearTimeout(timer);
       setFade("");
+      window.removeEventListener("load", onPageLoad);
     };
-  }, [props.type, props.category]);
+  }, [props.type]);
 
   // Check if wishlist is exist in the local storage
   useEffect(() => {
