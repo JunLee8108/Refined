@@ -140,8 +140,6 @@ function ItemSection(props) {
       }, 200);
     };
 
-    console.log(props.type);
-
     // Check if the page has already loaded
     if (document.readyState === "complete") {
       onPageLoad();
