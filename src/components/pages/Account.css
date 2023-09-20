@@ -54,6 +54,14 @@
   letter-spacing: 3px;
 }
 
+.account-login-input-container {
+  width: 99%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
 .account-login-signup-container input[type="text"],
 .account-login-signup-container input[type="email"],
 .account-login-signup-container input[type="password"] {
@@ -66,6 +74,47 @@
   border: 2px solid grey;
 }
 
+.account-login-input-container label {
+  position: absolute;
+  font-size: 12px;
+  color: orange;
+  left: 0;
+  bottom: 110px;
+  opacity: 0;
+  font-weight: 600;
+}
+
+.account-login-input-container input:focus {
+  outline: none;
+  border: 2px solid orange;
+}
+
+.account-login-input-container input::after:focus {
+  outline: none;
+  display: block;
+  margin-left: 50px;
+  border: 2px solid red;
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.account-login-input-container input:not(:focus) {
+  border: 2px solid grey;
+  transition: 0.2s all;
+}
+
+.account-login-input-container input:focus + label {
+  opacity: 1;
+  transition: 0.2s all;
+}
+
+.account-login-input-container input:not(:focus) + label {
+  opacity: 0;
+  transition: 0.2s all;
+}
+
 .account-login-signup-container button {
   width: 97%;
   max-width: 370px;
@@ -75,6 +124,16 @@
   color: white;
   margin-bottom: 20px;
   cursor: pointer;
+}
+
+.account-login-signup-container button:hover {
+  opacity: 0.5;
+  transition: 0.3s all;
+}
+
+.account-login-signup-container button:not(:hover) {
+  opacity: 1;
+  transition: 0.3s all;
 }
 
 .account-checkbox-container {

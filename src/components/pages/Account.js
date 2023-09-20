@@ -39,8 +39,24 @@ export default function Account() {
           <div className="account-login-flexbox">
             <form>
               <h2>Login</h2>
-              <input type="email" placeholder="Email" required></input>
-              <input type="password" placeholder="Password" required></input>
+              <div className="account-login-input-container">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  id="login-email"
+                  required
+                ></input>
+                <label htmlFor="login-email">Email</label>
+              </div>
+              <div className="account-login-input-container">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  id="login-password"
+                  required
+                ></input>
+                <label htmlFor="login-password">Password</label>
+              </div>
               <button type="submit">SIGN IN</button>
               <p>FORGOT PASSWORD?</p>
             </form>
@@ -48,10 +64,47 @@ export default function Account() {
           <div className="account-signup-flexbox">
             <form>
               <h2>Register</h2>
-              <input type="text" placeholder="First Name" required></input>
-              <input type="text" placeholder="Last Name" required></input>
-              <input type="email" placeholder="Email" required></input>
-              <input type="password" placeholder="Password" required></input>
+
+              <div className="account-login-input-container">
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  id="first-name"
+                  required
+                ></input>
+                <label htmlFor="first-name">First Name</label>
+              </div>
+
+              <div className="account-login-input-container">
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  id="last-name"
+                  required
+                ></input>
+                <label htmlFor="last-name">Last Name</label>
+              </div>
+
+              <div className="account-login-input-container">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  id="signup-email"
+                  required
+                ></input>
+                <label htmlFor="signup-email">Email</label>
+              </div>
+
+              <div className="account-login-input-container">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  id="signup-password"
+                  required
+                ></input>
+                <label htmlFor="signup-password">Password</label>
+              </div>
+
               <div className="account-checkbox-container">
                 <input
                   type="checkbox"
