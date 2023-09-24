@@ -1,6 +1,6 @@
 # Refined Seoul
 
-### 📔 Introduction
+### ❓ Introduction
 - 'Refined Seoul' is a fictional luxury fashion brand.
 
 ### 💻 Tech Stack
