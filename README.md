@@ -1,4 +1,4 @@
-# 👕 Refined Seoul
+# Refined Seoul 👕
 
 ### ❓ Introduction
 - 'Refined Seoul' is a fictional luxury fashion brand.
