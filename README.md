@@ -1,11 +1,11 @@
 # Refined Seoul
 
-## 📔 Introduction
+### 📔 Introduction
 - 'Refined Seoul' is a fictional luxury fashion brand.
 
-## 💻 Tech Stack
+### 💻 Tech Stack
 - React
 - Redux Toolkit
 
-## 🌟 Standout Features
+### 🌟 Standout Features
 - 
