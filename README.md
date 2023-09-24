@@ -1,7 +1,7 @@
 # Refined Seoul 👕
 
 ### ❓ Introduction
-- 'Refined Seoul' is a fictional luxury fashion brand.
+- 'Refined Seoul' is a fictional luxury fashion brand that embodies the essence of sophistication, innovation, and timeless elegance.
 
 ### 💻 Tech Stack
 - React
