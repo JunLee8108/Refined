@@ -1,11 +1,11 @@
 # Refined Seoul
 
-This project is a fictional fashion brand website. (https://main.d2t2zns6ieqh27.amplifyapp.com/)
+## 📔 Introduction
+- 'Refined Seoul' is a fictional luxury fashion brand.
 
-<h1> Tech Stack </h1>
-### React
-### Redux
-### Firebase 
+## 💻 Tech Stack
+- React
+- Redux Toolkit
 
-## Current Version
-7/22 : wishlist is now fully functional.
+## 🌟 Standout Features
+- 
