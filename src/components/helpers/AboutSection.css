@@ -37,6 +37,59 @@
 }
 
 .about-mid-container {
+  background-color: #fff; /* A clean white background */
+  height: 600px; /* Adjust height as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px; /* Adds some padding inside the container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin: 80px 0; /* Adds some margin top and bottom */
+  border-radius: 10px; /* Slightly rounded corners for a softer look */
+}
+
+.about-mid-introduction {
+  width: 60%; /* Adjusted width for better reading */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Left aligns the text */
+  opacity: 0;
+  transform: translateY(-10%);
+  transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+  padding: 20px; /* Padding inside the text container */
+  padding-left: 30px;
+  color: #333; /* A darker color for text to make it easy on the eyes */
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px); /* Blur effect for the background */
+  border-left: 1px dotted #333333; /* Adds a colored bar on the left side for a touch of luxury */
+}
+
+.about-mid-introduction h3 {
+  font-family: "Times New Roman", Times, serif; /* A more classic font */
+  font-size: 2.5em; /* Larger font size for headings */
+  margin-bottom: 0.5em; /* Space between the heading and the paragraph */
+  color: #252525; /* A color that represents luxury */
+  text-transform: uppercase; /* Makes the text uppercase for emphasis */
+  letter-spacing: 3px; /* More spacing between letters */
+}
+
+.about-mid-introduction p {
+  font-family: "Georgia", serif;
+  font-size: 1.1em;
+  line-height: 40px; /* Better readability for the paragraph */
+  margin-bottom: 1em; /* Space after the paragraph */
+  color: #555; /* A softer color for the paragraph text */
+  text-align: justify; /* Justifies the paragraph text */
+}
+
+.about-mid-introduction-scroll {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+/* .about-mid-container {
   background-color: ghostwhite;
   height: 500px;
   display: flex;
@@ -69,7 +122,7 @@
 .about-mid-introduction p {
   font-family: Verdana, Dotum, AppleGothic, sans-serif;
   line-height: 40px;
-}
+} */
 
 /* 4K */
 @media (min-width: 2561px) and (max-width: 3840px) {
@@ -168,18 +221,16 @@
   }
 
   .about-mid-container {
-    height: 500px;
+    height: auto;
+    padding: 20px;
   }
 
   .about-mid-introduction {
-    width: 80%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    width: 90%;
+
     align-items: center;
     opacity: 0;
-    transform: translateY(-20%);
+    transform: translateY(-10%);
   }
 
   .about-mid-introduction-scroll {

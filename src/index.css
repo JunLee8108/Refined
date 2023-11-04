@@ -32,3 +32,9 @@ li,
 ul {
   transform: rotate(0.04deg);
 }
+
+@keyframes flash {
+  to {
+    opacity: 1;
+  }
+}

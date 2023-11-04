@@ -7,7 +7,6 @@ import { getAllStatus, fetchAll, selectAll } from "../../slices/allSlice";
 function HomeHelper() {
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
-  const [backgroundImg, setBackgroundImg] = useState(false);
   const [scrollSelections, setScrollSelections] = useState(false);
 
   const dispatch = useDispatch();
